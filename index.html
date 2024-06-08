@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html class="page" lang="ua">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nutrionist</title>
+    <link rel="shortcut icon" href="./images/favicon.svg" type="image/x-icon">
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="tailwind.css">
+    <link href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/@alpinejs/intersect@3.x.x/dist/cdn.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js" defer></script>
+    <script type="module" src="app.js" defer></script>
+  </head>
+  <body class="page__body">
+    <div class="page__wrapper" x-data="{isShowSlideMenu: false,isTablet: false,isPhone: false,}" x-init="setTimeout(() =&gt; {isTablet = (window.innerWidth &lt; 992);isPhone = (window.innerWidth &lt; 576);}, 0)" @resize.debounce.window="setTimeout(() =&gt; {isTablet = (window.innerWidth &lt; 992);isPhone = (window.innerWidth &lt; 576);}, 0)">
+      <template x-if="isShowSlideMenu">
+        <div class="slide-menu" x-data="{ currentAnchor: '', isClosed: true }" x-init="setTimeout(() =&gt; {isClosed=false}, 1)" @scroll.debounce.window="currentAnchor = window.location.hash" :class="{'slide-menu--closed': isClosed}">
+          <div class="slide-menu__menu">
+            <div class="slide-menu__menu__header">
+              <div class="logo" style="width: 182px;"><a href="#"><img src="./images/icons/logo.svg" alt="logo"/></a></div>
+              <button class="contacts-menu__button contacts-menu__button--close" type="button" @click="isClosed=true" x-on:click="setTimeout(() =&gt; {isShowSlideMenu = false}, 500)">
+                <div class="contacts-menu__button__image"></div>
+              </button>
+            </div>
+            <hr style="margin-bottom: 25px;"/><a class="link" href="#learn" style="margin-bottom: 25px;">
+              <div class="link__text">Навчання</div>
+              <div class="link__image">
+                <div class="icon"><svg width="35" height="34" viewBox="0 0 35 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M22.4497 12.0503L12.5503 21.9498M22.4497 12.0503V20.5355M22.4497 12.0503H13.9645" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+
+                </div>
+              </div></a>
+            <ul style="display: grid; grid-template-columns: repeat(2,1fr); margin-bottom: 15px; gap: 10px;">
+              <li class="navigation__item" :class="{'navigation__item--active': currentAnchor === '#about_me'}" style="width: max-content;"><a class="navigation__link" style="line-height: 100%; padding-bottom: 15px;" href="#about_me" @click="() =&gt; {currentAnchor = '#about_me'; isClosed=true;}" x-on:click="setTimeout(() =&gt; {isShowSlideMenu = false}, 500)">Про мене</a></li>
+              <li class="navigation__item" :class="{'navigation__item--active': currentAnchor === '#services'}" style="width: max-content;"><a class="navigation__link" style="line-height: 100%; padding-bottom: 15px;" href="#services" @click="() =&gt; {currentAnchor = '#services'; isClosed=true;}" x-on:click="setTimeout(() =&gt; {isShowSlideMenu = false}, 500)">Послуги</a></li>
+              <li class="navigation__item" :class="{'navigation__item--active': currentAnchor === '#magazine'}" style="width: max-content;"><a class="navigation__link" style="line-height: 100%; padding-bottom: 15px;" href="#magazine" @click="() =&gt; {currentAnchor = '#magazine'; isClosed=true;}" x-on:click="setTimeout(() =&gt; {isShowSlideMenu = false}, 500)">Журнал</a></li>
+              <li class="navigation__item" :class="{'navigation__item--active': currentAnchor === '#contants'}" style="width: max-content;"><a class="navigation__link" style="line-height: 100%; padding-bottom: 15px;" href="#contants" @click="() =&gt; {currentAnchor = '#contants'; isClosed=true;}" x-on:click="setTimeout(() =&gt; {isShowSlideMenu = false}, 500)">Контакти</a></li>
+            </ul>
+            <p style="margin-bottom: 25px;">Поглиблені персональнi консультації з нутриціології, якi допоможуть вам досягти витриманого здоров'я та життєвої енергії</p><a class="button button--only-text" href="https://t.me/svitlanaolijnyk" style="margin-bottom: 40px;">
+              <p class="button__text">Зв'язатися зі мною</p></a>
+            <h3 style="margin-bottom: 25px; font-size: 18px;">Давайте дружити</h3>
+            <div class="social-list _flex" style="margin-bottom: 20px;"><a href="#" target="_blank" rel="noopener noreferrer"><img src="./images/icons/light__social-facebook.svg" alt="facebook"/></a><a href="https://www.instagram.com/svitlana.olijnyk/" target="_blank" rel="noopener noreferrer"><img src="./images/icons/light__social-instagram.svg" alt="instagram"/></a><a href="#" target="_blank" rel="noopener noreferrer"><img src="./images/icons/light__social-youtube.svg" alt="youtube"/></a><a href="https://t.me/svitlanaolijnyk" target="_blank" rel="noopener noreferrer"><img src="./images/icons/light__social-telegram.svg" alt="telegram"/></a>
+            </div>
+            <hr style="margin-bottom: 25px;"/>
+            <div>Розробка сайту: <a href="#" style="text-decoration: underline; font-weight: 500;">kruglov.design</a></div>
+          </div>
+        </div>
+      </template>
+      <header class="page__header">
+        <div class="header">
+          <div class="header__logo">
+            <div class="logo"><a href="#"><img src="./images/icons/logo.svg" alt="logo"/></a></div>
+          </div>
+          <div class="header__container">
+            <div class="header__navigation">
+              <nav class="navigation" x-data="{ currentAnchor: '' }" @scroll.debounce.window="currentAnchor = window.location.hash">
+                <ul class="navigation__list">
+                  <li class="navigation__item" :class="{'navigation__item--active': currentAnchor === '#about_me'}"><a class="navigation__link" href="#about_me" @click="currentAnchor = '#about_me'">Про мене</a></li>
+                  <li class="navigation__item" :class="{'navigation__item--active': currentAnchor === '#services'}"><a class="navigation__link" href="#services" @click="currentAnchor = '#services'">Послуги</a></li>
+                  <li class="navigation__item" :class="{'navigation__item--active': currentAnchor === '#magazine'}"><a class="navigation__link" href="#magazine" @click="currentAnchor = '#magazine'">Журнал</a></li>
+                  <li class="navigation__item" :class="{'navigation__item--active': currentAnchor === '#contants'}"><a class="navigation__link" href="#contants" @click="currentAnchor = '#contants'">Контакти</a></li>
+                </ul>
+              </nav>
+            </div>
+            <div class="header__link"><a class="link" href="#learn">
+                <div class="link__text">Навчання</div>
+                <div class="link__image">
+                  <div class="icon"><svg width="35" height="34" viewBox="0 0 35 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M22.4497 12.0503L12.5503 21.9498M22.4497 12.0503V20.5355M22.4497 12.0503H13.9645" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+
+                  </div>
+                </div></a>
+            </div>
+          </div>
+          <div class="header__button"><a class="button button--only-text" href="https://t.me/svitlanaolijnyk">
+              <p class="button__text">Зв'язатися зі мною</p></a>
+          </div>
+          <div class="header__menu">
+            <div class="button-menu"><img src="./images/icons/menu.svg" alt="menu" @click="isShowSlideMenu = true"/></div>
+          </div>
+        </div>
+      </header>
+      <div class="page__menu">
+        <div class="contacts-menu" x-data="{ hidden: true }" @click.outside="hidden = true">
+          <div class="contacts-menu__container" x-cloak="x-cloak" :class="{'contacts-menu__container--hidden': hidden}">
+            <div class="contacts-menu__item"> <a class="button-icon" target="_blank" href="https://www.instagram.com/svitlana.olijnyk/"><img src="./images/icons/social-instagram.svg" alt="instagram-logo"/></a></div>
+            <div class="contacts-menu__item"> <a class="button-icon" href="mailto:svitlanaoliinyk.nutritionist@ukr.net"><img src="./images/icons/social-sms.svg" alt="sms-logo"/></a></div>
+            <div class="contacts-menu__item"> <a class="button-icon" target="_blank" href="#"><img src="./images/icons/social-messager.svg" alt="messager-logo"/></a></div>
+            <div class="contacts-menu__item"> <a class="button-icon" target="_blank" href="https://wa.me/380676076007"><img src="./images/icons/social-whatsApp.svg" alt="whatsApp-logo"/></a></div>
+            <div class="contacts-menu__item"> <a class="button-icon" target="_blank" href="viber://contact?number=380676076007"><img src="./images/icons/social-viber.svg" alt="viber-logo"/></a></div>
+            <div class="contacts-menu__item"> <a class="button-icon" target="_blank" href="https://t.me/svitlanaolijnyk"><img src="./images/icons/social-telegram.svg" alt="telegram-logo"/></a></div>
+          </div>
+          <button class="contacts-menu__button" type="button" @click="hidden = !hidden" :class="{'contacts-menu__button--close': !hidden}">
+            <div class="contacts-menu__button__image"></div>
+          </button>
+        </div>
+      </div>
+      <main class="page__main">
+        <section class="section-about-me _fix-hook" id="about_me">
+          <div class="section-about-me__video _grid-col--desk-1-1 _grid-col--phone-1-2 _grid-row--desk-1-1 _grid-row--phone-a _place-desk-↙ _place-phone-s _order-desk-0 _order-lab-1">
+            <div class="video">
+              <h2 class="video__text">Дивитися відео</h2>
+              <div class="video__view"><a href="#" rel="noopener noreferrer" target="_blank"> 
+                  <div class="video__button"></div><img class="video__image" src="./images/photos/self-video.jpg" alt="video"/></a></div>
+            </div>
+          </div>
+          <div class="section-about-me__title _grid-col--desk-2-2 _grid-col--lab-1-1 _grid-col--phone-1-2 _grid-row--desk-1-1 _grid-row--phone-a _place-desk-↑">
+            <div class="main-title">
+              <p class="main-title__text">100% натуральне життя</p>
+              <h1 class="main-title__title">Обирайте <br>найкращий <br>та здоровий <br>спосіб життя</h1>
+              <p class="main-title__content">
+                Поглиблені персональнi консультації з нутриціології, 
+                якi допоможуть вам досягти витриманого здоров'я та життєвої енергії
+                
+              </p>
+            </div>
+          </div>
+          <div class="section-about-me__button _grid-col--desk-2-2 _grid-col--lab-1-1 _grid-col--phone-1-2 _grid-row--desk-1-1 _grid-row--phone-a _place-desk-↘ _place-phone-c _order-tab-1"><a class="button-circle" href="https://t.me/svitlanaolijnyk" target="_blank"><span class="button-circle__text">Записатися</span><img class="button-circle__image" src="./images/icons/tabler_arrow-up-2.svg" alt="arrow"/></a>
+          </div>
+          <div class="section-about-me__photo _grid-col--desk-3-6 _grid-col--lab-3-3 _grid-col--tab-2-2 _grid-col--phone-1-2 _grid-row--desk-1-1 _grid-row--phone-a _place-desk-↗ _place-phone-c">
+            <div class="main-photo">
+              <div class="main-photo__1">
+                <div class="main-photo__2"><img class="main-photo__image" src="./images/photos/self_1.jpg"/></div>
+              </div>
+            </div>
+          </div>
+          <div class="section-about-me__comments _grid-col--desk-5-6 _grid-col--lab-3-3 _grid-col--tab-2-2 _grid-col--phone-1-2 _grid-row--desk-1-1 _grid-row--phone-a _place-desk-↘ _place-phone-c">
+            <h1 class="section-about-me__comments__title">Світлана Олійник</h1>
+            <div class="flex flex-col" style="gap: 15px">
+              <div class="comment"><img class="comment__icon" src="./images/icons/dark__done.svg" alt="done"/>
+                <div>
+                  <h2 class="comment__title">Нутриціолог №1</h2>
+                  <p class="comment__body">В Дніпропетровської області, входжу у <b>топ 5</b> нутріціологів України</p>
+                </div>
+              </div>
+              <div class="comment"><img class="comment__icon" src="./images/icons/dark__done.svg" alt="done"/>
+                <div>
+                  <p class="comment__body">Діючий нутрицiолог із практичним досвідом понад <b>10 років</b></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="section-service">
+          <div class="bigger"></div>
+          <div class="_grid">
+            <div class="decor _fix-for-decor _grid-col--desk-2-2 _grid-col--lab-1-1 _place-lab-↘ _place-tab-↗" data-da=".section-service__decor,576,0">
+              <div class="decor__image"><img class="decor__image__photo" src="./images/photos/self_2.jpg" alt="photo"/><img class="decor__image__decor" src="./images/decor/decore_5.jpg" alt="photo"/></div>
+            </div>
+            <div class="_grid-col--desk-4-5 _grid-col--lab-3-3 _grid-col--tab-2-2 _grid-col--phone-1-2">
+              <div class="_flex _flex-col">
+                <div class="grid" style="grid-template-columns: repeat(2,1fr); margin-bottom: 20px;">
+                  <div class="section-service__decor _grid-col--phone-1-1 _place-phone-c"></div>
+                  <div class="_flex _flex-col _grid-col--desk-1-2 _grid-col--phone-2-2 _place-phone-↓"><img class="koma" src="./images/icons/double-koma.svg" alt="koma"/>
+                    <p>Ключ до здорового життя</p>
+                  </div>
+                </div>
+                <div class="title">
+                  <h2 class="title__main-text">Справжня гармонія тіла і душі починається з того, що ми вибираємо для свого харчування</h2>
+                </div>
+                <article class="card-icon card"><img class="card-icon__image" src="./images/icons/dark__leave.svg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
+                  <div class="card-icon__container">
+                    <h3 class="card-icon__title">Тільки органічні продукти</h3>
+                    <p class="card-icon__text">Відкрийте для себе органічні продукти – енергія природи та дбайливість до здоров'я</p>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </div>
+          <section class="section-service__services" id="services">
+            <div class="_grid" style="column-gap: 14px;">
+              <div class="_grid-col--desk-1-2 _grid-col--lab-1-1 _grid-col--phone-1-2">
+                <div class="_flex _flex-col" style="justify-content: space-between; height: 100%;">
+                  <div class="title title--font-family">
+                    <p class="title__text">Чим я можу бути корисною?</p>
+                    <h2 class="title__main-text">Допожу зробити ваш шлях <br>до здорового харчування <br>та благополуччя більш <br>захоплюючим та <br>персональним</h2>
+                  </div>
+                  <article class="card-half-circle  card-half-circle--top card-half-circle--mini-block card"><img class="card-half-circle__image" src="./images/photos/post_1.jpg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
+                    <div class="card-half-circle__container">
+                      <h3 class="card-half-circle__title">Загальний аналіз здоров'я</h3>
+                      <p class="card-half-circle__text">Вивчення медичного стану та рекомендації щодо харчування для підтримки загального здоров'я</p>
+                    </div>
+                  </article>
+                </div>
+              </div>
+              <div class="_grid-col--desk-4-6 _grid-col--lab-2-3 _grid-col--phone-1-2">
+                <div class="_flex _flex-col" style="justify-content: space-between; height: 100%;">
+                  <div class="_flex" style="justify-content: start;">
+                    <article class="card-half-circle  card-half-circle--top card _place-lab-←"><img class="card-half-circle__image" src="./images/photos/post_2_2.jpg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
+                      <div class="card-half-circle__container">
+                        <h3 class="card-half-circle__title">Персональні консультації з нутриціології</h3>
+                        <p class="card-half-circle__text">Оцінка харчових звичок та розробка індивідуального плану харчування для досягнення здоров'я та енергії</p>
+                      </div>
+                    </article>
+                    <article class="card-half-circle  card-half-circle--top card" data-da=".section-service__footer,1400,first"><img class="card-half-circle__image" src="./images/photos/post_3_2.jpg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
+                      <div class="card-half-circle__container">
+                        <h3 class="card-half-circle__title">Менеджмент ваги та харчових вподобань</h3>
+                        <p class="card-half-circle__text">Планування раціону з урахуванням особливостей, допомога в управлінні вагою та створення збалансованого меню</p>
+                      </div>
+                    </article>
+                  </div>
+                  <div style="z-index: 1;">
+                    <template x-cloak="x-cloak" x-if="isTablet">
+                      <article class="card-half-circle  card-half-circle--top card-half-circle--mini-block card"><img class="card-half-circle__image" src="./images/photos/post_4.jpg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
+                        <div class="card-half-circle__container">
+                          <h3 class="card-half-circle__title">Дитяча нутриція</h3>
+                          <p class="card-half-circle__text">Розробка збалансованих меню для дітей, сприяючи їхньому фізичному та інтелектуальному розвитку</p>
+                        </div>
+                      </article>
+                    </template>
+                    <template x-cloak="x-cloak" x-if="!isTablet">
+                      <article class="card-half-circle  card-half-circle--right card-half-circle--mini-inline card"><img class="card-half-circle__image" src="./images/photos/post_4.jpg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
+                        <div class="card-half-circle__container">
+                          <h3 class="card-half-circle__title">Дитяча нутриція</h3>
+                          <p class="card-half-circle__text">Розробка збалансованих меню для дітей, сприяючи їхньому фізичному та інтелектуальному розвитку</p>
+                        </div>
+                      </article>
+                    </template>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="_grid">
+              <div class="_grid-col--desk-1-6 _grid-col--phone-1-2">
+                <template x-cloak="x-cloak" x-if="!isTablet">
+                  <div class="_flex relative">
+                    <article class="card-half-circle  card-half-circle--right card"><img class="card-half-circle__image" src="./images/photos/post_5.jpg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
+                      <div class="card-half-circle__container">
+                        <h3 class="card-half-circle__title">Харчові алергії та інтолерантності</h3>
+                        <p class="card-half-circle__text">Визначення потенційних алергенів та розробка безпечного та поживного раціону</p>
+                      </div>
+                    </article>
+                    <article class="card-half-circle  card-half-circle--left card"><img class="card-half-circle__image" src="./images/photos/post_5-r.jpg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
+                      <div class="card-half-circle__container">
+                        <h3 class="card-half-circle__title">Спортивне харчування</h3>
+                        <p class="card-half-circle__text">Створення оптимальної дієти для підтримки фізичної активності, відновлення та досягнення спортивних цілей</p>
+                      </div>
+                    </article>
+                    <div class="circle-decore"></div>
+                  </div>
+                </template>
+                <div class="title title--one-text section-service__title">
+                  <p class="title__text">Відкрийте новий світ здорового <br>харчування разом із персоналізованими <br>консультаціями – енергія, задоволення <br>та баланс для вашого життя</p>
+                </div>
+                <template x-cloak="x-cloak" x-if="isTablet &amp;&amp; !isPhone">
+                  <div class="_flex relative">
+                    <article class="card-half-circle  card-half-circle--top card-half-circle--img-right card"><img class="card-half-circle__image" src="./images/photos/post_5.jpg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
+                      <div class="card-half-circle__container">
+                        <h3 class="card-half-circle__title">Харчові алергії та інтолерантності</h3>
+                        <p class="card-half-circle__text">Визначення потенційних алергенів та розробка безпечного та поживного раціону</p>
+                      </div>
+                    </article>
+                    <article class="card-half-circle  card-half-circle--top card-half-circle--img-left card"><img class="card-half-circle__image" src="./images/photos/post_5-r.jpg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
+                      <div class="card-half-circle__container">
+                        <h3 class="card-half-circle__title">Спортивне харчування</h3>
+                        <p class="card-half-circle__text">Створення оптимальної дієти для підтримки фізичної активності, відновлення та досягнення спортивних цілей</p>
+                      </div>
+                    </article>
+                    <div class="circle-decore"></div>
+                  </div>
+                </template>
+                <template x-cloak="x-cloak" x-if="isPhone">
+                  <div class="_flex relative">
+                    <article class="card-half-circle  card-half-circle--top card-half-circle--top-mini card-half-circle--img-right card"><img class="card-half-circle__image" src="./images/photos/post_5.jpg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
+                      <div class="card-half-circle__container">
+                        <h3 class="card-half-circle__title">Харчові алергії та інтолерантності</h3>
+                      </div>
+                    </article>
+                    <article class="card-half-circle  card-half-circle--top card-half-circle--top-mini card-half-circle--img-left card"><img class="card-half-circle__image" src="./images/photos/post_5-r.jpg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
+                      <div class="card-half-circle__container">
+                        <h3 class="card-half-circle__title">Спортивне харчування</h3>
+                      </div>
+                    </article>
+                    <div class="circle-decore"></div>
+                  </div>
+                </template>
+              </div>
+            </div>
+            <div class="_grid">
+              <div class="_grid-col--desk-1-6 _grid-col--phone-1-2 _grid-col--desk-c">
+                <div class="_flex section-service__footer">
+                  <article class="card-half-circle  card-half-circle--top card"><img class="card-half-circle__image" src="./images/photos/post_3_3.jpg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
+                    <div class="card-half-circle__container">
+                      <h3 class="card-half-circle__title">Золотий Ключ: Оптимальне Здоров'я</h3>
+                      <p class="card-half-circle__text">Вивчення вашого тіла та створення унікального плану, який допоможе вам досягти найкращого стану здоров'я</p>
+                    </div>
+                  </article>
+                  <article class="card-half-circle  card-half-circle--top card-half-circle--mini-block card"><img class="card-half-circle__image" src="./images/photos/self_3.jpg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
+                    <div class="card-half-circle__container">
+                      <h3 class="card-half-circle__title">Нормалізація настрою</h3>
+                      <p class="card-half-circle__text">Ви станете менш дратівливими, будіть почувати себе впевненіше</p>
+                    </div>
+                  </article>
+                </div>
+                <div class="_flex section-service__button" data-da=".section-service__footer,1200,last"><a class="button-circle" href="https://t.me/svitlanaolijnyk" target="_blank"><span class="button-circle__text">Записатися</span><img class="button-circle__image" src="./images/icons/tabler_arrow-up-2.svg" alt="arrow"/></a>
+                </div>
+              </div>
+            </div>
+          </section>
+        </section>
+        <section class="section-recommendations">
+          <div class="section-recommendations__title _grid-col--desk-1-6 _grid-col--lab-1-3 _grid-col--tab-1-2 _place-desk-с">
+            <div class="title  title--second title--font-family">
+              <p class="title__text">Для кого пiдходить?</p>
+              <h2 class="title__main-text">Для тих, хто не просто їсть, а живе стилем, що наповнює енергією та задоволенням</h2>
+            </div>
+          </div>
+          <div class="_grid-col--desk-1-6 _grid-col--lab-1-3 _grid-col--phone-1-2">
+            <hr style="width: 350px; margin: auto"/>
+          </div>
+          <div class="decor decor--big _fix-for-decor section-recommendations__decor _grid-col--desk-1-2 _grid-col--lab-1-1 _grid-col--phone-1-2 _place-desk-↗ _place-phone-c">
+            <div class="decor__image"><img class="decor__image__photo" src="./images/photos/decor_1.jpg" alt="photo"/><img class="decor__image__decor" src="./images/decor/decore_4.jpg" alt="photo"/></div>
+          </div>
+          <div class="title _grid-col--desk-4-5 _grid-col--lab-3-3 _grid-col--tab-2-2 _grid-col--phone-1-2">
+            <p class="title__text">Для тих, кто цiнує</p>
+            <h2 class="title__main-text">Для тих, хто цінує своє здоров'я та шукає індивідуальний шлях до гармонії</h2>
+          </div>
+          <article class="card-mini card _grid-col--desk-4-4 _grid-col--lab-3-3 _grid-col--tab-2-2 _grid-col--phone-1-2 _order-phone--1" data-da=".section-recommendations__rec,576,0"><img class="card-mini__image" src="./images/photos/mini-post_1.jpg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
+            <div class="card-mini__container">
+              <h3 class="card-mini__title">Інноватори здорового способу життя</h3>
+              <p class="card-mini__text">Ентузіасти, що прагнуть відкрити нові горизонти здорового харчування та емоційного благополуччя</p>
+            </div>
+          </article>
+          <article class="card-mini card _grid-col--desk-5-6 _grid-col--phone-1-2" data-da=".section-recommendations__rec,1400,0"><img class="card-mini__image" src="./images/photos/mini-post_2.jpg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
+            <div class="card-mini__container">
+              <h3 class="card-mini__title">Шукачі змін</h3>
+              <p class="card-mini__text">Амбітні особистості, готові до викликів, з метою покращити своє життя через індивідуальний підхід до харчування</p>
+            </div>
+          </article>
+          <div class="img-decore section-recommendations__img-decore _grid-col--desk-2-2 _grid-col--lab-1-1 _grid-col--phone-1-2 _grid-row--lab-4-4 _place-desk-c _place-lab-↘ _place-phone-↖"></div>
+          <article class="card-image card _grid-col--desk-4-4 _grid-col--phone-1-2" data-da=".section-recommendations__rec,1400,2"><img class="card-image__image" src="./images/photos/full-post_1.jpg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
+            <div class="card-image__container">
+              <h3 class="card-image__title">Цінителі Власного Благополуччя</h3>
+              <p class="card-image__text">Ті, кого об'єднує прагнення до фізичного та емоційного здоров'я через збалансоване харчування</p>
+            </div>
+          </article>
+          <article class="card-image card _grid-col--desk-2-2 _grid-col--phone-1-2 _place-tab-→" data-da=".section-recommendations__rec,1400,1"><img class="card-image__image" src="./images/photos/full-post_2.jpg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
+            <div class="card-image__container">
+              <h3 class="card-image__title">Свідомі батьки</h3>
+              <p class="card-image__text">Ті, хто прагне забезпечити своїм дітям здоровий розвиток через особливості правильного харчування</p>
+            </div>
+          </article>
+          <template x-cloak="x-cloak" x-if="!isPhone">
+            <article class="card-mini card _grid-col--desk-5-6 _grid-col--phone-1-2" data-da=".section-recommendations__rec-2,1400,0"><img class="card-mini__image" src="./images/photos/mini-post_3.jpg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
+              <div class="card-mini__container">
+                <h3 class="card-mini__title">Любителі iндивідуальностi</h3>
+                <p class="card-mini__text">Ті, хто цінує унікальний підхід до створення персоналізованих планів харчування</p>
+              </div>
+            </article>
+          </template>
+          <article class="card-mini card _grid-col--desk-4-4 _grid-col--phone-1-2" data-da=".section-recommendations__rec-2,1400,0"><img class="card-mini__image" src="./images/photos/mini-post_4.jpg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
+            <div class="card-mini__container">
+              <h3 class="card-mini__title">Спортсмени та <br/>фітнес-Гуру</h3>
+              <p class="card-mini__text">Активні особистості, які шукають індивідуалізовані стратегії харчування для досягнення спортивних цілей</p>
+            </div>
+          </article>
+          <template x-cloak="x-cloak" x-if="!isPhone">
+            <article class="card-mini card _grid-col--desk-5-6 _grid-col--phone-1-2" data-da=".section-recommendations__rec-2,1400,1"><img class="card-mini__image" src="./images/photos/mini-post_6.jpg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
+              <div class="card-mini__container">
+                <h3 class="card-mini__title">Шанувальники Гармонії</h3>
+                <p class="card-mini__text">Ті, хто бажає досягти балансу та гармонії через свідомий вибір харчування</p>
+              </div>
+            </article>
+          </template>
+          <article class="card-mini card _grid-col--desk-1-1 _grid-col--phone-1-2 _place-desk-↙ _order-phone--1" data-da=".section-recommendations__rec-2,576,2"><img class="card-mini__image" src="./images/photos/mini-post_7.jpg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
+            <div class="card-mini__container">
+              <h3 class="card-mini__title">Для всix</h3>
+              <p class="card-mini__text">Хто шукає індивідуальний підхід до здорового харчування та хоче змінити своє життя до кращого</p>
+            </div>
+          </article>
+          <article class="card-image card _grid-col--desk-5-6 _grid-col--lab-3-3 _grid-col--tab-2-2 _grid-col--phone-1-2 _grid-row--lab-7-7 _place-lab-→ _place-phone-c _order-phone-9" data-da=".section-recommendations,576,last"><img class="card-image__image" src="./images/photos/full-post_3.jpg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
+            <div class="card-image__container">
+              <h3 class="card-image__title">Здорові душі в здоровому тілі</h3>
+              <p class="card-image__text">Люди, які розуміють, що здоров'я тіла і душі взаємопов'язані, і шукають гармонію у всіх аспектах свого життя</p>
+            </div>
+          </article>
+          <div class="_flex section-recommendations__rec _grid-col--lab-1-3 _grid-col--phone-1-2 _grid-row--lab-5-5"></div>
+          <div class="_flex section-recommendations__rec-2 _grid-col--lab-1-3 _grid-col--phone-1-2 _grid-row--lab-6-6">
+            <template x-cloak="x-cloak" x-if="isPhone">
+              <article class="card-mini  card-mini--right card _grid-col--desk-5-6 _grid-col--phone-1-2"><img class="card-mini__image" src="./images/photos/mini-post_3.jpg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
+                <div class="card-mini__container">
+                  <h3 class="card-mini__title">Любителі iндивідуальностi</h3>
+                  <p class="card-mini__text">Ті, хто цінує унікальний підхід до створення персоналізованих планів харчування</p>
+                </div>
+              </article>
+            </template>
+            <template x-cloak="x-cloak" x-if="isPhone">
+              <article class="card-mini  card-mini--right card-mini--left card _grid-col--desk-5-6 _grid-col--phone-1-2"><img class="card-mini__image" src="./images/photos/mini-post_6.jpg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
+                <div class="card-mini__container">
+                  <h3 class="card-mini__title">Шанувальники Гармонії</h3>
+                  <p class="card-mini__text">Ті, хто бажає досягти балансу та гармонії через свідомий вибір харчування</p>
+                </div>
+              </article>
+            </template>
+          </div>
+        </section>
+        <section class="section-proposition">
+          <div class="_flex section-proposition__info">
+            <div class="circle-info"><img class="circle-info__bg" src="./images/decor/bg-info.png" alt="" srcset=""/><img class="circle-info__image" src="./images/photos/self_4.jpg" alt="" srcset=""/>
+              <p class="circle-info__text">Виглядаємо ідеально разом!</p>
+              <h2 class="circle-info__title">Ви отримаєте індивідуальні консультації з нутриціології i доступ до ефективних курсів для здоров'я та вагiтності, які допоможуть вам досягти своїх цілей!</h2>
+            </div>
+          </div>
+          <div class="_grid _flex section-proposition__container">
+            <div class="_grid-col--desk-1-3 _grid-col--lab-1-2">
+              <template x-cloak="x-cloak" x-if="!isPhone">
+                <article class="card-half-circle  card-half-circle--left card-half-circle--white card-half-circle--cource card"><img class="card-half-circle__image" src="./images/photos/post_6.jpg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
+                  <div class="card-half-circle__container">
+                    <h3 class="card-half-circle__title">Нова фігура за 30 днiв! Ексклюзивна програма для ідеального тіла!</h3>
+                    <p class="card-half-circle__text">Для тих, хто бажає швидко та ефективно перетворити своє тіло. Iдеальна для тих, хто шукає персоналізований підхід та видимі результати вже за 30 днів!</p>
+                    <div class="card-half-circle__block card__block"><a class="link" href="https://t.me/svitlanaolijnyk">
+                        <div class="link__text">Дізнатися більше</div>
+                        <div class="link__image">
+                          <div class="icon"><svg width="35" height="34" viewBox="0 0 35 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M22.4497 12.0503L12.5503 21.9498M22.4497 12.0503V20.5355M22.4497 12.0503H13.9645" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+
+                          </div>
+                        </div></a>
+                    </div>
+                  </div>
+                </article>
+              </template>
+              <template x-cloak="x-cloak" x-if="isPhone">
+                <article class="card-half-circle  card-half-circle--top card-half-circle--white card-half-circle--cource card"><img class="card-half-circle__image" src="./images/photos/post_6.jpg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
+                  <div class="card-half-circle__container">
+                    <h3 class="card-half-circle__title">Нова фігура за 30 днiв! Ексклюзивна програма для ідеального тіла!</h3>
+                    <p class="card-half-circle__text">Для тих, хто бажає швидко та ефективно перетворити своє тіло. Iдеальна для тих, хто шукає персоналізований підхід та видимі результати вже за 30 днів!</p>
+                    <div class="card-half-circle__block card__block"><a class="link" href="https://t.me/svitlanaolijnyk">
+                        <div class="link__text">Дізнатися більше</div>
+                        <div class="link__image">
+                          <div class="icon"><svg width="35" height="34" viewBox="0 0 35 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M22.4497 12.0503L12.5503 21.9498M22.4497 12.0503V20.5355M22.4497 12.0503H13.9645" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+
+                          </div>
+                        </div></a>
+                    </div>
+                  </div>
+                </article>
+              </template>
+            </div>
+            <div class="_grid-col--desk-4-4 _grid-col--lab-1-3 _grid-col--tab-2-2  _grid-col--phone-1-2 _grid-row--lab-2-2 _grid-row--tab-3-3 _grid-row--phone-4-4 _place-desk-↓ _place-tab-↗ _place-phone-c" style="z-index: 2;"><a class="button-circle--big button-circle" href="https://t.me/svitlanaolijnyk" target="_blank"><span class="button-circle__text">Усi курси</span><img class="button-circle__image" src="./images/icons/tabler_arrow-up-2.svg" alt="arrow"/></a>
+            </div>
+            <div class="section-proposition__card _grid-col--desk-5-6 _grid-col--lab-3-3 _grid-col--tab-2-2 _grid-col--phone-1-2 _grid-row--lab-2-2 _place-desk-↘ _place-lab-↗">
+              <article class="card-half-circle  card-half-circle--top card-half-circle--white card-half-circle--cource card"><img class="card-half-circle__image" src="./images/photos/post_7.jpg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
+                <div class="card-half-circle__container">
+                  <h3 class="card-half-circle__title">«Крихточка Healthy»</h3>
+                  <p class="card-half-circle__text">Захоплюючий курс для малюків від 2 років, щоб вони росли здоровими та щасливими</p>
+                  <div class="card-half-circle__block card__block"><a class="link" href="https://t.me/svitlanaolijnyk">
+                      <div class="link__text">Дізнатися більше</div>
+                      <div class="link__image">
+                        <div class="icon"><svg width="35" height="34" viewBox="0 0 35 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M22.4497 12.0503L12.5503 21.9498M22.4497 12.0503V20.5355M22.4497 12.0503H13.9645" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+
+                        </div>
+                      </div></a>
+                  </div>
+                </div>
+              </article>
+            </div>
+            <div class="_grid-col--desk-1-2 _grid-row--lab-2-2 _grid-row--phone-3-3">
+              <article class="card-mini  card-mini--cource card"><img class="card-mini__image" src="./images/photos/mini-post_7.jpg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
+                <div class="card-mini__container">
+                  <h3 class="card-mini__title">Швидкий Старт: Курс «Легко та eфективно» для тих, хто бажає втратити вагу самостійно, правильно їсти та не рахувати калорії</h3>
+                  <div class="card-mini__block card__block"><a class="link" href="https://t.me/svitlanaolijnyk">
+                      <div class="link__text">Дізнатися більше</div>
+                      <div class="link__image">
+                        <div class="icon"><svg width="35" height="34" viewBox="0 0 35 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M22.4497 12.0503L12.5503 21.9498M22.4497 12.0503V20.5355M22.4497 12.0503H13.9645" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+
+                        </div>
+                      </div></a>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+        <section class="section-privilege">
+          <div class="_flex section-privilege__title-block">
+            <div class="block-circle">
+              <image class="block-circle__image" src="./images/icons/logo-big.png" alt="decor-image"></image>
+              <div class="block-circle__container">
+                <div class="block-circle__decor section-privilege__to-decor"></div>
+                <p class="block-circle__text">Чому я?</p>
+                <h2 class="block-circle__title">Отримаєте повний комплекс допомоги на шляху до вашої найкращої версії. Разом ми досягнемо ваші цілі та створимо новий рівень здоров'я та самопочуття!</h2>
+              </div>
+              <image class="block-circle__image-2" src="./images/decor/Клубничка.png" alt="decor-image"></image>
+            </div>
+          </div>
+          <div class="section-privilege__container">
+            <div class="block-circle-mini section-privilege__block-1">
+              <div class="block-circle-mini__number">01</div>
+              <h2 class="block-circle-mini__title">Нутриціолог №1</h2>
+              <p class="block-circle-mini__text">В Дніпропетровської області, входжу у топ 5 нутріціологів України</p>
+            </div>
+            <div class="block-circle-mini block-circle-mini--gray section-privilege__block-2">
+              <div class="block-circle-mini__number">02</div>
+              <h2 class="block-circle-mini__title">Індивідуальний підхід</h2>
+              <p class="block-circle-mini__text">Персоналізовані рекомендації та плани харчування, створені спеціально для вашого унікального стану здоров'я та цілей</p>
+            </div>
+            <div class="block-circle-mini block-circle-mini--white section-privilege__block-3">
+              <div class="block-circle-mini__number">03</div>
+              <h2 class="block-circle-mini__title">Підтримка <br>у досягненні цілей</h2>
+              <p class="block-circle-mini__text">Ми не тільки розробимо для вас план харчування, а й надамо підтримку та мотивацію для досягнення ваших цілей</p>
+            </div>
+          </div>
+          <div class="_grid section-privilege__container-2">
+            <div class="decor decor--big _fix-for-decor _grid-col--desk-2-2 _grid-col--lab-1-1 _place-desk-→" data-da=".section-privilege__to-decor,576,0">
+              <div class="decor__image"><img class="decor__image__photo" src="./images/photos/self_5.jpg" alt="photo"/><img class="decor__image__decor" src="./images/decor/decore_6.jpg" alt="photo"/></div>
+            </div>
+            <template x-cloak="x-cloak" x-if="!isPhone">
+              <article class="card-mini-circle card _grid-col--desk-4-4 _grid-col--lab-3-3 _grid-col--tab-2-2 _grid-col--phone-1-2 _grid-row--lab-1-1 _place-desk-↙">
+                <div class="card-mini-circle__number">04</div><img class="card-mini-circle__image" src="./images/photos/mini-post_8.jpg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
+                <div class="card-mini-circle__container">
+                  <h3 class="card-mini-circle__title">Спеціалізовані рекомендації для фітнесу</h3>
+                  <p class="card-mini-circle__text">Активні особистості, які шукають індивідуалізовані стратегії харчування для досягнення спортивних цілей</p>
+                </div>
+              </article>
+            </template>
+            <template x-cloak="x-cloak" x-if="isPhone">
+              <article class="card-mini-circle  card-mini-circle--left card section-privilege__block-4 _grid-col--desk-4-4 _grid-col--lab-3-3 _grid-col--tab-2-2 _grid-col--phone-1-2 _grid-row--lab-1-1 _place-desk-↙">
+                <div class="card-mini-circle__number">04</div>
+                <div class="card-mini-circle__container"><img class="card-mini-circle__image" src="./images/photos/mini-post_8.jpg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
+                  <h3 class="card-mini-circle__title">Спеціалізовані рекомендації для фітнесу</h3>
+                </div>
+                <p class="card-mini-circle__text">Активні особистості, які шукають індивідуалізовані стратегії харчування для досягнення спортивних цілей</p>
+              </article>
+            </template>
+            <article class="card-mini-short card section-privilege__block-mini _grid-col--desk-5-6 _grid-col--lab-3-3 _grid-col--tab-2-2 _grid-col--phone-1-2 _grid-row--lab-1-1 _grid-row--tab-2-2 _place-desk-↗" data-da=".section-privilege__container,1200,last"><img class="card-mini-short__image" src="./images/photos/self_6.jpg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
+              <div class="card-mini-short__container">
+                <h3 class="card-mini-short__title">Знайду твiй ключ <br/>до здорового життя</h3>
+              </div>
+            </article>
+            <div class="section-privilege__block-7 _grid-col--desk-1-2 _grid-col--lab-3-3 _grid-col--tab-1-1 _grid-col-phone-1-2 _grid-row--lab-2-2 _grid-row--tab-4-4 _place-desk-↙ _place-lab-→ _place-phone-c">
+              <div class="block-circle-mini block-circle-mini--gray">
+                <div class="block-circle-mini__number">07</div>
+                <h2 class="block-circle-mini__title">Ефективна допомога керування вагою</h2>
+                <p class="block-circle-mini__text">Спеціалізовані поради з управління вагою, розроблені з урахуванням ваших індивідуальних потреб та фізичного стану</p>
+              </div>
+            </div>
+            <div class="section-privilege__block-6 _grid-col--desk-4-4 _grid-col--lab-1-3 _grid-col--tab-2-2 _grid-col--phone-1-2 _grid-row--lab-2-2 _grid-row--phone-3-3 _place-desk-↖ _place-lab-c">
+              <template x-cloak="x-cloak" x-if="isPhone">
+                <article class="card-mini-circle  card-mini-circle--reverse card">
+                  <div class="card-mini-circle__number">06</div><img class="card-mini-circle__image" src="./images/photos/mini-post_9.jpg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
+                  <div class="card-mini-circle__container">
+                    <h3 class="card-mini-circle__title">Допомогаю збалансувати дитяче харчування</h3>
+                    <p class="card-mini-circle__text">Для батьків – можливість забезпечити своїх дітей збалансованим та корисним харчуванням для їхнього оптимального розвитку</p>
+                  </div>
+                </article>
+              </template>
+              <template x-cloak="x-cloak" x-if="!isPhone">
+                <article class="card-mini-circle card">
+                  <div class="card-mini-circle__number">06</div><img class="card-mini-circle__image" src="./images/photos/mini-post_9.jpg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
+                  <div class="card-mini-circle__container">
+                    <h3 class="card-mini-circle__title">Допомогаю збалансувати дитяче харчування</h3>
+                    <p class="card-mini-circle__text">Для батьків – можливість забезпечити своїх дітей збалансованим та корисним харчуванням для їхнього оптимального розвитку</p>
+                  </div>
+                </article>
+              </template>
+            </div>
+            <div class="section-privilege__block-5 _grid-col--desk-5-6 _grid-col--lab-1-1 _grid-col--phone-1-2 _grid-row--desk-2-2 _grid-row--lab-2-2 _place-desk-↗ _place-lab-↙ _place-phone-c">
+              <div class="block-circle-mini block-circle-mini--gray">
+                <div class="block-circle-mini__number">05</div>
+                <h2 class="block-circle-mini__title">Баланс між смаком та здоров'ям</h2>
+                <p class="block-circle-mini__text">Насолоджуйтеся смачною їжею, не втрачаючи здоров'я</p>
+              </div>
+            </div>
+            <div class="section-privilege__button _grid-col--desk-5-6 _grid-col--lab-3-3 _grid-col--tab-2-2 _grid-row--desk-2-2 _grid-row--lab-2-2 _grid-row--tab-4-4 _grid-row--phone-5-5 _place-desk-↙ _place-lab-↘ _place-tab-c _place-phone-↘"><a class="button-circle" href="https://t.me/svitlanaolijnyk" target="_blank"><span class="button-circle__text">Записатися</span><img class="button-circle__image" src="./images/icons/tabler_arrow-up-2.svg" alt="arrow"/></a>
+            </div>
+          </div>
+        </section>
+        <section class="section-more-about-me">
+          <div class="_grid">
+            <div class="section-more-about-me__fon-block _grid-col--desk-1-6 _grid-col--lab-1-3 _grid-col--tab-1-2 _grid-row--desk-1-4 _grid-row--phone-1-6">
+              <div class="section-more-about-me__fon"></div>
+            </div>
+            <div class="section-more-about-me__header-block _grid-col--desk-1-6 _grid-col--lab-1-3 _grid-col--tab-1-2 _grid-row--desk-1-1"><img class="section-more-about-me__header-block__image" src="./images/icons/light__flower.svg"/>
+              <div class="section-more-about-me__header-block__container">
+                <p class="section-more-about-me__header-block__text">Трохи більше про меня</p>
+                <h2 class="section-more-about-me__header-block__main-text">Світлана Олійник</h2>
+              </div>
+            </div>
+            <div class="section-more-about-me__photo _grid-col--desk-1-6 _grid-col--lab-1-3 _grid-col--tab-1-2 _grid-row--desk-2-2">
+              <template x-cloak="x-cloak" x-if="!isPhone">
+                <div class="main-photo-circle"><img class="main-photo-circle__image" src="./images/photos/self_7.jpg" style="width: 580px; height: 580px;"/></div>
+              </template>
+              <template x-cloak="x-cloak" x-if="isPhone">
+                <div class="main-photo-circle  main-photo-circle--mini"><img class="main-photo-circle__image" src="./images/photos/self_7.jpg" style="width: 288px; height: 288px;"/></div>
+              </template>
+            </div>
+            <div class="section-more-about-me__cards _grid-col--desk-1-6 _grid-col--lab-1-3 _grid-col--tab-1-2 _grid-row--desk-2-2 _grid-row--phone-3-3" style="z-index: 2;">
+              <div style="top: 83%; left: 20%; transform: translate(-5%, 15%)">
+                <article class="card-icon  card-icon--border card at-ramdom-moving-1"><img class="card-icon__image" src="./images/icons/dark__target.svg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
+                  <div class="card-icon__container">
+                    <h3 class="card-icon__title">Унікальна методика</h3>
+                    <p class="card-icon__text">Моя унікальна методика, створена на основі власного життєвого досвіду, дозволяє кожному з вас відкрити нові горизонти здоров'я та енергії</p>
+                  </div>
+                </article>
+              </div>
+              <div style="top: 69%; left: 60%; transform: translate(-65%, -10%)">
+                <article class="card-icon  card-icon--border card at-ramdom-moving-0"><img class="card-icon__image" src="./images/icons/dark__my-mission.svg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
+                  <div class="card-icon__container">
+                    <h3 class="card-icon__title">Моя місія</h3>
+                    <p class="card-icon__text">Допомагати людям досягати здоров'я за допомогою власної унікальної методики</p>
+                  </div>
+                </article>
+              </div>
+              <div style="top: 50%; left: 10%; transform: translate(0%, -60%)">
+                <article class="card-icon  card-icon--border card at-ramdom-moving-2"><img class="card-icon__image" src="./images/icons/dark__number-one.svg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
+                  <div class="card-icon__container">
+                    <h3 class="card-icon__title">Визнаний нутрицiолог <b>№1</b> в Україні</h3>
+                    <p class="card-icon__text">На 2023 рiк за даними дослідження журналу «Health»</p>
+                  </div>
+                </article>
+              </div>
+              <div style="top: 30%; left: 94%; transform: translate(-100%, -50%);">
+                <article class="card-icon  card-icon--border-2 card at-ramdom-moving-3"><img class="card-icon__image" src="./images/icons/dark__done.svg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
+                  <div class="card-icon__container">
+                    <h3 class="card-icon__title">Моє життя  — це не лише професійний успіх у нутрицiології, воно яскраве та надзвичайне</h3>
+                  </div>
+                </article>
+              </div>
+            </div>
+            <div class="_grid-col--desk-4-5 _grid-col--lab-3-3 _grid-col--tab-2-2 _grid-col--phone-1-2 _grid-row--desk-3-3 _grid-row--phone-4-4 _place-desk-→ _place-tab-← _place-phone-c">
+              <article class="card-image  card-image--big card"><img class="card-image__image" src="./images/photos/self_8.jpg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
+                <div class="card-image__container">
+                  <h3 class="card-image__title">Щаслива мама</h3>
+                  <p class="card-image__text">Також я є щасливою мамою трьох чарівних дочок, і гармонія в моїй родині є віддзеркаленням того, що важливо в житті</p>
+                </div>
+              </article>
+            </div>
+            <div class="section-more-about-me__statistics _grid-col--desk-1-4 _grid-col--lab-1-1 _grid-col--phone-1-2 _grid-row--desk-3-3 _grid-row--phone-5-5 _place-desk-↖ _place-phone-c">
+              <div class="statistic" x-data="{'currentCount':'0','targetCount':10,'duration':5000,'observer':null,'startAnimation': function() {  let startTime = null;  const updateCount = (timestamp) =&gt; {  if (!startTime) startTime = timestamp;  const elapsed = timestamp - startTime;  this.currentCount = Math.min(Math.floor((elapsed / this.duration) * this.targetCount), this.targetCount);  if (elapsed &lt; this.duration) {  window.requestAnimationFrame(updateCount);  }  };  window.requestAnimationFrame(updateCount);  } }" x-intersect.once="startAnimation">
+                <h3 class="statistic__number"><span x-text="currentCount"></span><span>+</span></h3>
+                <p class="statistic__text">Років успішної роботи <br>у нутріцілогії</p>
+              </div>
+              <div class="statistic" x-data="{'currentCount':'0','targetCount':6194,'duration':5000,'observer':null,'startAnimation': function() {  let startTime = null;  const updateCount = (timestamp) =&gt; {  if (!startTime) startTime = timestamp;  const elapsed = timestamp - startTime;  this.currentCount = Math.min(Math.floor((elapsed / this.duration) * this.targetCount), this.targetCount);  if (elapsed &lt; this.duration) {  window.requestAnimationFrame(updateCount);  }  };  window.requestAnimationFrame(updateCount);  } }" x-intersect.once="startAnimation">
+                <h3 class="statistic__number"><span x-text="currentCount"></span><span></span></h3>
+                <p class="statistic__text">Людей стали здоровiшими <br>зi мною за весь мій шлях</p>
+              </div>
+              <div class="statistic" x-data="{'currentCount':'0','targetCount':98,'duration':5000,'observer':null,'startAnimation': function() {  let startTime = null;  const updateCount = (timestamp) =&gt; {  if (!startTime) startTime = timestamp;  const elapsed = timestamp - startTime;  this.currentCount = Math.min(Math.floor((elapsed / this.duration) * this.targetCount), this.targetCount);  if (elapsed &lt; this.duration) {  window.requestAnimationFrame(updateCount);  }  };  window.requestAnimationFrame(updateCount);  } }" x-intersect.once="startAnimation">
+                <h3 class="statistic__number"><span x-text="currentCount"></span><span>%</span></h3>
+                <p class="statistic__text">Людей стали здоровішими <br>та щасливішими</p>
+              </div>
+            </div>
+            <div class="section-more-about-me__visitca _grid-col--desk-2-3 _grid-col--lab-1-1 _grid-col--phone-1-2 _grid-row--desk-3-3 _grid-row--tab-4-4 _grid-row--phone-6-6 _place-desk-↓ _place-tab-↖ _place-phone-↗">
+              <template x-cloak="x-cloak" x-if="!isPhone &amp;&amp; !isTablet">
+                <article class="card-visitca card"><img class="card-visitca__image" src="./images/photos/self_9.jpg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
+                  <div class="card-visitca__container">
+                    <h3 class="card-visitca__title">Твiй провiдник до <br/>гарного тiла та здоров’я</h3>
+                    <p class="card-visitca__text">Ви можете мені особисто написати або додатись до друзів</p>
+                    <div class="card-visitca__block card__block">
+                      <div class="social-list _flex"><a href="#" target="_blank" rel="noopener noreferrer"><img src="./images/icons/light__social-facebook.svg" alt="facebook"/></a><a href="https://www.instagram.com/svitlana.olijnyk/" target="_blank" rel="noopener noreferrer"><img src="./images/icons/light__social-instagram.svg" alt="instagram"/></a><a href="#" target="_blank" rel="noopener noreferrer"><img src="./images/icons/light__social-youtube.svg" alt="youtube"/></a><a href="https://t.me/svitlanaolijnyk" target="_blank" rel="noopener noreferrer"><img src="./images/icons/light__social-telegram.svg" alt="telegram"/></a>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+              </template>
+              <template x-cloak="x-cloak" x-if="isTablet &amp;&amp; !isPhone">
+                <article class="card-visitca  card-visitca--top-left card"><img class="card-visitca__image" src="./images/photos/self_9.jpg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
+                  <div class="card-visitca__container">
+                    <h3 class="card-visitca__title">Твiй провiдник до <br/>гарного тiла та здоров’я</h3>
+                    <p class="card-visitca__text">Ви можете мені особисто написати або додатись до друзів</p>
+                    <div class="card-visitca__block card__block">
+                      <div class="social-list _flex"><a href="#" target="_blank" rel="noopener noreferrer"><img src="./images/icons/light__social-facebook.svg" alt="facebook"/></a><a href="https://www.instagram.com/svitlana.olijnyk/" target="_blank" rel="noopener noreferrer"><img src="./images/icons/light__social-instagram.svg" alt="instagram"/></a><a href="#" target="_blank" rel="noopener noreferrer"><img src="./images/icons/light__social-youtube.svg" alt="youtube"/></a><a href="https://t.me/svitlanaolijnyk" target="_blank" rel="noopener noreferrer"><img src="./images/icons/light__social-telegram.svg" alt="telegram"/></a>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+              </template>
+              <template x-cloak="x-cloak" x-if="isPhone">
+                <article class="card-visitca  card-visitca--top-right card" style="transform: translateY(-130px);"><img class="card-visitca__image" src="./images/photos/self_9.jpg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
+                  <div class="card-visitca__container">
+                    <h3 class="card-visitca__title">Твiй провiдник до <br/>гарного тiла та здоров’я</h3>
+                    <p class="card-visitca__text">Ви можете мені особисто написати або додатись до друзів</p>
+                    <div class="card-visitca__block card__block">
+                      <div class="social-list _flex"><a href="#" target="_blank" rel="noopener noreferrer"><img src="./images/icons/light__social-facebook.svg" alt="facebook"/></a><a href="https://www.instagram.com/svitlana.olijnyk/" target="_blank" rel="noopener noreferrer"><img src="./images/icons/light__social-instagram.svg" alt="instagram"/></a><a href="#" target="_blank" rel="noopener noreferrer"><img src="./images/icons/light__social-youtube.svg" alt="youtube"/></a><a href="https://t.me/svitlanaolijnyk" target="_blank" rel="noopener noreferrer"><img src="./images/icons/light__social-telegram.svg" alt="telegram"/></a>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+              </template>
+            </div>
+            <template x-cloak="x-cloak" x-if="!isPhone">
+              <div class="section-more-about-me__button _grid-col--desk-4-4 _grid-col--lab-1-3 _grid-col--tab-2-2 _grid-col--phone-1-2 _grid-row--desk-4-4 _grid-row--phone-6-6 _place-desk-↑ _place-lab-↖ _place-phone-↓"><a class="button-circle--big button-circle" href="https://t.me/svitlanaolijnyk" target="_blank"><span class="button-circle__text">Записатися</span><img class="button-circle__image" src="./images/icons/tabler_arrow-up-2.svg" alt="arrow"/></a>
+              </div>
+            </template>
+          </div>
+        </section>
+        <section class="_grid section-certificates">
+          <div class="_grid-col--desk-1-2" style="margin-bottom: 40px;">
+            <div class="title  title--second title--font-family">
+              <p class="title__text">Сертифiкати</p>
+              <h2 class="title__main-text">Я постійно розвиваюсь, навчаюсь у найкращих, відвідую тренінги та отриваю освіту, щоб передавати вам найцінніші та найкорисніші знання</h2>
+            </div>
+          </div>
+          <div class="_grid-col--desk-4-6 _grid-col--lab-1-3 _grid-col--tab-1-2 _place-lab-c">
+            <div class="splide" id="my-slider">
+              <div class="splide__track">
+                <ul class="splide__list">
+                  <li class="splide__slide"><img class="splide__item" src="./images/photos/certificate_1.jpg"/></li>
+                  <li class="splide__slide"><img class="splide__item" src="./images/photos/certificate_2.jpg"/></li>
+                  <li class="splide__slide"><img class="splide__item" src="./images/photos/certificate_1.jpg"/></li>
+                  <li class="splide__slide"><img class="splide__item" src="./images/photos/certificate_2.jpg"/></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="_grid shadow-gradient section-special-offer">
+          <div class="_fix-for-decor section-special-offer__decor _grid-col--desk-2-2 _grid-col--lab-1-1 _grid-col--phone-1-2 _place-lab-↗ _place-phone-c">
+            <div class="decor decor--big">
+              <div class="decor__image"><img class="decor__image__photo" src="./images/photos/self_10.jpg" alt="photo"/><img class="decor__image__decor" src="./images/decor/decore_1.jpg" alt="photo"/></div>
+            </div>
+          </div>
+          <div class="_grid-col--desk-4-5 _grid-col--lab-3-3 _grid-col--tab-2-2 _grid-col--phone-1-2 _place-lab-↖ _place-phone-c">
+            <div class="_flex _flex-col">
+              <div class="title  title--second title--font-family">
+                <p class="title__text">Унікальна пропозиція</p>
+                <h2 class="title__main-text">Спеціальна пропозиція для всієї вашої родини</h2>
+              </div>
+              <div class="section-special-offer__container">
+                <article class="card-icon card"><img class="card-icon__image" src="./images/icons/dark__love.svg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
+                  <div class="card-icon__container">
+                    <h3 class="card-icon__title">Для всієї родини</h3>
+                    <p class="card-icon__text">Діє знижка 15%, а також гайд за раціоном харчування на місяць</p>
+                  </div>
+                </article><a class="button-circle--medium button-circle" href="https://t.me/svitlanaolijnyk" target="_blank" data-da=".section-special-offer__last,992,last"><span class="button-circle__text">Отримати знижку</span><img class="button-circle__image" src="./images/icons/tabler_arrow-up-2.svg" alt="arrow"/></a>
+              </div>
+            </div>
+          </div>
+          <div class="_grid-col--desk-4-6 _grid-col--lab-3-3 _grid-col--tab-1-2 _place-desk-↘ _place-phone-↙">
+            <template x-cloak="x-cloak" x-if="!isPhone">
+              <article class="card-mini  card-mini--right card"><img class="card-mini__image" src="./images/photos/mini-post_10.jpg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
+                <div class="card-mini__container">
+                  <p class="card-mini__text">Правильно вибиранi продукти <br>максимізують користь для здоров'я <br>і підтримки високо-енергетичного рівня</p>
+                </div>
+              </article>
+            </template>
+            <template x-cloak="x-cloak" x-if="isPhone">
+              <article class="card-mini card"><img class="card-mini__image" src="./images/photos/mini-post_10.jpg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
+                <div class="card-mini__container">
+                  <p class="card-mini__text">Правильно вибиранi продукти <br>максимізують користь для здоров'я <br>і підтримки високо-енергетичного рівня</p>
+                </div>
+              </article>
+            </template>
+          </div>
+          <div class="section-special-offer__last _grid-col--tab-1-2 _place-tab-c"></div>
+        </section>
+        <section class="_grid section-magazine _fix-hook" id="magazine">
+          <div class="_grid-col--desk-2-4 _grid-col--lab-1-2 _grid-row--desk-1-1">
+            <div class="title  title--second title--font-family">
+              <p class="title__text">Журнал</p>
+              <h2 class="title__main-text">Останні та найцікавіші події <br>нутрицiологiї в Україні</h2>
+            </div>
+          </div>
+          <div class="_grid-col--desk-6-6 _grid-col--lab-3-3 _grid-col--tab-2-2 _grid-row--desk-1-1 _place-desk-↘ _place-phone-↗"><a class="link" href="#">
+              <div class="link__text">Усі новини</div>
+              <div class="link__image">
+                <div class="icon"><svg width="35" height="34" viewBox="0 0 35 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M22.4497 12.0503L12.5503 21.9498M22.4497 12.0503V20.5355M22.4497 12.0503H13.9645" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+
+                </div>
+              </div></a>
+          </div>
+          <div class="section-magazine__container _grid-col--desk-2-6 _grid-col--lab-1-3 _grid-col--tab-1-2">
+            <div class="splide splide--fix" id="my-slider-2">
+              <div class="splide__track">
+                <ul class="splide__list">
+                  <li class="splide__slide">
+                    <article class="card-half-circle  card-half-circle--top card-half-circle--white card"><img class="card-half-circle__image" src="./images/photos/post_8.jpg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
+                      <div class="card-half-circle__container">
+                        <h3 class="card-half-circle__title">Як здорова дієта впливає на психічне благополуччя</h3>
+                      </div>
+                    </article>
+                  </li>
+                  <li class="splide__slide">
+                    <article class="card-half-circle  card-half-circle--top card-half-circle--white card"><img class="card-half-circle__image" src="./images/photos/post_9.jpg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
+                      <div class="card-half-circle__container">
+                        <h3 class="card-half-circle__title">Секрети здоров'я у Вашому холодильнику та як обрати справжні продукти для життєвого тонусу</h3>
+                      </div>
+                    </article>
+                  </li>
+                  <li class="splide__slide">
+                    <article class="card-half-circle  card-half-circle--top card-half-circle--white card"><img class="card-half-circle__image" src="./images/photos/post_8.jpg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
+                      <div class="card-half-circle__container">
+                        <h3 class="card-half-circle__title">Як здорова дієта впливає на психічне благополуччя</h3>
+                      </div>
+                    </article>
+                  </li>
+                  <li class="splide__slide">
+                    <article class="card-half-circle  card-half-circle--top card-half-circle--white card"><img class="card-half-circle__image" src="./images/photos/post_9.jpg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
+                      <div class="card-half-circle__container">
+                        <h3 class="card-half-circle__title">Секрети здоров'я у Вашому холодильнику та як обрати справжні продукти для життєвого тонусу</h3>
+                      </div>
+                    </article>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <article class="card-big  card-big--x2 card _place-desk-←"><img class="card-big__image" src="./images/photos/self_11.jpg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
+              <div class="card-big__container">
+                <h3 class="card-big__title">Світлана Олійник стала обличчям найвідомішого журналу зі здоров'я</h3>
+                <p class="card-big__text">Ця фіноменальна подія стала не лише надбанням для мене та моєї родини, а й загалом є посібником для всієї нутриціології</p>
+              </div>
+            </article>
+          </div>
+        </section>
+        <section class="section-facts _flex">
+          <div class="medium-circle">
+            <div class="medium-circle__fon"></div><img src="./images/icons/streamline_target.svg"/>
+            <div class="medium-circle__container">
+              <div class="title  title--second title--font-family">
+                <p class="title__text">Факт</p>
+                <h2 class="title__main-text">Нутрициологія є важливою галуззю для кількох ключових причин</h2>
+              </div>
+              <div class="medium-circle__container__block">
+                <hr/>
+                <p class="medium-circle__text">В цілому, нутрициологія важлива, оскільки вона виступає важливим інструментом для підтримки здоров'я, попередження захворювань і забезпечення повноцінного та енергійного життя</p>
+              </div>
+            </div>
+            <template x-cloak="x-cloak" x-if="!isPhone">
+              <div style="width: 100%;">
+                <div class="_flex justify-around" style="margin-bottom: 58px;">
+                  <article class="card-icon  card-icon--mini card"><img class="card-icon__image" src="./images/icons/dark__done.svg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
+                    <div class="card-icon__container">
+                      <p class="card-icon__text"><b>Оптимальне <br>здоров'я</b></p>
+                    </div>
+                  </article>
+                  <article class="card-icon  card-icon--mini card"><img class="card-icon__image" src="./images/icons/dark__done.svg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
+                    <div class="card-icon__container">
+                      <p class="card-icon__text"><b>Енергія <br>та витривалість</b></p>
+                    </div>
+                  </article>
+                  <article class="card-icon  card-icon--mini card"><img class="card-icon__image" src="./images/icons/dark__done.svg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
+                    <div class="card-icon__container">
+                      <p class="card-icon__text"><b>Запобігання <br>хворобам</b></p>
+                    </div>
+                  </article>
+                </div>
+                <div class="_flex justify-evenly">
+                  <article class="card-icon  card-icon--mini card"><img class="card-icon__image" src="./images/icons/dark__done.svg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
+                    <div class="card-icon__container">
+                      <p class="card-icon__text"><b>Емоційне <br>благополуччя</b></p>
+                    </div>
+                  </article>
+                  <article class="card-icon  card-icon--mini card"><img class="card-icon__image" src="./images/icons/dark__done.svg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
+                    <div class="card-icon__container">
+                      <p class="card-icon__text"><b>Індивідуальнiсть</b></p>
+                    </div>
+                  </article>
+                </div>
+              </div>
+            </template>
+            <template x-cloak="x-cloak" x-if="isPhone">
+              <div class="_grid" style="grid-template-columns: repeat(2,50%); width: 100%;">
+                <article class="card-icon  card-icon--mini card"><img class="card-icon__image" src="./images/icons/dark__done.svg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
+                  <div class="card-icon__container">
+                    <p class="card-icon__text"><b>Оптимальне <br>здоров'я</b></p>
+                  </div>
+                </article>
+                <article class="card-icon  card-icon--mini card"><img class="card-icon__image" src="./images/icons/dark__done.svg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
+                  <div class="card-icon__container">
+                    <p class="card-icon__text"><b>Енергія та <br>витривалість</b></p>
+                  </div>
+                </article>
+                <article class="card-icon  card-icon--mini card"><img class="card-icon__image" src="./images/icons/dark__done.svg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
+                  <div class="card-icon__container">
+                    <p class="card-icon__text"><b>Запобігання <br>хворобам</b></p>
+                  </div>
+                </article>
+                <article class="card-icon  card-icon--mini card"><img class="card-icon__image" src="./images/icons/dark__done.svg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
+                  <div class="card-icon__container">
+                    <p class="card-icon__text"><b>Емоційне <br>благополуччя</b></p>
+                  </div>
+                </article>
+                <article class="card-icon  card-icon--mini card"><img class="card-icon__image" src="./images/icons/dark__done.svg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
+                  <div class="card-icon__container">
+                    <p class="card-icon__text"><b>Індивідуальнiсть</b></p>
+                  </div>
+                </article>
+              </div>
+            </template>
+            <div class="medium-circle__buttom"><a class="button-circle" href="https://t.me/svitlanaolijnyk" target="_blank"><span class="button-circle__text">Записатися</span><img class="button-circle__image" src="./images/icons/tabler_arrow-up-2.svg" alt="arrow"/></a>
+            </div><img src="./images/icons/logo-big.png" alt="logo" style="width: 100px; place-self: center end"/>
+          </div>
+        </section>
+        <div class="_flex _flex-col text-center items-center section-opinion">
+          <div class="title  title--second title--font-family section-opinion__title">
+            <p class="title__text">Що люди кажуть</p>
+            <h2 class="title__main-text">Декілька відгуків від людей, кому моя програма допомогла і вони покращили якість життя</h2>
+          </div><img src="./images/icons/double-koma.svg" style="width: 42px; transform: rotate(180deg)"/>
+          <div class="carusel" x-data="{'array':[{'id':0},{'id':1},{'id':2},{'id':3},{'id':4}],'people':[{'id':0,'name':'Микола Коваленко','text':'Неймовірний досвід з нутриціологом! Дуже вдячний за консультацію.Дізнався, як правильно годувати свій організм, і результати вражають: більше енергії, покращений настрій та зменшення втоми. Рекомендую кожному, хто цінує своє здоров❜я!','image':'./images/photos/clients/client_1.jpg','url':''},{'id':1,'name':'Олексій Шевчук','text':'Нутриціологія принесла революцію в моє життя! Завдяки порадам експерта, я навчився правильно дбати про свій організм. Більше енергії, поліпшений настрій та помітне зменшення втоми. Дуже задоволений результатами!','image':'./images/photos/clients/client_2.jpg','url':''},{'id':2,'name':'Олена Кушнiр','text':'Нутрициологія змінила моє життя. Після консультації з експертом в цій галузі, я вивчив, як правильно годувати свій організм. Результати вразили - більше енергії, покращений настрій та зменшення втоми. Рекомендую кожному, хто прагне здоров❜я і гармонії у житті','image':'./images/photos/clients/client_3.jpg','url':''},{'id':3,'name':'Дмитро Ковтун','text':'Консультація з нутриціологом - справжній поворот у моєму розумінні здоров❜я! Дізнався багато нового про правильне харчування, і тепер я відчуваю себе справжнім енергетиком. Рекомендую всім, хто шукає гармонію та благополуччя в житті!','image':'./images/photos/clients/client_4.jpg','url':''},{'id':4,'name':'Вікторія Якименко','text':'Нутриціологія змінила моє життя на краще! Після консультації з експертом у цій галузі, я навчилась правильно годувати себе. Результати просто дивовижні: більше енергії, покращений настрій та зменшення втоми. Рекомендую кожній людині, яка прагне до здоров❜я та гармонії в житті.','image':'./images/photos/clients/client_5.jpg','url':''}],'prevPerson': function() {  this.array.unshift(this.array.pop());  } ,'nextPerson': function() {  this.array.push(this.array.shift());  } ,'changePeson': function(i) {  let index = i[i.length - 1];  if (!isNaN(Number(index))) {  let temp = this.array[2];  this.array[2] = this.array[index];  this.array[index] = temp;  }  } }">
+            <textarea class="carusel__text" disabled="disabled" rows="4" x-text="people[array[2].id].text"></textarea>
+            <ul class="carusel__list">
+              <template x-for="(person, index) in people" :key="person.id">
+                <li class="carusel__item" @click="changePeson($event.target.className)" x-bind:class="{'carusel__item--0': person.id == array[0].id,'carusel__item--1': person.id == array[1].id,'carusel__item--2': person.id == array[2].id,'carusel__item--3': person.id == array[3].id,'carusel__item--4': person.id == array[4].id,}">
+                  <article class="card-person" x-bind:class="{'card-person--disabled': array[2].id !== person.id}"><img class="card-person__image" :src="person.image" alt="photo"/>
+                    <div class="card-person__container">
+                      <h3 class="card-person__title" x-text="person.name"></h3>
+                    </div>
+                    <div class="card-person__block"><a :href="person.url" target="_blank"> <img src="./images/icons/light__social-instagram.svg" alt="instagram" style="width: 50px"/></a></div>
+                  </article>
+                </li>
+              </template>
+            </ul>
+            <div class="carusel__buttons">
+              <button class="carusel__button carusel__button--left" @click="prevPerson"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="40" height="40" focusable="false"><path d="m15.5 0.932-4.3 4.38 14.5 14.6-14.5 14.5 4.3 4.4 14.6-14.6 4.4-4.3-4.4-4.4-14.6-14.6z"></path></svg>
+
+              </button>
+              <button class="carusel__button" @click="nextPerson"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="40" height="40" focusable="false"><path d="m15.5 0.932-4.3 4.38 14.5 14.6-14.5 14.5 4.3 4.4 14.6-14.6 4.4-4.3-4.4-4.4-14.6-14.6z"></path></svg>
+
+              </button>
+            </div>
+          </div>
+        </div>
+        <section class="section-contact-me _grid shadow-gradient _fix-hook" id="contants" style="margin-bottom: 40px">
+          <div class="section-contact-me__decor _fix-for-decor _grid-col--desk-2-2 _grid-col--lab-1-1 _grid-col--phone-1-2 _place-lab-↗ _place-phone-c">
+            <div class="decor decor--big">
+              <div class="decor__image"><img class="decor__image__photo" src="./images/photos/self_12.jpg" alt="photo"/><img class="decor__image__decor" src="./images/decor/decore_3.jpg" alt="photo"/></div>
+            </div>
+            <div class="contacts">
+              <h2 class="contacts__name">Світлана Олійник</h2>
+              <div class="contacts__links">
+                <div class="contacts__link"><img src="./images/icons/email.svg"/><a href="mailto:svitlanaoliinyk.nutritionist@ukr.net">svitlanaoliinyk.nutritionist@ukr.net</a></div>
+                <div class="contacts__link"><img src="./images/icons/phone.svg"/><a href="tel:+380 67 607 60 07">+380 67 607 60 07</a></div>
+              </div>
+            </div>
+          </div>
+          <div class="_grid-col--desk-4-5 _grid-col--lab-3-3 _grid-col--tab-2-2 _grid-col--phone-1-2 _place-lab-↖ _place-phone-c">
+            <form class="_flex _flex-col" action="#" method="get" style="gap: 66px;">
+              <div class="title  title--second title--font-family">
+                <p class="title__text">Зв'язатися зі мною</p>
+                <h2 class="title__main-text">З будь-яких питань пов'язаних з вашим здоров'ям та його поліпшенням я з радістю готова вам допомогти і буду рада, якщо ваше життя стане кращим</h2>
+              </div>
+              <div class="_flex _flex-col" style="gap: 45px;">
+                <div class="input">
+                  <label class="input__title" for="name">Як вас звати? *</label>
+                  <input class="input__d" id="name" type="text" name="name" required="required"/>
+                </div>
+                <div class="input">
+                  <label class="input__title" for="phone" title="напишіть ваш номер в такому форматі: 380501234567">Який ваш номер телфону? *</label>
+                  <input class="input__d" id="phone" type="tel" name="phone" pattern="[0-9]{12}" required="required"/>
+                </div>
+                <div class="input">
+                  <label class="input__title" for="email">Яка ваша пошта?</label>
+                  <input class="input__d" id="email" type="email" name="email"/>
+                </div>
+                <button class="button-circle" type="submit" style="align-self: center;"><span class="button-circle__text">Записатися</span><img class="button-circle__image" src="./images/icons/tabler_arrow-up-2.svg" alt="arrow"/>
+                </button>
+              </div>
+            </form>
+          </div>
+        </section>
+      </main>
+      <footer class="page__footer">
+        <div class="footer">
+          <h3 class="text-center" style="margin-bottom: 25px;">Давайте дружити</h3>
+          <div class="social-list _flex" style="margin-bottom: 50px;"><a href="#" target="_blank" rel="noopener noreferrer"><img src="./images/icons/light__social-facebook.svg" alt="facebook"/></a><a href="https://www.instagram.com/svitlana.olijnyk/" target="_blank" rel="noopener noreferrer"><img src="./images/icons/light__social-instagram.svg" alt="instagram"/></a><a href="#" target="_blank" rel="noopener noreferrer"><img src="./images/icons/light__social-youtube.svg" alt="youtube"/></a><a href="https://t.me/svitlanaolijnyk" target="_blank" rel="noopener noreferrer"><img src="./images/icons/light__social-telegram.svg" alt="telegram"/></a>
+          </div>
+          <hr style="margin-bottom: 50px;"/>
+          <div class="footer__texts">
+            <p class="footer__texts__1 _grid-col--desk-1-1 _grid-col--phone-1-2 _place-desk-↖ ">Усі права захищені ©, 2024, Світлана Олійний, Нутриціолог</p>
+            <p class="footer__texts__2 _grid-col--desk-2-2 _grid-col--phone-1-1 _place-desk-↑ _place-phone-↖">Оферта</p>
+            <p class="footer__texts__3 _grid-col--desk-3-3 _grid-col--phone-2-3 _place-desk-↗ _place-phone-↖">Розробка сайту:<br><b>Борис Круглов</b></p>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
