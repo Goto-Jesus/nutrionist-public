@@ -240,33 +240,77 @@ mySlider2.mount();
 
 
 // =========================================================================
-const countAnimation = (number = 10, duration = 5000) => {
-  return {
-    currentCount: "0",
-    targetCount: Number(number),
-    duration,
-    observer: null,
-    startAnimation() {
-      let startTime = null;
-      const updateCount = (timestamp) => {
-        if (!startTime) startTime = timestamp;
-        const elapsed = timestamp - startTime;
-        this.currentCount = Math.min(
-          Math.floor((elapsed / this.duration) * this.targetCount),
-          this.targetCount
-        );
-        if (elapsed < this.duration) {
-          window.requestAnimationFrame(updateCount);
+// const countAnimation = (number = 10, duration = 5000) => {
+//   return {
+//     currentCount: "0",
+//     targetCount: Number(number),
+//     duration,
+//     observer: null,
+//     startAnimation() {
+//       let startTime = null;
+//       const updateCount = (timestamp) => {
+//         if (!startTime) startTime = timestamp;
+//         const elapsed = timestamp - startTime;
+//         this.currentCount = Math.min(
+//           Math.floor((elapsed / this.duration) * this.targetCount),
+//           this.targetCount
+//         );
+//         if (elapsed < this.duration) {
+//           window.requestAnimationFrame(updateCount);
+//         }
+//       };
+//       window.requestAnimationFrame(updateCount);
+//     },
+//   };
+// };
+
+// document.addEventListener("alpine:init", () => {
+//   console.log("hi");
+//   Alpine.data("countAnimation", countAnimation);
+//   console.log(Alpine);
+// });
+
+// =========================================================================
+const animItems = document.querySelectorAll("._anim-items");
+
+console.log(animItems);
+
+if (animItems.length > 0) {
+  window.addEventListener("scroll", animOnScroll);
+
+  function animOnScroll() {
+    for (let index = 0; index < animItems.length; index++) {
+      const animItem = animItems[index];
+      const animItemHeight = animItem.offsetHeight; // Исправлено здесь
+      const animItemOffset = offset(animItem).top;
+      const animStart = 2;
+
+      let animItemPoint = window.innerHeight - animItemHeight / animStart;
+      if (animItemHeight > window.innerHeight) {
+        animItemPoint = window.innerHeight - window.innerHeight / animStart;
+      }
+
+      if (
+        window.scrollY > animItemOffset - animItemPoint &&
+        window.scrollY < animItemOffset + animItemHeight
+      ) {
+        animItem.classList.add("_anim-active");
+      } else {
+        if (!animItem.classList.contains("_anim-once")) {
+          animItem.classList.remove("_anim-active");
         }
-      };
-      window.requestAnimationFrame(updateCount);
-    },
-  };
-};
+      }
+    }
+  }
 
-document.addEventListener("alpine:init", () => {
-  console.log("hi");
-  Alpine.data("countAnimation", countAnimation);
-  console.log(Alpine);
-});
+  function offset(el) {
+    const rect = el.getBoundingClientRect(),
+      scrollLeft = window.scrollX || document.documentElement.scrollLeft,
+      scrollTop = window.scrollY || document.documentElement.scrollTop; // Исправлено здесь
+    return { top: rect.top + scrollTop, left: rect.left + scrollLeft };
+  }
 
+  setTimeout(() => {
+    animOnScroll();
+  }, 500);
+}
