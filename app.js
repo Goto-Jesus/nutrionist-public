@@ -1,55 +1,100 @@
 'use strict';
-// import { useDynamicAdapt } from "./src/dynamicAdapt.js";
-// import "./src/sectionObserver.js";
 
 // =========================================================================
+/* Breakpoints */
+const breakpoints = {
+  desktop: 1400, // ↓ max   Desktop   ↑ min
+  labtop: 1200, // ↓ max   Labtop    ↑ min
+  tablet: 992, // ↓ max   Tablet    ↑ min
+  phablet: 768, // ↓ max   Phablet   ↑ min
+  phone: 576, // ↓ max   Phone     ↑ min
+};
 
-// Function to check if an element is in the viewport
-function isElementInViewport(el) {
-  var rect = el.getBoundingClientRect();
-  return (
-    rect.top + 50 <=
-      (window.innerHeight || document.documentElement.clientHeight) &&
-    rect.bottom >= 0 &&
-    rect.left >= 0 &&
-    rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-  );
-}
+// =========================================================================
+/* Animations */
+const animItems = document.querySelectorAll("._anim-items");
 
-// Function to handle scroll event
-function handleScroll() {
-  var sections = document.querySelectorAll("section");
+if (animItems.length > 0) {
+  window.addEventListener("scroll", animOnScroll);
 
-  // Loop through each section and check if it's in the viewport
-  sections.forEach(function (section) {
-    if (isElementInViewport(section)) {
-      // Get the id of the section
-      var sectionId = section.getAttribute("id");
+  function animOnScroll() {
+    for (let index = 0; index < animItems.length; index++) {
+      const animItem = animItems[index];
+      const animItemHeight = animItem.offsetHeight; // Исправлено здесь
+      const animItemOffset = offset(animItem).top;
+      const animStart = 4;
 
-      // Update the URL with the section id as the anchor
-      if (sectionId) history.replaceState(null, null, "#" + sectionId);
+      let animItemPoint = window.innerHeight - animItemHeight / animStart;
+      if (animItemHeight > window.innerHeight) {
+        animItemPoint = window.innerHeight - window.innerHeight / animStart;
+      }
+
+      if (
+        window.scrollY > animItemOffset - animItemPoint &&
+        window.scrollY < animItemOffset + animItemHeight
+      ) {
+        animItem.classList.add("_anim-active");
+      } else {
+        if (!animItem.classList.contains("_anim-once")) {
+          animItem.classList.remove("_anim-active");
+        }
+      }
     }
-  });
+  }
+
+  function offset(el) {
+    const rect = el.getBoundingClientRect(),
+      scrollLeft = window.scrollX || document.documentElement.scrollLeft,
+      scrollTop = window.scrollY || document.documentElement.scrollTop; // Исправлено здесь
+    return { top: rect.top + scrollTop, left: rect.left + scrollLeft };
+  }
+
+  setTimeout(() => {
+    animOnScroll();
+  }, 500);
 }
-
-// Debounce function
-function debounce(func, delay) {
-  let timeoutId;
-  return function () {
-    const context = this;
-    const args = arguments;
-    clearTimeout(timeoutId);
-    timeoutId = setTimeout(() => {
-      func.apply(context, args);
-    }, delay);
-  };
-}
-
-// Add scroll event listener to window
-window.addEventListener("scroll", debounce(handleScroll, 100));
-
 // =========================================================================
-export function useDynamicAdapt(type = "max") {
+/* Sliders */
+
+const hadMySlider = document.querySelector("#my-slider");
+if (hadMySlider) {
+  const mySlider = new Splide("#my-slider", {
+    type: "loop",
+    perPage: 2,
+    gap: "24px",
+    autoplay: "pause",
+    resetProgress: false,
+    breakpoints: {
+      [breakpoints.phablet]: {
+        perPage: 1,
+      },
+    },
+  });
+  
+  mySlider.mount();
+}
+
+const hadMySlider2 = document.querySelector("#my-slider-2");
+if (hadMySlider2) {
+  const mySlider2 = new Splide("#my-slider-2", {
+    type: "loop",
+    perPage: 2,
+    gap: "44px",
+    speed: "1500",
+    autoplay: "pause",
+    resetProgress: false,
+    breakpoints: {
+      [breakpoints.labtop]: {
+        perPage: 1,
+      },
+    },
+  });
+  
+  mySlider2.mount();
+}
+// =========================================================================
+/* Adaptive */
+function useDynamicAdapt(type = "max") {
   const className = "_dynamic_adapt_";
   const attrName = "data-da";
   const dNodes = getDNodes();
@@ -201,116 +246,49 @@ export function useDynamicAdapt(type = "max") {
 
 useDynamicAdapt();
 // =========================================================================
+/* Check Sections */
 
-const breakpoints = {
-  desktop: 1400, // ↓ max   Desktop   ↑ min
-  labtop: 1200, // ↓ max   Labtop    ↑ min
-  tablet: 992, // ↓ max   Tablet    ↑ min
-  phablet: 768, // ↓ max   Phablet   ↑ min
-  phone: 576, // ↓ max   Phone     ↑ min
-};
-
-const mySlider = new Splide("#my-slider", {
-  type: "loop",
-  perPage: 2,
-  gap: "24px",
-  autoplay: true,
-  breakpoints: {
-    [breakpoints.phablet]: {
-      perPage: 1,
-    },
-  },
-});
-
-mySlider.mount();
-
-const mySlider2 = new Splide("#my-slider-2", {
-  type: "loop",
-  perPage: 2,
-  gap: "44px",
-  autoplay: true,
-  breakpoints: {
-    [breakpoints.labtop]: {
-      perPage: 1,
-    },
-  },
-});
-
-mySlider2.mount();
-
-
-// =========================================================================
-// const countAnimation = (number = 10, duration = 5000) => {
-//   return {
-//     currentCount: "0",
-//     targetCount: Number(number),
-//     duration,
-//     observer: null,
-//     startAnimation() {
-//       let startTime = null;
-//       const updateCount = (timestamp) => {
-//         if (!startTime) startTime = timestamp;
-//         const elapsed = timestamp - startTime;
-//         this.currentCount = Math.min(
-//           Math.floor((elapsed / this.duration) * this.targetCount),
-//           this.targetCount
-//         );
-//         if (elapsed < this.duration) {
-//           window.requestAnimationFrame(updateCount);
-//         }
-//       };
-//       window.requestAnimationFrame(updateCount);
-//     },
-//   };
-// };
-
-// document.addEventListener("alpine:init", () => {
-//   console.log("hi");
-//   Alpine.data("countAnimation", countAnimation);
-//   console.log(Alpine);
-// });
-
-// =========================================================================
-const animItems = document.querySelectorAll("._anim-items");
-
-console.log(animItems);
-
-if (animItems.length > 0) {
-  window.addEventListener("scroll", animOnScroll);
-
-  function animOnScroll() {
-    for (let index = 0; index < animItems.length; index++) {
-      const animItem = animItems[index];
-      const animItemHeight = animItem.offsetHeight; // Исправлено здесь
-      const animItemOffset = offset(animItem).top;
-      const animStart = 2;
-
-      let animItemPoint = window.innerHeight - animItemHeight / animStart;
-      if (animItemHeight > window.innerHeight) {
-        animItemPoint = window.innerHeight - window.innerHeight / animStart;
-      }
-
-      if (
-        window.scrollY > animItemOffset - animItemPoint &&
-        window.scrollY < animItemOffset + animItemHeight
-      ) {
-        animItem.classList.add("_anim-active");
-      } else {
-        if (!animItem.classList.contains("_anim-once")) {
-          animItem.classList.remove("_anim-active");
-        }
-      }
-    }
-  }
-
-  function offset(el) {
-    const rect = el.getBoundingClientRect(),
-      scrollLeft = window.scrollX || document.documentElement.scrollLeft,
-      scrollTop = window.scrollY || document.documentElement.scrollTop; // Исправлено здесь
-    return { top: rect.top + scrollTop, left: rect.left + scrollLeft };
-  }
-
-  setTimeout(() => {
-    animOnScroll();
-  }, 500);
+// Function to check if an element is in the viewport
+function isElementInViewport(el) {
+  var rect = el.getBoundingClientRect();
+  return (
+    rect.top + 50 <=
+      (window.innerHeight || document.documentElement.clientHeight) &&
+    rect.bottom >= 0 &&
+    rect.left >= 0 &&
+    rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+  );
 }
+
+// Function to handle scroll event
+function handleScroll() {
+  var sections = document.querySelectorAll("section");
+
+  // Loop through each section and check if it's in the viewport
+  sections.forEach(function (section) {
+    if (isElementInViewport(section)) {
+      // Get the id of the section
+      var sectionId = section.getAttribute("id");
+
+      // Update the URL with the section id as the anchor
+      if (sectionId) history.replaceState(null, null, "#" + sectionId);
+    }
+  });
+}
+
+// Debounce function
+function debounce(func, delay) {
+  let timeoutId;
+  return function () {
+    const context = this;
+    const args = arguments;
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => {
+      func.apply(context, args);
+    }, delay);
+  };
+}
+
+// Add scroll event listener to window
+window.addEventListener("scroll", debounce(handleScroll, 100));
+// =========================================================================
