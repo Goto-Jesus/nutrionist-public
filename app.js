@@ -12,7 +12,7 @@ const breakpoints = {
 
 // =========================================================================
 /* Animations */
-const animItems = document.querySelectorAll("._anim-items");
+let animItems = document.querySelectorAll("._anim-items");
 
 if (animItems.length > 0) {
   window.addEventListener("scroll", animOnScroll);
