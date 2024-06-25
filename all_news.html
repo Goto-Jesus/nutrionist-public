@@ -41,8 +41,10 @@
               <li class="navigation__item" :class="{'navigation__item--active': currentAnchor === 'all_news.html'}" style="width: max-content;"><a class="navigation__link" style="line-height: 100%; padding-bottom: 15px;" href="all_news.html" @click="() =&gt; {currentAnchor = 'all_news.html'; isClosedBurgerMenu=true;}" x-on:click="setTimeout(() =&gt; {isShowBurgerMenu = false}, 500)">Журнал</a></li>
               <li class="navigation__item" :class="{'navigation__item--active': currentAnchor === '#contants'}" style="width: max-content;"><a class="navigation__link" style="line-height: 100%; padding-bottom: 15px;" href="#contants" @click="() =&gt; {currentAnchor = '#contants'; isClosedBurgerMenu=true;}" x-on:click="setTimeout(() =&gt; {isShowBurgerMenu = false}, 500)">Контакти</a></li>
             </ul>
-            <p style="margin-bottom: 25px;">Поглиблені персональнi консультації з нутриціології, якi допоможуть вам досягти витриманого здоров'я та життєвої енергії</p><a class="button button--only-text" href="https://t.me/svitlanaolijnyk" style="margin-bottom: 40px;">
-              <p class="button__text">Зв'язатися зі мною</p></a>
+            <p style="margin-bottom: 25px;">Поглиблені персональнi консультації з нутриціології, якi допоможуть вам досягти витриманого здоров'я та життєвої енергії</p>
+            <button class="button--only-text button" type="button" style="margin-bottom: 40px;" @click="isShowPopUp=true;">
+              <p class="button__text">Зв'язатися зі мною</p>
+            </button>
             <h3 style="margin-bottom: 25px; font-size: 18px;">Давайте дружити</h3>
             <div class="social-list _flex" style="margin-bottom: 20px;"><a class="social-link" href="#" target="_blank" rel="noopener noreferrer"><img src="./images/icons/light__social-facebook.svg" alt="facebook"/></a><a class="social-link" href="https://www.instagram.com/svitlana.olijnyk/" target="_blank" rel="noopener noreferrer"><img src="./images/icons/light__social-instagram.svg" alt="instagram"/></a><a class="social-link" href="#" target="_blank" rel="noopener noreferrer"><img src="./images/icons/light__social-youtube.svg" alt="youtube"/></a><a class="social-link" href="https://t.me/svitlanaolijnyk" target="_blank" rel="noopener noreferrer"><img src="./images/icons/light__social-telegram.svg" alt="telegram"/></a>
             </div>
