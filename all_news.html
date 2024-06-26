@@ -15,7 +15,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js" defer></script>
     <script type="module" src="app.js" defer></script>
   </head>
-  <body class="page__body" x-data="{mouseX: 0,mouseY: 0,isShowBurgerMenu: false,isShowPopUp: false,isTablet: false,isPhone: false,}" @mousemove="mouseX = $event.clientX; mouseY = $event.clientY;" x-init="setTimeout(() =&gt; {isTablet = (window.innerWidth &lt; 992);isPhone = (window.innerWidth &lt; 576);}, 0)" @resize.debounce.window="setTimeout(() =&gt; {isTablet = (window.innerWidth &lt; 992);isPhone = (window.innerWidth &lt; 576);}, 0)" x-cloak :class="{'page__body--stop-scroll': isShowPopUp || isShowBurgerMenu}">
+  <body class="page__body" x-data="{mouseX: 0,mouseY: 0,isShowBurgerMenu: false,isShowPopUpContact: false,isShowPopUpContent: false,contentType: '',contentSrc: '',isTablet: false,isPhone: false,}" @mousemove="mouseX = $event.clientX; mouseY = $event.clientY;" x-init="setTimeout(() =&gt; {isTablet = (window.innerWidth &lt; 992);isPhone = (window.innerWidth &lt; 576);}, 0)" @resize.debounce.window="setTimeout(() =&gt; {isTablet = (window.innerWidth &lt; 992);isPhone = (window.innerWidth &lt; 576);}, 0)" x-cloak :class="{'page__body--stop-scroll': isShowPopUpContact || isShowBurgerMenu || isShowPopUpContent }">
     <div class="page__wrapper">
       <template x-if="isShowBurgerMenu">
         <div class="burger-menu" x-data="{ currentAnchor: '', isClosedBurgerMenu: true }" x-init="setTimeout(() =&gt; {isClosedBurgerMenu=false}, 1)" @scroll.debounce.window="currentAnchor = window.location.hash" :class="{'burger-menu--closed': isClosedBurgerMenu}">
@@ -42,7 +42,7 @@
               <li class="navigation__item" :class="{'navigation__item--active': currentAnchor === '#contants'}" style="width: max-content;"><a class="navigation__link" style="line-height: 100%; padding-bottom: 15px;" href="#contants" @click="() =&gt; {currentAnchor = '#contants'; isClosedBurgerMenu=true;}" x-on:click="setTimeout(() =&gt; {isShowBurgerMenu = false}, 500)">Контакти</a></li>
             </ul>
             <p style="margin-bottom: 25px;">Поглиблені персональнi консультації з нутриціології, якi допоможуть вам досягти витриманого здоров'я та життєвої енергії</p>
-            <button class="button--only-text button" type="button" style="margin-bottom: 40px;" @click="isShowPopUp=true;">
+            <button class="button--only-text button" type="button" style="margin-bottom: 40px;" @click="isShowPopUpContact=true;">
               <p class="button__text">Зв'язатися зі мною</p>
             </button>
             <h3 style="margin-bottom: 25px; font-size: 18px;">Давайте дружити</h3>
@@ -53,10 +53,10 @@
           </div>
         </div>
       </template>
-      <template x-if="isShowPopUp">
-        <div class="pop-up" x-data="{ isClosedPopUp: true }" x-init="setTimeout(() =&gt; {isClosedPopUp=false}, 1)" @scroll.debounce.window="currentAnchor = window.location.hash" :class="{'pop-up--closed': isClosedPopUp}">
+      <template x-if="isShowPopUpContact">
+        <div class="pop-up" x-data="{ isClosedPopUp: true }" x-init="setTimeout(() =&gt; {isClosedPopUp=false}, 1)" @scroll.debounce.window="currentAnchor = window.location.hash" :class="{'pop-up--closed': isClosedPopUp, 'pop-up--fixed': false}">
           <div class="pop-up__button">
-            <button class="contacts-menu__button contacts-menu__button--close" type="button" @click="isClosedPopUp=true" x-on:click="setTimeout(() =&gt; {isShowPopUp = false}, 500)">
+            <button class="contacts-menu__button contacts-menu__button--close" type="button" @click="isClosedPopUp=true" x-on:click="setTimeout(() =&gt; {isShowPopUpContact = false}, 500)">
               <div class="contacts-menu__button__image"></div>
             </button>
           </div>
@@ -120,6 +120,25 @@
           </div>
         </div>
       </template>
+      <template x-if="isShowPopUpContent">
+        <div class="pop-up" x-data="{ isClosedPopUp: true }" x-init="setTimeout(() =&gt; {isClosedPopUp=false}, 1)" @scroll.debounce.window="currentAnchor = window.location.hash" :class="{'pop-up--closed': isClosedPopUp, 'pop-up--fixed': true}">
+          <div class="pop-up__button">
+            <button class="contacts-menu__button contacts-menu__button--close" type="button" @click="isClosedPopUp=true" x-on:click="setTimeout(() =&gt; {isShowPopUpContent = false}, 500)">
+              <div class="contacts-menu__button__image"></div>
+            </button>
+          </div>
+          <div class="pop-up__content">
+            <section class="section-modal">
+              <div class="section-modal__container">
+                <div class="section-modal__bg"></div>
+                <div class="section-modal__screen"><img x-show="contentType==='image'" :src="contentSrc" alt="image">
+                  <video x-show="contentType==='video'" :src="contentSrc" autoplay controls></video>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </template>
       <header class="page__header">
         <div class="header">
           <div class="header__logo">
@@ -148,7 +167,7 @@
             </div>
           </div>
           <div class="header__button">
-            <button class="button--only-text button" type="button" @click="isShowPopUp=true;">
+            <button class="button--only-text button" type="button" @click="isShowPopUpContact=true;">
               <p class="button__text">Зв'язатися зі мною</p>
             </button>
           </div>
@@ -164,10 +183,11 @@
 @media(max-width:576px){.section-about-me{margin-bottom: 0;}}</style>
         <section class="section-about-me _fix-hook">
           <div class="section-about-me__video _grid-col--desk-1-1 _grid-col--phone-1-2 _grid-row--desk-1-1 _grid-row--phone-a _place-desk-↙ _place-phone-s _order-desk-0 _order-lab-1 _anim-items _anim-once _transition-left _anim-delay-1">
-            <div class="video">
-              <h2 class="video__text">Дивитися відео</h2>
-              <div class="video__view"><a href="#" rel="noopener noreferrer" target="_blank"> 
-                  <div class="video__button"></div><img class="video__image" src="./images/photos/self-video.jpg" alt="video"/></a></div>
+            <div class="video-link">
+              <h2 class="video-link__text">Дивитися відео</h2>
+              <div class="video-link__view" @click="isShowPopUpContent = true;contentType = 'video';contentSrc = './video/main-video.mp4'">
+                <div class="video-link__button"></div><img class="video-link__image" src="./images/photos/self-video.jpg" alt="video"/>
+              </div>
             </div>
           </div>
           <div class="section-about-me__title _grid-col--desk-2-2 _grid-col--lab-1-1 _grid-col--phone-1-2 _grid-row--desk-1-1 _grid-row--phone-a _place-desk-↑">
@@ -178,14 +198,15 @@
             </div>
           </div>
           <div class="section-about-me__photo _grid-col--desk-3-6 _grid-col--lab-3-3 _grid-col--tab-2-2 _grid-col--phone-1-2 _grid-row--desk-1-1 _grid-row--phone-a _place-desk-↗ _place-phone-c _anim-items _anim-once _transition-clip-circle">
-            <div class="main-photo" :style="'transform: translate3d(' + (mouseX * 1 / 120) + 'px,' + (mouseY * 1 / 120) + 'px, 0)'">
-              <div class="main-photo__1" :style="'transform: translate3d(' + (mouseX * 1 / 90) + 'px,' + (mouseY * 1 / 90) + 'px, 0)'">
-                <div class="main-photo__2" :style="'transform: translate3d(' + (mouseX * 1 / 60) + 'px,' + (mouseY * 1 / 60) + 'px, 0)'">
+            <div class="main-photo" :style="'transform: translate3d(' + (mouseX * 1 / 160) + 'px,' + (mouseY * 1 / 160) + 'px, 0)'">
+              <div class="main-photo__1" :style="'transform: translate3d(' + (mouseX * 1 / 130) + 'px,' + (mouseY * 1 / 130) + 'px, 0)'">
+                <div class="main-photo__2" :style="'transform: translate3d(' + (mouseX * 1 / 100) + 'px,' + (mouseY * 1 / 100) + 'px, 0)'">
                   <div class="main-photo__image" style="background-image: url('./images/decor/decor_magazine.jpg');"></div>
                 </div>
               </div>
             </div>
           </div>
+          <div><img class="section-about-me__icon section-about-me__icon-1" src="./images/icons/light__fruit.svg" :style="'transform: translate3d(' + (mouseX * -1 / 50) + 'px,' + (mouseY * -1 / 50) + 'px, 0)'"/><img class="section-about-me__icon section-about-me__icon-2" src="./images/icons/light__flower.svg" :style="'transform: translate3d(' + (mouseX * -1 / 30) + 'px,' + (mouseY * -1 / 30) + 'px, 0)'"/><img class="section-about-me__icon section-about-me__icon-3" src="./images/icons/light__love.svg" :style="'transform: translate3d(' + (mouseX * -1 / 70) + 'px,' + (mouseY * -1 / 70) + 'px, 0)'"/></div>
         </section>
         <div class="_grid">
           <div class="_grid-col--desk-2-5 _grid-col--lab-1-3 _grid-col--tab-1-2 _place-desk-←">
@@ -222,7 +243,7 @@
             </div>
           </div>
         </section>
-        <section class="_grid section-magazine relative _fix-hook" id="magazine">
+        <section class="section-magazine _grid _fix-hook" id="magazine">
           <div class="bigger"></div>
           <div class="_grid-col--desk-2-4 _grid-col--lab-1-2 _grid-row--desk-1-1">
             <div class="title  title--second title--font-family _anim-items _anim-once _transition-clip-form-left _transition-opacity">
@@ -248,39 +269,41 @@
                   <div class="card-half-circle__container">
                     <h3 class="card-half-circle__title">Як здорова дієта впливає на психічне благополуччя</h3>
                   </div>
-                </article></a><a class="link-wrapper" href="" target="" rel="noopener noreferrer">
+                </article></a><a class="link-wrapper" href="one_news.html" target="" rel="noopener noreferrer">
                 <article class="card-half-circle  card-half-circle--top card"><img class="card-half-circle__image" src="./images/photos/post_9.jpg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
                   <div class="card-half-circle__container">
                     <h3 class="card-half-circle__title">Секрети здоров'я у Вашому холодильнику та як обрати справжні продукти для життєвого тонусу</h3>
                   </div>
-                </article></a><a class="link-wrapper" href="" target="" rel="noopener noreferrer">
+                </article></a><a class="link-wrapper" href="one_news.html" target="" rel="noopener noreferrer">
                 <article class="card-half-circle  card-half-circle--top card"><img class="card-half-circle__image" src="./images/photos/post_10.jpg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
                   <div class="card-half-circle__container">
                     <h3 class="card-half-circle__title">Інноваційні тренди у світі харчування: що нового в сфері здорового харчування?</h3>
                   </div>
-                </article></a><a class="link-wrapper" href="" target="" rel="noopener noreferrer">
+                </article></a><a class="link-wrapper" href="one_news.html" target="" rel="noopener noreferrer">
                 <article class="card-half-circle  card-half-circle--top card"><img class="card-half-circle__image" src="./images/photos/post_11.jpg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
                   <div class="card-half-circle__container">
                     <h3 class="card-half-circle__title">Глобальні зміни у харчовій промисловості: вплив технологій та зростання свідомості споживачів</h3>
                   </div>
-                </article></a><a class="link-wrapper" href="" target="" rel="noopener noreferrer">
+                </article></a><a class="link-wrapper" href="one_news.html" target="" rel="noopener noreferrer">
                 <article class="card-half-circle  card-half-circle--top card"><img class="card-half-circle__image" src="./images/photos/post_12.jpg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
                   <div class="card-half-circle__container">
                     <h3 class="card-half-circle__title">Наукові відкриття у сфері харчування: як дослідження полегшують шлях до здоров'я</h3>
                   </div>
-                </article></a><a class="link-wrapper" href="" target="" rel="noopener noreferrer">
+                </article></a><a class="link-wrapper" href="one_news.html" target="" rel="noopener noreferrer">
                 <article class="card-half-circle  card-half-circle--top card"><img class="card-half-circle__image" src="./images/photos/post_13.jpg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
                   <div class="card-half-circle__container">
                     <h3 class="card-half-circle__title">Топові тренди у харчовій культурі: як смак і світогляд змінюються у 2024 році</h3>
                   </div>
                 </article></a>
             </div>
-            <article class="card-big  card-big--x2 card _place-desk-↑"><img class="card-big__image" src="./images/photos/self_11.jpg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
-              <div class="card-big__container">
-                <h3 class="card-big__title">Світлана Олійник стала обличчям найвідомішого журналу зі здоров'я</h3>
-                <p class="card-big__text">Ця фіноменальна подія стала не лише надбанням для мене та моєї родини, а й загалом є посібником для всієї нутриціології</p>
-              </div>
-            </article>
+            <div class="section-magazine__main-card _place-desk-↑">
+              <article class="card-big  card-big--x2 card"><img class="card-big__image" src="./images/photos/self_11.jpg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
+                <div class="card-big__container">
+                  <h3 class="card-big__title">Світлана Олійник стала обличчям найвідомішого журналу зі здоров'я</h3>
+                  <p class="card-big__text">Ця фіноменальна подія стала не лише надбанням для мене та моєї родини, а й загалом є посібником для всієї нутриціології</p>
+                </div>
+              </article>
+            </div>
           </div>
         </section>
         <section class="section-proposition">
@@ -297,7 +320,7 @@
                   <div class="card-half-circle__container">
                     <h3 class="card-half-circle__title">Нова фігура за 30 днiв! Ексклюзивна програма для ідеального тіла!</h3>
                     <p class="card-half-circle__text">Для тих, хто бажає швидко та ефективно перетворити своє тіло. Iдеальна для тих, хто шукає персоналізований підхід та видимі результати вже за 30 днів!</p>
-                    <div class="card-half-circle__block card__block"><a class="link" href="https://t.me/svitlanaolijnyk">
+                    <div class="card-half-circle__block card__block"><a class="link" href="one_course.html">
                         <div class="link__text">Дізнатися більше</div>
                         <div class="link__image">
                           <div class="icon"><svg width="35" height="34" viewBox="0 0 35 34" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -315,7 +338,7 @@
                   <div class="card-half-circle__container">
                     <h3 class="card-half-circle__title">Нова фігура за 30 днiв! Ексклюзивна програма для ідеального тіла!</h3>
                     <p class="card-half-circle__text">Для тих, хто бажає швидко та ефективно перетворити своє тіло. Iдеальна для тих, хто шукає персоналізований підхід та видимі результати вже за 30 днів!</p>
-                    <div class="card-half-circle__block card__block"><a class="link" href="https://t.me/svitlanaolijnyk">
+                    <div class="card-half-circle__block card__block"><a class="link" href="one_course.html">
                         <div class="link__text">Дізнатися більше</div>
                         <div class="link__image">
                           <div class="icon"><svg width="35" height="34" viewBox="0 0 35 34" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -339,7 +362,7 @@
                 <div class="card-half-circle__container">
                   <h3 class="card-half-circle__title">«Крихточка Healthy»</h3>
                   <p class="card-half-circle__text">Захоплюючий курс для малюків від 2 років, щоб вони росли здоровими та щасливими</p>
-                  <div class="card-half-circle__block card__block"><a class="link" href="https://t.me/svitlanaolijnyk">
+                  <div class="card-half-circle__block card__block"><a class="link" href="one_course.html">
                       <div class="link__text">Дізнатися більше</div>
                       <div class="link__image">
                         <div class="icon"><svg width="35" height="34" viewBox="0 0 35 34" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -356,7 +379,7 @@
               <article class="card-mini  card-mini--cource card"><img class="card-mini__image" src="./images/photos/mini-post_7.jpg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
                 <div class="card-mini__container">
                   <h3 class="card-mini__title">Швидкий Старт: Курс «Легко та eфективно» для тих, хто бажає втратити вагу самостійно, правильно їсти та не рахувати калорії</h3>
-                  <div class="card-mini__block card__block"><a class="link" href="https://t.me/svitlanaolijnyk">
+                  <div class="card-mini__block card__block"><a class="link" href="one_course.html">
                       <div class="link__text">Дізнатися більше</div>
                       <div class="link__image">
                         <div class="icon"><svg width="35" height="34" viewBox="0 0 35 34" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -472,7 +495,7 @@
               </div>
             </div>
             <div class="section-privilege__button _grid-col--desk-5-6 _grid-col--lab-3-3 _grid-col--tab-2-2 _grid-row--desk-2-2 _grid-row--lab-2-2 _grid-row--tab-4-4 _grid-row--phone-5-5 _place-desk-↙ _place-lab-↘ _place-tab-c _place-phone-↘">
-              <button class="button-circle _anim-items _animation-bounce" type="button" @click="isShowPopUp=true;">
+              <button class="button-circle _anim-items _animation-bounce" type="button" @click="isShowPopUpContact=true;">
                 <div class="button-circle__container">
                   <div class="button-circle__text"><span>Записатися</span></div><img class="button-circle__image" src="./images/icons/tabler_arrow-up-2.svg" alt="arrow"/>
                 </div>
@@ -604,7 +627,7 @@
             </div>
             <template x-cloak="x-cloak" x-if="!isPhone">
               <div class="section-more-about-me__button _grid-col--desk-4-4 _grid-col--lab-1-3 _grid-col--tab-2-2 _grid-col--phone-1-2 _grid-row--desk-4-4 _grid-row--phone-6-6 _place-desk-↑ _place-phone-↓">
-                <button class="button-circle _anim-items _animation-bounce" type="button" @click="isShowPopUp=true;">
+                <button class="button-circle _anim-items _animation-bounce" type="button" @click="isShowPopUpContact=true;">
                   <div class="button-circle__container">
                     <div class="button-circle__text"><span>Записатися</span></div><img class="button-circle__image" src="./images/icons/tabler_arrow-up-2.svg" alt="arrow"/>
                   </div>
@@ -626,10 +649,10 @@
             <div class="splide" id="my-slider">
               <div class="splide__track">
                 <ul class="splide__list">
-                  <li class="splide__slide"><img class="splide__item" src="./images/photos/certificate_1.jpg"/></li>
-                  <li class="splide__slide"><img class="splide__item" src="./images/photos/certificate_2.jpg"/></li>
-                  <li class="splide__slide"><img class="splide__item" src="./images/photos/certificate_1.jpg"/></li>
-                  <li class="splide__slide"><img class="splide__item" src="./images/photos/certificate_2.jpg"/></li>
+                  <li class="splide__slide" @click="isShowPopUpContent = true;contentType = 'image';contentSrc = './images/photos/certificate_1.jpg'"><img class="splide__item" src="./images/photos/certificate_1.jpg"/></li>
+                  <li class="splide__slide" @click="isShowPopUpContent = true;contentType = 'image';contentSrc = './images/photos/certificate_2.jpg'"><img class="splide__item" src="./images/photos/certificate_2.jpg"/></li>
+                  <li class="splide__slide" @click="isShowPopUpContent = true;contentType = 'image';contentSrc = './images/photos/certificate_1.jpg'"><img class="splide__item" src="./images/photos/certificate_1.jpg"/></li>
+                  <li class="splide__slide" @click="isShowPopUpContent = true;contentType = 'image';contentSrc = './images/photos/certificate_2.jpg'"><img class="splide__item" src="./images/photos/certificate_2.jpg"/></li>
                 </ul>
               </div>
             </div>
@@ -655,10 +678,12 @@
                     <h3 class="card-icon__title">Для всієї родини</h3>
                     <p class="card-icon__text">Діє знижка 15%, а також гайд за раціоном харчування на місяць</p>
                   </div>
-                </article><a class="button-circle--medium button-circle _anim-items _animation-bounce" href="https://t.me/svitlanaolijnyk" data-da=".section-special-offer__last,992,last"> 
+                </article>
+                <button class="button-circle--medium button-circle _anim-items _animation-bounce" type="button" @click="isShowPopUpContact=true;" data-da=".section-special-offer__last,992,last">
                   <div class="button-circle__container">
                     <div class="button-circle__text"><span>Отримати </span> <span> знижку</span></div><img class="button-circle__image" src="./images/icons/tabler_arrow-up-2.svg" alt="arrow"/>
-                  </div></a>
+                  </div>
+                </button>
               </div>
             </div>
           </div>
@@ -758,7 +783,7 @@
               </div>
             </template>
             <div class="medium-circle__buttom">
-              <button class="button-circle _anim-items _animation-bounce" type="button" @click="isShowPopUp=true;">
+              <button class="button-circle _anim-items _animation-bounce" type="button" @click="isShowPopUpContact=true;">
                 <div class="button-circle__container">
                   <div class="button-circle__text"><span>Записатися</span></div><img class="button-circle__image" src="./images/icons/tabler_arrow-up-2.svg" alt="arrow"/>
                 </div>
@@ -844,19 +869,21 @@
         </section>
       </main>
       <div class="page__menu">
-        <div class="contacts-menu" x-data="{ hidden: true }" @click.outside="hidden = true">
-          <div class="contacts-menu__container" x-cloak="x-cloak" :class="{'contacts-menu__container--hidden': hidden}">
-            <div class="contacts-menu__item"> <a class="button-icon" target="_blank" href="https://www.instagram.com/svitlana.olijnyk/"><img src="./images/icons/social-instagram.svg" alt="instagram-logo"/></a></div>
-            <div class="contacts-menu__item"> <a class="button-icon" href="mailto:svitlanaoliinyk.nutritionist@ukr.net"><img src="./images/icons/social-sms.svg" alt="sms-logo"/></a></div>
-            <div class="contacts-menu__item"> <a class="button-icon" target="_blank" href="#"><img src="./images/icons/social-messager.svg" alt="messager-logo"/></a></div>
-            <div class="contacts-menu__item"> <a class="button-icon" target="_blank" href="https://wa.me/380676076007"><img src="./images/icons/social-whatsApp.svg" alt="whatsApp-logo"/></a></div>
-            <div class="contacts-menu__item"> <a class="button-icon" target="_blank" href="viber://contact?number=380676076007"><img src="./images/icons/social-viber.svg" alt="viber-logo"/></a></div>
-            <div class="contacts-menu__item"> <a class="button-icon" target="_blank" href="https://t.me/svitlanaolijnyk"><img src="./images/icons/social-telegram.svg" alt="telegram-logo"/></a></div>
+        <template x-if="!isShowPopUpContact &amp;&amp; !isShowBurgerMenu &amp;&amp; !isShowPopUpContent">
+          <div class="contacts-menu" x-data="{ hidden: true }" @click.outside="hidden = true">
+            <div class="contacts-menu__container" x-cloak="x-cloak" :class="{'contacts-menu__container--hidden': hidden}">
+              <div class="contacts-menu__item"> <a class="button-icon" target="_blank" href="https://www.instagram.com/svitlana.olijnyk/"><img src="./images/icons/social-instagram.svg" alt="instagram-logo"/></a></div>
+              <div class="contacts-menu__item"> <a class="button-icon" href="mailto:svitlanaoliinyk.nutritionist@ukr.net"><img src="./images/icons/social-sms.svg" alt="sms-logo"/></a></div>
+              <div class="contacts-menu__item"> <a class="button-icon" target="_blank" href="#"><img src="./images/icons/social-messager.svg" alt="messager-logo"/></a></div>
+              <div class="contacts-menu__item"> <a class="button-icon" target="_blank" href="https://wa.me/380676076007"><img src="./images/icons/social-whatsApp.svg" alt="whatsApp-logo"/></a></div>
+              <div class="contacts-menu__item"> <a class="button-icon" target="_blank" href="viber://contact?number=380676076007"><img src="./images/icons/social-viber.svg" alt="viber-logo"/></a></div>
+              <div class="contacts-menu__item"> <a class="button-icon" target="_blank" href="https://t.me/svitlanaolijnyk"><img src="./images/icons/social-telegram.svg" alt="telegram-logo"/></a></div>
+            </div>
+            <button class="contacts-menu__button" type="button" @click="hidden = !hidden" :class="{'contacts-menu__button--close': !hidden}">
+              <div class="contacts-menu__button__image"></div>
+            </button>
           </div>
-          <button class="contacts-menu__button" type="button" @click="hidden = !hidden" :class="{'contacts-menu__button--close': !hidden}">
-            <div class="contacts-menu__button__image"></div>
-          </button>
-        </div>
+        </template>
       </div>
       <footer class="page__footer">
         <div class="footer">

@@ -62,7 +62,7 @@ if (hadMySlider) {
     type: "loop",
     perPage: 2,
     gap: "24px",
-    autoplay: "pause",
+    autoplay: true,
     resetProgress: false,
     breakpoints: {
       [breakpoints.phablet]: {
@@ -80,8 +80,7 @@ if (hadMySlider2) {
     type: "loop",
     perPage: 2,
     gap: "44px",
-    speed: "1500",
-    autoplay: "pause",
+    autoplay: true,
     resetProgress: false,
     breakpoints: {
       [breakpoints.labtop]: {
