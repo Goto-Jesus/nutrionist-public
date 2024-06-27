@@ -46,7 +46,7 @@
               <p class="button__text">Зв'язатися зі мною</p>
             </button>
             <h3 style="margin-bottom: 25px; font-size: 18px;">Давайте дружити</h3>
-            <div class="social-list _flex" style="margin-bottom: 20px;"><a class="social-link" href="#" target="_blank" rel="noopener noreferrer"><img src="./images/icons/light__social-facebook.svg" alt="facebook"/></a><a class="social-link" href="https://www.instagram.com/svitlana.olijnyk/" target="_blank" rel="noopener noreferrer"><img src="./images/icons/light__social-instagram.svg" alt="instagram"/></a><a class="social-link" href="#" target="_blank" rel="noopener noreferrer"><img src="./images/icons/light__social-youtube.svg" alt="youtube"/></a><a class="social-link" href="https://t.me/svitlanaolijnyk" target="_blank" rel="noopener noreferrer"><img src="./images/icons/light__social-telegram.svg" alt="telegram"/></a>
+            <div class="social-list" style="margin-bottom: 20px;"><a class="social-link" href="#" target="_blank" rel="noopener noreferrer"><img src="./images/icons/light__social-facebook.svg" alt="facebook"/></a><a class="social-link" href="https://www.instagram.com/svitlana.olijnyk/" target="_blank" rel="noopener noreferrer"><img src="./images/icons/light__social-instagram.svg" alt="instagram"/></a><a class="social-link" href="#" target="_blank" rel="noopener noreferrer"><img src="./images/icons/light__social-youtube.svg" alt="youtube"/></a><a class="social-link" href="https://t.me/svitlanaolijnyk" target="_blank" rel="noopener noreferrer"><img src="./images/icons/light__social-telegram.svg" alt="telegram"/></a>
             </div>
             <hr class="_anim-items _transition-clip-form-left" style="margin-bottom: 25px;"/>
             <div>Розробка сайту: <a href="#" style="text-decoration: underline; font-weight: 500;">kruglov.design</a></div>
@@ -107,7 +107,7 @@
             <div class="footer">
               <h3 class="footer__title">Давайте дружити</h3>
               <div class="footer__links">
-                <div class="social-list _flex"><a class="social-link" href="#" target="_blank" rel="noopener noreferrer"><img src="./images/icons/light__social-facebook.svg" alt="facebook"/></a><a class="social-link" href="https://www.instagram.com/svitlana.olijnyk/" target="_blank" rel="noopener noreferrer"><img src="./images/icons/light__social-instagram.svg" alt="instagram"/></a><a class="social-link" href="#" target="_blank" rel="noopener noreferrer"><img src="./images/icons/light__social-youtube.svg" alt="youtube"/></a><a class="social-link" href="https://t.me/svitlanaolijnyk" target="_blank" rel="noopener noreferrer"><img src="./images/icons/light__social-telegram.svg" alt="telegram"/></a>
+                <div class="social-list"><a class="social-link" href="#" target="_blank" rel="noopener noreferrer"><img src="./images/icons/light__social-facebook.svg" alt="facebook"/></a><a class="social-link" href="https://www.instagram.com/svitlana.olijnyk/" target="_blank" rel="noopener noreferrer"><img src="./images/icons/light__social-instagram.svg" alt="instagram"/></a><a class="social-link" href="#" target="_blank" rel="noopener noreferrer"><img src="./images/icons/light__social-youtube.svg" alt="youtube"/></a><a class="social-link" href="https://t.me/svitlanaolijnyk" target="_blank" rel="noopener noreferrer"><img src="./images/icons/light__social-telegram.svg" alt="telegram"/></a>
                 </div>
               </div>
               <hr class="_anim-items _transition-clip-form-left" style="margin-bottom: 50px;"/>
@@ -194,9 +194,9 @@
             </div>
           </div>
           <div class="section-about-me__photo _grid-col--desk-3-6 _grid-col--lab-3-3 _grid-col--tab-2-2 _grid-col--phone-1-2 _grid-row--desk-1-1 _grid-row--phone-a _place-desk-↗ _place-phone-c _anim-items _anim-once _transition-clip-circle">
-            <div class="main-photo" :style="'transform: translate3d(' + (mouseX * 1 / 160) + 'px,' + (mouseY * 1 / 160) + 'px, 0)'">
-              <div class="main-photo__1" :style="'transform: translate3d(' + (mouseX * 1 / 130) + 'px,' + (mouseY * 1 / 130) + 'px, 0)'">
-                <div class="main-photo__2" :style="'transform: translate3d(' + (mouseX * 1 / 100) + 'px,' + (mouseY * 1 / 100) + 'px, 0)'">
+            <div class="main-photo" :style="(() =&gt; {if (!isTablet &amp;&amp; !isPhone) {return 'transform: translate3d(' + (mouseX * 1 / 160) + 'px,' + (mouseY * 1 / 160) + 'px, 0)'}})()">
+              <div class="main-photo__1" :style="(() =&gt; {if (!isTablet &amp;&amp; !isPhone) {return 'transform: translate3d(' + (mouseX * 1 / 130) + 'px,' + (mouseY * 1 / 130) + 'px, 0)'}})()">
+                <div class="main-photo__2" :style="(() =&gt; {if (!isTablet &amp;&amp; !isPhone) {return 'transform: translate3d(' + (mouseX * 1 / 100) + 'px,' + (mouseY * 1 / 100) + 'px, 0)'}})()">
                   <div class="main-photo__image" style="background-image: url('./images/photos/self_15.jpg');"></div>
                 </div>
               </div>
@@ -218,7 +218,13 @@
               </div>
             </div>
           </div>
-          <div><img class="section-about-me__icon section-about-me__icon-1" src="./images/icons/light__fruit.svg" :style="'transform: translate3d(' + (mouseX * -1 / 50) + 'px,' + (mouseY * -1 / 50) + 'px, 0)'"/><img class="section-about-me__icon section-about-me__icon-2" src="./images/icons/light__flower.svg" :style="'transform: translate3d(' + (mouseX * -1 / 30) + 'px,' + (mouseY * -1 / 30) + 'px, 0)'"/><img class="section-about-me__icon section-about-me__icon-3" src="./images/icons/light__love.svg" :style="'transform: translate3d(' + (mouseX * -1 / 70) + 'px,' + (mouseY * -1 / 70) + 'px, 0)'"/></div>
+          <div class="section-about-me__icons">
+            <div class="section-about-me__icons--container">
+              <div class="section-about-me__icon section-about-me__icon-1 at-ramdom-moving-1"><img src="./images/icons/light__fruit.svg" :style="(() =&gt; {if (!isTablet &amp;&amp; !isPhone) {return 'transform: translate3d(' + (mouseX * -1 / 50) + 'px,' + (mouseY * -1 / 50) + 'px, 0)'}})()"/></div>
+              <div class="section-about-me__icon section-about-me__icon-2 at-ramdom-moving-2"><img src="./images/icons/light__flower.svg" :style="(() =&gt; {if (!isTablet &amp;&amp; !isPhone) {return 'transform: translate3d(' + (mouseX * -1 / 30) + 'px,' + (mouseY * -1 / 30) + 'px, 0)'}})()"/></div>
+              <div class="section-about-me__icon section-about-me__icon-3 at-ramdom-moving-3"><img src="./images/icons/light__love.svg" :style="(() =&gt; {if (!isTablet &amp;&amp; !isPhone) {return 'transform: translate3d(' + (mouseX * -1 / 70) + 'px,' + (mouseY * -1 / 70) + 'px, 0)'}})()"/></div>
+            </div>
+          </div>
         </section>
         <div class="_grid">
           <div class="_grid-col--desk-2-5 _grid-col--lab-1-3 _grid-col--tab-1-2 _place-desk-←">
@@ -232,10 +238,11 @@
           </div>
         </div>
         <section class="section-page-title _grid">
-          <div class="decor _fix-for-decor _grid-col--desk-2-2 _grid-col--lab-1-1 _place-lab-↘ _place-tab-↗ _anim-items _anim-once _transition-left" data-da=".section-service__decor,576,0">
+          <div class="_grid-col--desk-5-6 _grid-col--lab-3-3 _grid-col--tab-2-2 _grid-row--desk-1-1 _place-desk-↘ _anim-items _transition-right"><img class="img-fon-decore" src="./images/decor/ingir.png" alt="decor" style="transform: scaleX(-1.5) scaleY(1.5) translate(0, 100px) rotate(30deg);"/></div>
+          <div class="decor _fix-for-decor _grid-col--desk-2-2 _grid-col--lab-1-1 _grid-row--desk-1-1 _place-lab-↘ _place-tab-↗ _anim-items _anim-once _transition-left" data-da=".section-service__decor,576,0">
             <div class="decor__image"><img class="decor__image__photo" src="./images/photos/self_13.jpg" alt="photo"/><img class="decor__image__decor" src="./images/decor/decore_1.jpg" alt="photo"/></div>
           </div>
-          <div class="_grid-col--desk-4-5 _grid-col--lab-3-3 _grid-col--tab-2-2 _grid-col--phone-1-2">
+          <div class="_grid-col--desk-4-5 _grid-col--lab-3-3 _grid-col--tab-2-2 _grid-col--phone-1-2 _grid-row--desk-1-1">
             <div class="_flex _flex-col">
               <div class="grid" style="grid-template-columns: repeat(2,1fr); margin-bottom: 20px;">
                 <div class="section-service__decor _grid-col--phone-1-1 _place-phone-c"></div>
@@ -425,7 +432,7 @@
                 </div>
               </div>
             </div>
-            <div class="section-magazine__main-card _place-desk-↑">
+            <div class="section-magazine__main-card _place-desk-↑ section-magazine__main-card--fixed" style="position: relative">
               <article class="card-big  card-big--x2 card"><img class="card-big__image" src="./images/photos/self_11.jpg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
                 <div class="card-big__container">
                   <h3 class="card-big__title">Світлана Олійник стала обличчям найвідомішого журналу зі здоров'я</h3>
@@ -532,29 +539,35 @@
                 <p class="block-circle__text">Чому я?</p>
                 <h2 class="block-circle__title">Отримаєте повний комплекс допомоги на шляху до вашої найкращої версії. Разом ми досягнемо ваші цілі та створимо новий рівень здоров'я та самопочуття!</h2>
               </div>
-              <image class="block-circle__image-2" src="./images/decor/Клубничка.png" alt="decor-image"></image>
+              <image class="block-circle__image-2" src="./images/decor/stravbearry.png" alt="decor-image"></image>
             </div>
           </div>
           <div class="section-privilege__container">
-            <div class="section-privilege__block-1"> 
-              <div class="block-circle-mini _anim-items _anim-once _transition-scale ">
-                <div class="block-circle-mini__number">01</div>
-                <h2 class="block-circle-mini__title">Нутриціолог №1</h2>
-                <p class="block-circle-mini__text">В Дніпропетровської області, входжу у топ 5 нутріціологів України</p>
+            <div class="section-privilege__block-1">
+              <div class="_anim-items _anim-once _transition-scale ">
+                <div class="block-circle-mini">
+                  <div class="block-circle-mini__number">01</div>
+                  <h2 class="block-circle-mini__title">Нутриціолог №1</h2>
+                  <p class="block-circle-mini__text">В Дніпропетровської області, входжу у топ 5 нутріціологів України</p>
+                </div>
               </div>
             </div>
             <div class="section-privilege__block-2">
-              <div class="block-circle-mini block-circle-mini--gray _anim-items _anim-once _transition-scale">
-                <div class="block-circle-mini__number">02</div>
-                <h2 class="block-circle-mini__title">Індивідуальний підхід</h2>
-                <p class="block-circle-mini__text">Персоналізовані рекомендації та плани харчування, створені спеціально для вашого унікального стану здоров'я та цілей</p>
+              <div class="_anim-items _anim-once _transition-scale">
+                <div class="block-circle-mini block-circle-mini--gray">
+                  <div class="block-circle-mini__number">02</div>
+                  <h2 class="block-circle-mini__title">Індивідуальний підхід</h2>
+                  <p class="block-circle-mini__text">Персоналізовані рекомендації та плани харчування, створені спеціально для вашого унікального стану здоров'я та цілей</p>
+                </div>
               </div>
             </div>
             <div class="section-privilege__block-3">
-              <div class="block-circle-mini block-circle-mini--white _anim-items _anim-once _transition-scale _anim-delay-0_5">
-                <div class="block-circle-mini__number">03</div>
-                <h2 class="block-circle-mini__title">Підтримка <br>у досягненні цілей</h2>
-                <p class="block-circle-mini__text">Ми не тільки розробимо для вас план харчування, а й надамо підтримку та мотивацію для досягнення ваших цілей</p>
+              <div class="_anim-items _anim-once _transition-scale _anim-delay-0_5">
+                <div class="block-circle-mini block-circle-mini--white">
+                  <div class="block-circle-mini__number">03</div>
+                  <h2 class="block-circle-mini__title">Підтримка <br>у досягненні цілей</h2>
+                  <p class="block-circle-mini__text">Ми не тільки розробимо для вас план харчування, а й надамо підтримку та мотивацію для досягнення ваших цілей</p>
+                </div>
               </div>
             </div>
           </div>
@@ -645,7 +658,7 @@
             </section>
             <div class="section-more-about-me__photo _grid-col--desk-1-6 _grid-col--lab-1-3 _grid-col--tab-1-2 _grid-row--desk-2-2" style="perspective: 800px;">
               <template x-cloak="x-cloak" x-if="!isPhone">
-                <div :style="(() =&gt; {const maxAngle=2,maxDistance = 400,rect = $el.getBoundingClientRect(),elementX = rect.left + rect.width / 2,elementY = rect.top + rect.height / 2,deltaX = mouseX - elementX,deltaY = mouseY - elementY,distanceX = Math.min(maxDistance, Math.abs(deltaX)),distanceY = Math.min(maxDistance, Math.abs(deltaY)),angleX = (distanceY / maxDistance) * maxAngle * Math.sign(deltaY),angleY = (distanceX / maxDistance) * maxAngle * -Math.sign(deltaX);return `transform: rotate3d(-1, 0, 0, ${angleX}deg) rotate3d(0, -1, 0, ${angleY}deg);`; })()">
+                <div :style="(() =&gt; {if (!isTablet &amp;&amp; !isPhone) {const maxAngle=2,maxDistance = 400,rect = $el.getBoundingClientRect(),elementX = rect.left + rect.width / 2,elementY = rect.top + rect.height / 2,deltaX = mouseX - elementX,deltaY = mouseY - elementY,distanceX = Math.min(maxDistance, Math.abs(deltaX)),distanceY = Math.min(maxDistance, Math.abs(deltaY)),angleX = (distanceY / maxDistance) * maxAngle * Math.sign(deltaY),angleY = (distanceX / maxDistance) * maxAngle * -Math.sign(deltaX);return `transform: rotate3d(-1, 0, 0, ${angleX}deg) rotate3d(0, -1, 0, ${angleY}deg);`; }})()">
                   <div class="main-photo-circle _anim-items _anim-once _transition-clip-circle"><img class="main-photo-circle__image" src="./images/photos/self_7.jpg" style="width: 580px; height: 580px;"/></div>
                 </div>
               </template>
@@ -655,7 +668,7 @@
             </div>
             <div class="section-more-about-me__cards _grid-col--desk-1-6 _grid-col--lab-1-3 _grid-col--tab-1-2 _grid-row--desk-2-2 _grid-row--phone-3-3 _anim-items _anim-once _transition-scale _anim-delay-0_25" style="z-index: 2;">
               <div class="section-more-about-me__cards_1">
-                <div :style="'transform: translate3d(' + (mouseX * -1 / 70) + 'px,' + (mouseY * -1 / 70) + 'px, 0)'">
+                <div :style="(() =&gt; {if (!isTablet &amp;&amp; !isPhone) {return 'transform: translate3d(' + (mouseX * -1 / 70) + 'px,' + (mouseY * -1 / 70) + 'px, 0)'}})()">
                   <article class="card-icon  card-icon--border card at-ramdom-moving-1"><img class="card-icon__image" src="./images/icons/dark__target.svg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
                     <div class="card-icon__container">
                       <h3 class="card-icon__title">Унікальна методика</h3>
@@ -665,7 +678,7 @@
                 </div>
               </div>
               <div class="section-more-about-me__cards_2">
-                <div :style="'transform: translate3d(' + (mouseX * 1 / 90) + 'px,' + (mouseY * 1 / 90) + 'px, 0)'">
+                <div :style="(() =&gt; {if (!isTablet &amp;&amp; !isPhone) {return 'transform: translate3d(' + (mouseX * 1 / 90) + 'px,' + (mouseY * 1 / 90) + 'px, 0)'}})()">
                   <article class="card-icon  card-icon--border card at-ramdom-moving-0"><img class="card-icon__image" src="./images/icons/dark__my-mission.svg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
                     <div class="card-icon__container">
                       <h3 class="card-icon__title">Моя місія</h3>
@@ -675,7 +688,7 @@
                 </div>
               </div>
               <div class="section-more-about-me__cards_3">
-                <div :style="'transform: translate3d(' + (mouseX * 1 / 120) + 'px,' + (mouseY * 1 / 120) + 'px, 0)'">
+                <div :style="(() =&gt; {if (!isTablet &amp;&amp; !isPhone) {return 'transform: translate3d(' + (mouseX * 1 / 120) + 'px,' + (mouseY * 1 / 120) + 'px, 0)'}})()">
                   <article class="card-icon  card-icon--border card at-ramdom-moving-2"><img class="card-icon__image" src="./images/icons/dark__number-one.svg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
                     <div class="card-icon__container">
                       <h3 class="card-icon__title">Визнаний нутрицiолог <b>№1</b> в Україні</h3>
@@ -685,7 +698,7 @@
                 </div>
               </div>
               <div class="section-more-about-me__cards_4">
-                <div :style="'transform: translate3d(' + (mouseX * -1 / 150) + 'px,' + (mouseY * -1 / 150) + 'px, 0)'">
+                <div :style="(() =&gt; {if (!isTablet &amp;&amp; !isPhone) {return 'transform: translate3d(' + (mouseX * -1 / 150) + 'px,' + (mouseY * -1 / 150) + 'px, 0)'}})()">
                   <article class="card-icon  card-icon--border-2 card at-ramdom-moving-3"><img class="card-icon__image" src="./images/icons/dark__done.svg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
                     <div class="card-icon__container">
                       <h3 class="card-icon__title">Моє життя  — це не лише професійний успіх у нутрицiології, воно яскраве та надзвичайне</h3>
@@ -723,7 +736,7 @@
                     <h3 class="card-visitca__title">Твiй провiдник до <br/>гарного тiла та здоров’я</h3>
                     <p class="card-visitca__text">Ви можете мені особисто написати або додатись до друзів</p>
                     <div class="card-visitca__block card__block">
-                      <div class="social-list _flex"><a class="social-link" href="#" target="_blank" rel="noopener noreferrer"><img src="./images/icons/light__social-facebook.svg" alt="facebook"/></a><a class="social-link" href="https://www.instagram.com/svitlana.olijnyk/" target="_blank" rel="noopener noreferrer"><img src="./images/icons/light__social-instagram.svg" alt="instagram"/></a><a class="social-link" href="#" target="_blank" rel="noopener noreferrer"><img src="./images/icons/light__social-youtube.svg" alt="youtube"/></a><a class="social-link" href="https://t.me/svitlanaolijnyk" target="_blank" rel="noopener noreferrer"><img src="./images/icons/light__social-telegram.svg" alt="telegram"/></a>
+                      <div class="social-list"><a class="social-link" href="#" target="_blank" rel="noopener noreferrer"><img src="./images/icons/light__social-facebook.svg" alt="facebook"/></a><a class="social-link" href="https://www.instagram.com/svitlana.olijnyk/" target="_blank" rel="noopener noreferrer"><img src="./images/icons/light__social-instagram.svg" alt="instagram"/></a><a class="social-link" href="#" target="_blank" rel="noopener noreferrer"><img src="./images/icons/light__social-youtube.svg" alt="youtube"/></a><a class="social-link" href="https://t.me/svitlanaolijnyk" target="_blank" rel="noopener noreferrer"><img src="./images/icons/light__social-telegram.svg" alt="telegram"/></a>
                       </div>
                     </div>
                   </div>
@@ -735,7 +748,7 @@
                     <h3 class="card-visitca__title">Твiй провiдник до <br/>гарного тiла та здоров’я</h3>
                     <p class="card-visitca__text">Ви можете мені особисто написати або додатись до друзів</p>
                     <div class="card-visitca__block card__block">
-                      <div class="social-list _flex"><a class="social-link" href="#" target="_blank" rel="noopener noreferrer"><img src="./images/icons/light__social-facebook.svg" alt="facebook"/></a><a class="social-link" href="https://www.instagram.com/svitlana.olijnyk/" target="_blank" rel="noopener noreferrer"><img src="./images/icons/light__social-instagram.svg" alt="instagram"/></a><a class="social-link" href="#" target="_blank" rel="noopener noreferrer"><img src="./images/icons/light__social-youtube.svg" alt="youtube"/></a><a class="social-link" href="https://t.me/svitlanaolijnyk" target="_blank" rel="noopener noreferrer"><img src="./images/icons/light__social-telegram.svg" alt="telegram"/></a>
+                      <div class="social-list"><a class="social-link" href="#" target="_blank" rel="noopener noreferrer"><img src="./images/icons/light__social-facebook.svg" alt="facebook"/></a><a class="social-link" href="https://www.instagram.com/svitlana.olijnyk/" target="_blank" rel="noopener noreferrer"><img src="./images/icons/light__social-instagram.svg" alt="instagram"/></a><a class="social-link" href="#" target="_blank" rel="noopener noreferrer"><img src="./images/icons/light__social-youtube.svg" alt="youtube"/></a><a class="social-link" href="https://t.me/svitlanaolijnyk" target="_blank" rel="noopener noreferrer"><img src="./images/icons/light__social-telegram.svg" alt="telegram"/></a>
                       </div>
                     </div>
                   </div>
@@ -747,7 +760,7 @@
                     <h3 class="card-visitca__title">Твiй провiдник до <br/>гарного тiла та здоров’я</h3>
                     <p class="card-visitca__text">Ви можете мені особисто написати або додатись до друзів</p>
                     <div class="card-visitca__block card__block">
-                      <div class="social-list _flex"><a class="social-link" href="#" target="_blank" rel="noopener noreferrer"><img src="./images/icons/light__social-facebook.svg" alt="facebook"/></a><a class="social-link" href="https://www.instagram.com/svitlana.olijnyk/" target="_blank" rel="noopener noreferrer"><img src="./images/icons/light__social-instagram.svg" alt="instagram"/></a><a class="social-link" href="#" target="_blank" rel="noopener noreferrer"><img src="./images/icons/light__social-youtube.svg" alt="youtube"/></a><a class="social-link" href="https://t.me/svitlanaolijnyk" target="_blank" rel="noopener noreferrer"><img src="./images/icons/light__social-telegram.svg" alt="telegram"/></a>
+                      <div class="social-list"><a class="social-link" href="#" target="_blank" rel="noopener noreferrer"><img src="./images/icons/light__social-facebook.svg" alt="facebook"/></a><a class="social-link" href="https://www.instagram.com/svitlana.olijnyk/" target="_blank" rel="noopener noreferrer"><img src="./images/icons/light__social-instagram.svg" alt="instagram"/></a><a class="social-link" href="#" target="_blank" rel="noopener noreferrer"><img src="./images/icons/light__social-youtube.svg" alt="youtube"/></a><a class="social-link" href="https://t.me/svitlanaolijnyk" target="_blank" rel="noopener noreferrer"><img src="./images/icons/light__social-telegram.svg" alt="telegram"/></a>
                       </div>
                     </div>
                   </div>
@@ -929,7 +942,7 @@
               </div>
             </div>
           </div><img src="./images/icons/double-koma.svg" style="width: 42px; transform: rotate(180deg)"/>
-          <div class="carusel" x-data="{'array':[{'id':0},{'id':1},{'id':2},{'id':3},{'id':4}],'people':[{'id':0,'name':'Микола Коваленко','text':'Неймовірний досвід з нутриціологом! Дуже вдячний за консультацію.Дізнався, як правильно годувати свій організм, і результати вражають: більше енергії, покращений настрій та зменшення втоми. Рекомендую кожному, хто цінує своє здоров❜я!','image':'./images/photos/clients/client_1.jpg','url':''},{'id':1,'name':'Олексій Шевчук','text':'Нутриціологія принесла революцію в моє життя! Завдяки порадам експерта, я навчився правильно дбати про свій організм. Більше енергії, поліпшений настрій та помітне зменшення втоми. Дуже задоволений результатами!','image':'./images/photos/clients/client_2.jpg','url':''},{'id':2,'name':'Олена Кушнiр','text':'Нутрициологія змінила моє життя. Після консультації з експертом в цій галузі, я вивчив, як правильно годувати свій організм. Результати вразили - більше енергії, покращений настрій та зменшення втоми. Рекомендую кожному, хто прагне здоров❜я і гармонії у житті','image':'./images/photos/clients/client_3.jpg','url':''},{'id':3,'name':'Дмитро Ковтун','text':'Консультація з нутриціологом - справжній поворот у моєму розумінні здоров❜я! Дізнався багато нового про правильне харчування, і тепер я відчуваю себе справжнім енергетиком. Рекомендую всім, хто шукає гармонію та благополуччя в житті!','image':'./images/photos/clients/client_4.jpg','url':''},{'id':4,'name':'Вікторія Якименко','text':'Нутриціологія змінила моє життя на краще! Після консультації з експертом у цій галузі, я навчилась правильно годувати себе. Результати просто дивовижні: більше енергії, покращений настрій та зменшення втоми. Рекомендую кожній людині, яка прагне до здоров❜я та гармонії в житті.','image':'./images/photos/clients/client_5.jpg','url':''}],'prevPerson': function() {  this.array.unshift(this.array.pop());  } ,'nextPerson': function() {  this.array.push(this.array.shift());  } ,'changePeson': function(i) {  let index = i[i.length - 1];  if (!isNaN(Number(index))) {  let temp = this.array[2];  this.array[2] = this.array[index];  this.array[index] = temp;  }  } }">
+          <div class="carusel" x-data="{'array':[{'id':0},{'id':1},{'id':2},{'id':3},{'id':4}],'people':[{'id':0,'name':'Марія Коваленко','text':'Неймовірний досвід з нутриціологом! Дуже вдячний за консультацію.Дізнався, як правильно годувати свій організм, і результати вражають: більше енергії, покращений настрій та зменшення втоми. Рекомендую кожному, хто цінує своє здоров❜я!','image':'./images/photos/clients/client_1.jpg','url':''},{'id':1,'name':'Олексій Шевчук','text':'Нутриціологія принесла революцію в моє життя! Завдяки порадам експерта, я навчився правильно дбати про свій організм. Більше енергії, поліпшений настрій та помітне зменшення втоми. Дуже задоволений результатами!','image':'./images/photos/clients/client_2.jpg','url':''},{'id':2,'name':'Олена Кушнiр','text':'Нутрициологія змінила моє життя. Після консультації з експертом в цій галузі, я вивчив, як правильно годувати свій організм. Результати вразили - більше енергії, покращений настрій та зменшення втоми. Рекомендую кожному, хто прагне здоров❜я і гармонії у житті','image':'./images/photos/clients/client_3.jpg','url':''},{'id':3,'name':'Анна Ковтун','text':'Консультація з нутриціологом - справжній поворот у моєму розумінні здоров❜я! Дізнався багато нового про правильне харчування, і тепер я відчуваю себе справжнім енергетиком. Рекомендую всім, хто шукає гармонію та благополуччя в житті!','image':'./images/photos/clients/client_4.jpg','url':''},{'id':4,'name':'Вікторія Якименко','text':'Нутриціологія змінила моє життя на краще! Після консультації з експертом у цій галузі, я навчилась правильно годувати себе. Результати просто дивовижні: більше енергії, покращений настрій та зменшення втоми. Рекомендую кожній людині, яка прагне до здоров❜я та гармонії в житті.','image':'./images/photos/clients/client_5.jpg','url':''}],'prevPerson': function() {  this.array.unshift(this.array.pop());  } ,'nextPerson': function() {  this.array.push(this.array.shift());  } ,'changePeson': function(i) {  let index = i[i.length - 1];  if (!isNaN(Number(index))) {  let temp = this.array[2];  this.array[2] = this.array[index];  this.array[index] = temp;  }  } }">
             <textarea class="carusel__text" disabled="disabled" rows="4" x-text="people[array[2].id].text"></textarea>
             <ul class="carusel__list">
               <template x-for="(person, index) in people" :key="person.id">
@@ -1018,7 +1031,7 @@
         <div class="footer">
           <h3 class="footer__title">Давайте дружити</h3>
           <div class="footer__links">
-            <div class="social-list _flex"><a class="social-link" href="#" target="_blank" rel="noopener noreferrer"><img src="./images/icons/light__social-facebook.svg" alt="facebook"/></a><a class="social-link" href="https://www.instagram.com/svitlana.olijnyk/" target="_blank" rel="noopener noreferrer"><img src="./images/icons/light__social-instagram.svg" alt="instagram"/></a><a class="social-link" href="#" target="_blank" rel="noopener noreferrer"><img src="./images/icons/light__social-youtube.svg" alt="youtube"/></a><a class="social-link" href="https://t.me/svitlanaolijnyk" target="_blank" rel="noopener noreferrer"><img src="./images/icons/light__social-telegram.svg" alt="telegram"/></a>
+            <div class="social-list"><a class="social-link" href="#" target="_blank" rel="noopener noreferrer"><img src="./images/icons/light__social-facebook.svg" alt="facebook"/></a><a class="social-link" href="https://www.instagram.com/svitlana.olijnyk/" target="_blank" rel="noopener noreferrer"><img src="./images/icons/light__social-instagram.svg" alt="instagram"/></a><a class="social-link" href="#" target="_blank" rel="noopener noreferrer"><img src="./images/icons/light__social-youtube.svg" alt="youtube"/></a><a class="social-link" href="https://t.me/svitlanaolijnyk" target="_blank" rel="noopener noreferrer"><img src="./images/icons/light__social-telegram.svg" alt="telegram"/></a>
             </div>
           </div>
           <hr class="_anim-items _transition-clip-form-left" style="margin-bottom: 50px;"/>
