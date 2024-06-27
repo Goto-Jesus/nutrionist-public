@@ -178,7 +178,22 @@
       </header>
       <main class="page__main">
         <section class="section-about-me _fix-hook">
-          <div class="section-about-me__video _grid-col--desk-1-1 _grid-col--phone-1-2 _grid-row--desk-1-1 _grid-row--phone-a _place-desk-↙ _place-phone-s _order-desk-0 _order-lab-1 _anim-items _anim-once _transition-left _anim-delay-1">
+          <template x-if="!isTablet">
+            <div class="screen">
+              <div class="screen__container">
+                <div class="screen-desk-↖">
+                  <div style="transform: scale(1.45)translate(-80px, 10px) rotate(30deg)"><img class="no-event at-ramdom-rotate-0" src="./images/decor/ingir.png" alt="decor"/></div>
+                </div>
+                <div class="screen-desk-↙">
+                  <div style="transform: scale(1.35) translate(-200px, 100px) rotate(10deg)"><img class="no-event at-ramdom-rotate-2" src="./images/decor/least_1.png" alt="least"/></div>
+                </div>
+                <div class="screen-desk-↗">
+                  <div style="transform: translate(85px, 30px) scale(1.2)"><img class="no-event at-ramdom-rotate-2" src="./images/decor/least_3.png" alt="least"/></div>
+                </div>
+              </div>
+            </div>
+          </template>
+          <div class="section-about-me__video _grid-col--desk-1-1 _grid-col--phone-1-2 _grid-row--desk-1-1 _grid-row--phone-a _place-desk-↙ _place-phone-s _order-desk-0 _order-lab-1 _anim-items _anim-once _transition-left _anim-delay-0_5">
             <div class="video-link">
               <h2 class="video-link__text">Дивитися відео</h2>
               <div class="video-link__view" @click="isShowPopUpContent = true;contentType = 'video';contentSrc = './video/main-video.mp4'">
@@ -234,12 +249,26 @@
           </div>
         </section>
         <section class="section-page-title _grid">
-          <div class="_grid-col--desk-5-6 _grid-col--lab-3-3 _grid-col--tab-2-2 _grid-row--desk-1-1 _place-desk-↘ _anim-items _transition-right"><img class="img-fon-decore" src="./images/decor/ingir.png" alt="decor" style="transform: scaleX(-1.5) scaleY(1.5) translate(0, 100px) rotate(30deg);"/></div>
+          <template x-if="!isTablet">
+            <div class="screen">
+              <div class="screen__container">
+                <div class="screen-desk-↘">
+                  <div style="transform: scaleX(-1.45) scaleY(1.45) translate(30px, 150px) rotate(30deg);"><img class="no-event at-ramdom-rotate-0" src="./images/decor/ingir.png" alt="decor"/></div>
+                </div>
+                <div class="screen-desk-↙">
+                  <div style="transform: scale(1.35) translate(-200px, 150px) rotate(20deg);"><img class="no-event at-ramdom-rotate-2" src="./images/decor/least_1.png" alt="least"/></div>
+                </div>
+                <div class="screen-desk-↗">
+                  <div style="transform: translate(200px, -210px) rotate(20deg);"><img class="no-event at-ramdom-rotate-2" src="./images/decor/least_2.png" alt="least"/></div>
+                </div>
+              </div>
+            </div>
+          </template>
           <div class="decor _fix-for-decor _grid-col--desk-2-2 _grid-col--lab-1-1 _grid-row--desk-1-1 _place-lab-↘ _place-tab-↗ _anim-items _anim-once _transition-left" data-da=".section-service__decor,576,0">
             <div class="decor__image"><img class="decor__image__photo" src="./images/photos/self_2.jpg" alt="photo"/><img class="decor__image__decor" src="./images/decor/decore_5.jpg" alt="photo"/></div>
           </div>
           <div class="_grid-col--desk-4-5 _grid-col--lab-3-3 _grid-col--tab-2-2 _grid-col--phone-1-2 _grid-row--desk-1-1">
-            <div class="_flex _flex-col">
+            <div class="section-page-title__content">
               <div class="grid" style="grid-template-columns: repeat(2,1fr); margin-bottom: 20px;">
                 <div class="section-service__decor _grid-col--phone-1-1 _place-phone-c"></div>
                 <div class="_flex _flex-col _grid-col--desk-1-2 _grid-col--phone-2-2 _place-phone-↓ _anim-items _anim-once _transition-opacity"><img class="koma" src="./images/icons/double-koma.svg" alt="koma"/></div>
@@ -261,6 +290,24 @@
         </section>
         <section class="section-service _fix-hook" id="services">
           <div class="bigger"></div>
+          <template x-if="!isTablet">
+            <div class="screen">
+              <div class="screen__container">
+                <div class="screen-desk-↘">
+                  <div style="transform: scale(1.4) translate(128px, -310px) rotate(-240deg)"><img class="no-event at-ramdom-rotate-0" src="./images/decor/least_3.png" alt="decor"/></div>
+                </div>
+                <div class="screen-desk-↖">
+                  <div style="transform: scale(1.25) translate(80px, 210px) rotate(20deg)"><img class="no-event at-ramdom-rotate-2" src="./images/decor/least_1.png" alt="least"/></div>
+                </div>
+                <div class="screen-desk-↙">
+                  <div style="transform: translate(100px, -240px) rotate(0deg)"><img class="no-event" src="./images/decor/woman.png" alt="least"/></div>
+                </div>
+                <div class="screen-desk-↙">
+                  <div style="transform: scaleX(-1) translate(0px, -700px) rotate(4deg)"><img class="no-event at-ramdom-rotate-2" src="./images/decor/stravbearry.png" alt="least"/></div>
+                </div>
+              </div>
+            </div>
+          </template>
           <div class="_grid">
             <div class="section-service__first _grid-col--desk-1-2 _grid-col--lab-1-1 _grid-col--phone-1-2">
               <div class="_flex _flex-col" style="justify-content: space-between; height: 100%;">

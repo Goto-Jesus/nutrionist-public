@@ -178,7 +178,22 @@
       </header>
       <main class="page__main">
         <section class="section-about-me _fix-hook">
-          <div class="section-about-me__video _grid-col--desk-1-1 _grid-col--phone-1-2 _grid-row--desk-1-1 _grid-row--phone-a _place-desk-↙ _place-phone-s _order-desk-0 _order-lab-1 _anim-items _anim-once _transition-left _anim-delay-1">
+          <template x-if="!isTablet">
+            <div class="screen">
+              <div class="screen__container">
+                <div class="screen-desk-↖">
+                  <div style="transform: scale(1.45)translate(-80px, 10px) rotate(30deg)"><img class="no-event at-ramdom-rotate-0" src="./images/decor/ingir.png" alt="decor"/></div>
+                </div>
+                <div class="screen-desk-↙">
+                  <div style="transform: scale(1.35) translate(-200px, 100px) rotate(10deg)"><img class="no-event at-ramdom-rotate-2" src="./images/decor/least_1.png" alt="least"/></div>
+                </div>
+                <div class="screen-desk-↗">
+                  <div style="transform: translate(85px, 30px) scale(1.2)"><img class="no-event at-ramdom-rotate-2" src="./images/decor/least_3.png" alt="least"/></div>
+                </div>
+              </div>
+            </div>
+          </template>
+          <div class="section-about-me__video _grid-col--desk-1-1 _grid-col--phone-1-2 _grid-row--desk-1-1 _grid-row--phone-a _place-desk-↙ _place-phone-s _order-desk-0 _order-lab-1 _anim-items _anim-once _transition-left _anim-delay-0_5">
             <div class="video-link">
               <h2 class="video-link__text">Дивитися відео</h2>
               <div class="video-link__view" @click="isShowPopUpContent = true;contentType = 'video';contentSrc = './video/main-video.mp4'">
