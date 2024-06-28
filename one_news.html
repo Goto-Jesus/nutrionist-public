@@ -38,7 +38,7 @@
             <ul style="display: grid; grid-template-columns: repeat(2,1fr); margin-bottom: 15px; gap: 10px;">
               <li class="navigation__item" :class="{'navigation__item--active': currentAnchor === '#about_me'}" style="width: max-content;"><a class="navigation__link" style="line-height: 100%; padding-bottom: 15px;" href="#about_me" @click="() =&gt; {currentAnchor = '#about_me'; isClosedBurgerMenu=true;}" x-on:click="setTimeout(() =&gt; {isShowBurgerMenu = false}, 500)">Про мене</a></li>
               <li class="navigation__item" :class="{'navigation__item--active': currentAnchor === '#services'}" style="width: max-content;"><a class="navigation__link" style="line-height: 100%; padding-bottom: 15px;" href="#services" @click="() =&gt; {currentAnchor = '#services'; isClosedBurgerMenu=true;}" x-on:click="setTimeout(() =&gt; {isShowBurgerMenu = false}, 500)">Послуги</a></li>
-              <li class="navigation__item" :class="{'navigation__item--active': currentAnchor === 'all_news.html'}" style="width: max-content;"><a class="navigation__link" style="line-height: 100%; padding-bottom: 15px;" href="all_news.html" @click="() =&gt; {currentAnchor = 'all_news.html'; isClosedBurgerMenu=true;}" x-on:click="setTimeout(() =&gt; {isShowBurgerMenu = false}, 500)">Журнал</a></li>
+              <li class="navigation__item" :class="{'navigation__item--active': currentAnchor === 'all_news.html#magazine'}" style="width: max-content;"><a class="navigation__link" style="line-height: 100%; padding-bottom: 15px;" href="all_news.html#magazine" @click="() =&gt; {currentAnchor = 'all_news.html#magazine'; isClosedBurgerMenu=true;}" x-on:click="setTimeout(() =&gt; {isShowBurgerMenu = false}, 500)">Журнал</a></li>
               <li class="navigation__item" :class="{'navigation__item--active': currentAnchor === '#contants'}" style="width: max-content;"><a class="navigation__link" style="line-height: 100%; padding-bottom: 15px;" href="#contants" @click="() =&gt; {currentAnchor = '#contants'; isClosedBurgerMenu=true;}" x-on:click="setTimeout(() =&gt; {isShowBurgerMenu = false}, 500)">Контакти</a></li>
             </ul>
             <p style="margin-bottom: 25px;">Поглиблені персональнi консультації з нутриціології, якi допоможуть вам досягти витриманого здоров'я та життєвої енергії</p>
@@ -49,7 +49,7 @@
             <div class="social-list" style="margin-bottom: 20px;"><a class="social-link" href="#" target="_blank" rel="noopener noreferrer"><img src="./images/icons/light__social-facebook.svg" alt="facebook"/></a><a class="social-link" href="https://www.instagram.com/svitlana.olijnyk/" target="_blank" rel="noopener noreferrer"><img src="./images/icons/light__social-instagram.svg" alt="instagram"/></a><a class="social-link" href="#" target="_blank" rel="noopener noreferrer"><img src="./images/icons/light__social-youtube.svg" alt="youtube"/></a><a class="social-link" href="https://t.me/svitlanaolijnyk" target="_blank" rel="noopener noreferrer"><img src="./images/icons/light__social-telegram.svg" alt="telegram"/></a>
             </div>
             <hr class="_anim-items _transition-clip-form-left" style="margin-bottom: 25px;"/>
-            <div>Розробка сайту: <a href="#" style="text-decoration: underline; font-weight: 500;">kruglov.design</a></div>
+            <div>Розробка сайту: <a href="https://www.instagram.com/boris__kruglov/" style="text-decoration: underline; font-weight: 500;">kruglov.design</a></div>
           </div>
         </div>
       </template>
@@ -113,8 +113,8 @@
               <hr class="_anim-items _transition-clip-form-left" style="margin-bottom: 50px;"/>
               <div class="footer__texts">
                 <p class="footer__texts__1 _grid-col--desk-1-1 _grid-col--phone-1-2 _place-desk-↖ ">Усі права захищені ©, 2024, Світлана Олійний, Нутриціолог</p>
-                <p class="footer__texts__2 _grid-col--desk-2-2 _grid-col--phone-1-1 _place-desk-↑ _place-phone-↖"><a class="tolink" href="policy.html">Політика конфіденційності</a></p>
-                <p class="footer__texts__3 _grid-col--desk-3-3 _grid-col--phone-2-3 _place-desk-↗ _place-phone-↖">Розробка сайту:<br><b>Борис Круглов</b></p>
+                <p class="footer__texts__2 _grid-col--desk-2-2 _grid-col--phone-1-1 _place-desk-↑ _place-phone-↖"><a class="to-link" href="policy.html">Політика конфіденційності</a></p>
+                <p class="footer__texts__3 _grid-col--desk-3-3 _grid-col--lab-2-3 _place-desk-↗ _place-phone-↘">Розробка сайту:<br/><a href="https://www.instagram.com/boris__kruglov/"> <b>Борис Круглов</b></a></p>
               </div>
             </div>
           </div>
@@ -131,8 +131,8 @@
             <section class="section-modal">
               <div class="section-modal__container">
                 <div class="section-modal__bg"></div>
-                <div class="section-modal__screen"><img x-show="contentType==='image'" :src="contentSrc" alt="image">
-                  <video x-show="contentType==='video'" :src="contentSrc" autoplay controls></video>
+                <div class="section-modal__screen"><img class="section-modal__content" x-show="contentType==='image'" :src="contentSrc" alt="image">
+                  <video class="section-modal__content" x-show="contentType==='video'" :src="contentSrc" autoplay controls></video>
                 </div>
               </div>
             </section>
@@ -140,22 +140,22 @@
         </div>
       </template>
       <header class="page__header">
-        <div class="header">
+        <div class="header" x-data="{ currentHook: '' }" :init="currentHook = window.location.hash" @scroll.debounce.window="currentHook = window.location.hash">
           <div class="header__logo">
             <div class="logo"><a href="main.html"><img src="./images/icons/logo.svg" alt="logo"/></a></div>
           </div>
           <div class="header__container">
             <div class="header__navigation">
-              <nav class="navigation" x-data="{ currentAnchor: '' }" @scroll.debounce.window="currentAnchor = window.location.hash">
+              <nav class="navigation">
                 <ul class="navigation__list">
-                  <li class="navigation__item" :class="{'navigation__item--active': currentAnchor === '#about_me'}"><a class="navigation__link" href="#about_me" @click="currentAnchor = '#about_me'">Про мене</a></li>
-                  <li class="navigation__item" :class="{'navigation__item--active': currentAnchor === '#services'}"><a class="navigation__link" href="#services" @click="currentAnchor = '#services'">Послуги</a></li>
-                  <li class="navigation__item" :class="{'navigation__item--active': currentAnchor === 'all_news.html'}"><a class="navigation__link" href="all_news.html" @click="currentAnchor = 'all_news.html'">Журнал</a></li>
-                  <li class="navigation__item" :class="{'navigation__item--active': currentAnchor === '#contants'}"><a class="navigation__link" href="#contants" @click="currentAnchor = '#contants'">Контакти</a></li>
+                  <li class="navigation__item" :class="{'navigation__item--active': currentHook === '#about_me'}"><a class="navigation__link" href="#about_me" @click="currentHook = '#about_me'">Про мене</a></li>
+                  <li class="navigation__item" :class="{'navigation__item--active': currentHook === '#services'}"><a class="navigation__link" href="#services" @click="currentHook = '#services'">Послуги</a></li>
+                  <li class="navigation__item" :class="{'navigation__item--active': currentHook === '#magazine'}"><a class="navigation__link" href="all_news.html#magazine" @click="currentHook = '#magazine'">Журнал</a></li>
+                  <li class="navigation__item" :class="{'navigation__item--active': currentHook === '#contants'}"><a class="navigation__link" href="#contants" @click="currentHook = '#contants'">Контакти</a></li>
                 </ul>
               </nav>
             </div>
-            <div class="header__link"><a class="link" href="all_courses.html">
+            <div class="header__link" :class="{'header__link--active': currentHook === '#learn'}"><a class="link" href="all_courses.html#learn">
                 <div class="link__text">Навчання</div>
                 <div class="link__image">
                   <div class="icon"><svg width="35" height="34" viewBox="0 0 35 34" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -182,13 +182,13 @@
             <div class="screen">
               <div class="screen__container">
                 <div class="screen-desk-↖">
-                  <div style="transform: scale(1.45)translate(-80px, 10px) rotate(30deg)"><img class="no-event at-ramdom-rotate-0" src="./images/decor/ingir.png" alt="decor"/></div>
+                  <div style="transform: scale(1.45)translate(-80px, 10px) rotate(30deg)"><img class="_no-event at-ramdom-rotate-0" src="./images/decor/ingir.png" alt="decor"/></div>
                 </div>
                 <div class="screen-desk-↙">
-                  <div style="transform: scale(1.35) translate(-200px, 100px) rotate(10deg)"><img class="no-event at-ramdom-rotate-2" src="./images/decor/least_1.png" alt="least"/></div>
+                  <div style="transform: scale(1.35) translate(-200px, 100px) rotate(10deg)"><img class="_no-event at-ramdom-rotate-2" src="./images/decor/least_1.png" alt="least"/></div>
                 </div>
                 <div class="screen-desk-↗">
-                  <div style="transform: translate(85px, 30px) scale(1.2)"><img class="no-event at-ramdom-rotate-2" src="./images/decor/least_3.png" alt="least"/></div>
+                  <div style="transform: translate(85px, 30px) scale(1.2)"><img class="_no-event at-ramdom-rotate-2" src="./images/decor/least_3.png" alt="least"/></div>
                 </div>
               </div>
             </div>
@@ -245,9 +245,12 @@
           <div class="_grid-col--desk-2-5 _grid-col--lab-1-3 _grid-col--tab-1-2 _place-desk-←">
             <div class="breadcrumbs">
               <ul class="breadcrumbs__list">
-                <li class="breadcrumbs__item"><a class="breadcrumbs__link" href="main.html">Головна</a></li>
-                <li class="breadcrumbs__item"><a class="breadcrumbs__link" href="all_news.html">Журнал</a></li>
-                <li class="breadcrumbs__item"><a class="breadcrumbs__link" href="one_news.html">Як здорова дієта впливає на психічне благополуччя</a></li>
+                <li class="breadcrumbs__item"><a class="breadcrumbs__link" href="main.html">Головна</a>
+                </li>
+                <li class="breadcrumbs__item"><a class="breadcrumbs__link" href="all_news.html">Журнал</a>
+                </li>
+                <li class="breadcrumbs__item"><span class="breadcrumbs__link" href="#">Як здорова дієта впливає на психічне благополуччя</span>
+                </li>
               </ul>
             </div>
           </div>
@@ -257,13 +260,13 @@
             <div class="screen">
               <div class="screen__container">
                 <div class="screen-desk-↘">
-                  <div style="transform: scaleX(-1.45) scaleY(1.45) translate(30px, 150px) rotate(30deg);"><img class="no-event at-ramdom-rotate-0" src="./images/decor/ingir.png" alt="decor"/></div>
+                  <div style="transform: scaleX(-1.45) scaleY(1.45) translate(30px, 150px) rotate(30deg);"><img class="_no-event at-ramdom-rotate-0" src="./images/decor/ingir.png" alt="decor"/></div>
                 </div>
                 <div class="screen-desk-↙">
-                  <div style="transform: scale(1.35) translate(-200px, 150px) rotate(20deg);"><img class="no-event at-ramdom-rotate-2" src="./images/decor/least_1.png" alt="least"/></div>
+                  <div style="transform: scale(1.35) translate(-200px, 150px) rotate(20deg);"><img class="_no-event at-ramdom-rotate-2" src="./images/decor/least_1.png" alt="least"/></div>
                 </div>
                 <div class="screen-desk-↗">
-                  <div style="transform: translate(200px, -210px) rotate(20deg);"><img class="no-event at-ramdom-rotate-2" src="./images/decor/least_2.png" alt="least"/></div>
+                  <div style="transform: translate(200px, -210px) rotate(20deg);"><img class="_no-event at-ramdom-rotate-2" src="./images/decor/least_2.png" alt="least"/></div>
                 </div>
               </div>
             </div>
@@ -350,7 +353,7 @@
             <div class="title title--font-family _anim-items _anim-once _transition-clip-form-left _transition-opacity">
               <p class="title__text">Крім того</p>
               <div class="title__container">
-                <h2 class="title__main-text">Правильне харчування може <br>впливати на енергетичний рівень <br>та ясність розуму</h2>
+                <h2 class="title__main-text">Правильне харчування може впливати на енергетичний рівень та ясність розуму</h2>
               </div>
             </div>
           </div>
@@ -392,7 +395,7 @@
           </div>
         </div>
         <section class="section-magazine _grid _fix-hook" id="magazine">
-          <div class="_grid-col--desk-2-4 _grid-col--lab-1-2 _grid-row--desk-1-1">
+          <div class="section-magazine__title _grid-col--desk-2-4 _grid-col--lab-1-2 _grid-row--desk-1-1">
             <div class="title  title--second title--font-family _anim-items _anim-once _transition-clip-form-left _transition-opacity">
               <p class="title__text">Журнал</p>
               <div class="title__container">
@@ -400,7 +403,7 @@
               </div>
             </div>
           </div>
-          <div class="_grid-col--desk-6-6 _grid-col--lab-3-3 _grid-col--tab-2-2 _grid-row--desk-1-1 _place-desk-↘ _place-phone-↗"><a class="link" href="all_news.html">
+          <div class="section-magazine__link _grid-col--desk-6-6 _grid-col--lab-3-3 _grid-col--tab-2-2 _grid-row--desk-1-1 _place-desk-↘ _place-phone-↗"><a class="link" href="all_news.html">
               <div class="link__text">Усі новини</div>
               <div class="link__image">
                 <div class="icon"><svg width="35" height="34" viewBox="0 0 35 34" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -415,42 +418,42 @@
               <div class="splide splide--fix" id="my-slider-2">
                 <div class="splide__track">
                   <ul class="splide__list">
-                    <li class="splide__slide"><a class="link-wrapper" href="one_news.html" target="" rel="noopener noreferrer">
+                    <li class="splide__slide"><a class="link-wrapper link-wrapper--effect-1" href="one_news.html" target="" rel="noopener noreferrer">
                         <article class="card-half-circle  card-half-circle--top card-half-circle--white card"><img class="card-half-circle__image" src="./images/photos/post_8.jpg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
                           <div class="card-half-circle__container">
                             <h3 class="card-half-circle__title">Як здорова дієта впливає на психічне благополуччя</h3>
                           </div>
                         </article></a>
                     </li>
-                    <li class="splide__slide"><a class="link-wrapper" href="one_news.html" target="" rel="noopener noreferrer">
+                    <li class="splide__slide"><a class="link-wrapper link-wrapper--effect-1" href="one_news.html" target="" rel="noopener noreferrer">
                         <article class="card-half-circle  card-half-circle--top card-half-circle--white card"><img class="card-half-circle__image" src="./images/photos/post_9.jpg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
                           <div class="card-half-circle__container">
                             <h3 class="card-half-circle__title">Секрети здоров'я у Вашому холодильнику та як обрати справжні продукти для життєвого тонусу</h3>
                           </div>
                         </article></a>
                     </li>
-                    <li class="splide__slide"><a class="link-wrapper" href="one_news.html" target="" rel="noopener noreferrer">
+                    <li class="splide__slide"><a class="link-wrapper link-wrapper--effect-1" href="one_news.html" target="" rel="noopener noreferrer">
                         <article class="card-half-circle  card-half-circle--top card-half-circle--white card"><img class="card-half-circle__image" src="./images/photos/post_10.jpg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
                           <div class="card-half-circle__container">
                             <h3 class="card-half-circle__title">Інноваційні тренди у світі харчування: що нового в сфері здорового харчування?</h3>
                           </div>
                         </article></a>
                     </li>
-                    <li class="splide__slide"><a class="link-wrapper" href="one_news.html" target="" rel="noopener noreferrer">
+                    <li class="splide__slide"><a class="link-wrapper link-wrapper--effect-1" href="one_news.html" target="" rel="noopener noreferrer">
                         <article class="card-half-circle  card-half-circle--top card-half-circle--white card"><img class="card-half-circle__image" src="./images/photos/post_11.jpg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
                           <div class="card-half-circle__container">
                             <h3 class="card-half-circle__title">Глобальні зміни у харчовій промисловості: вплив технологій та зростання свідомості споживачів</h3>
                           </div>
                         </article></a>
                     </li>
-                    <li class="splide__slide"><a class="link-wrapper" href="one_news.html" target="" rel="noopener noreferrer">
+                    <li class="splide__slide"><a class="link-wrapper link-wrapper--effect-1" href="one_news.html" target="" rel="noopener noreferrer">
                         <article class="card-half-circle  card-half-circle--top card-half-circle--white card"><img class="card-half-circle__image" src="./images/photos/post_12.jpg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
                           <div class="card-half-circle__container">
                             <h3 class="card-half-circle__title">Наукові відкриття у сфері харчування: як дослідження полегшують шлях до здоров'я</h3>
                           </div>
                         </article></a>
                     </li>
-                    <li class="splide__slide"><a class="link-wrapper" href="one_news.html" target="" rel="noopener noreferrer">
+                    <li class="splide__slide"><a class="link-wrapper link-wrapper--effect-1" href="one_news.html" target="" rel="noopener noreferrer">
                         <article class="card-half-circle  card-half-circle--top card-half-circle--white card"><img class="card-half-circle__image" src="./images/photos/post_13.jpg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
                           <div class="card-half-circle__container">
                             <h3 class="card-half-circle__title">Топові тренди у харчовій культурі: як смак і світогляд змінюються у 2024 році</h3>
@@ -461,17 +464,26 @@
                 </div>
               </div>
             </div>
-            <div class="section-magazine__main-card _place-desk-↑ section-magazine__main-card--fixed" style="position: relative">
-              <article class="card-big  card-big--x2 card"><img class="card-big__image" src="./images/photos/self_11.jpg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
-                <div class="card-big__container">
-                  <h3 class="card-big__title">Світлана Олійник стала обличчям найвідомішого журналу зі здоров'я</h3>
-                  <p class="card-big__text">Ця фіноменальна подія стала не лише надбанням для мене та моєї родини, а й загалом є посібником для всієї нутриціології</p>
-                </div>
-              </article>
+            <div class="section-magazine__main-card _place-desk-↑ section-magazine__main-card--fixed" style="position: relative"><a class="link-wrapper" href="one_news.html" target="" rel="noopener noreferrer">
+                <article class="card-big  card-big--x2 card"><img class="card-big__image" src="./images/photos/self_11.jpg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
+                  <div class="card-big__container">
+                    <h3 class="card-big__title">Світлана Олійник стала обличчям найвідомішого журналу зі здоров'я</h3>
+                    <p class="card-big__text">Ця фіноменальна подія стала не лише надбанням для мене та моєї родини, а й загалом є посібником для всієї нутриціології</p>
+                  </div>
+                </article></a>
             </div>
           </div>
         </section>
         <section class="section-proposition">
+          <template x-if="!isTablet">
+            <div class="screen">
+              <div class="screen__container">
+                <div class="screen-desk-↖">
+                  <div style="transform: scaleX(-1.3) scaleY(1.3) translate(35px, 200px) rotate(225deg)"><img class="_no-event at-ramdom-rotate-0" src="./images/decor/least_2.png" alt="decor"/></div>
+                </div>
+              </div>
+            </div>
+          </template>
           <div class="_flex section-proposition__info">
             <div class="circle-info"><img class="circle-info__bg" src="./images/decor/bg-info.png" alt="bg" style="transform: translate(-40.5%, 4.5%);"/><img class="circle-info__image" src="./images/photos/self_4.jpg" alt="" srcset=""/>
               <p class="circle-info__text">Виглядаємо ідеально разом!</p>
@@ -540,7 +552,7 @@
                 </div>
               </article>
             </div>
-            <div class="_grid-col--desk-1-2 _grid-row--lab-2-2 _grid-row--phone-3-3">
+            <div class="_grid-col--desk-1-2 _grid-col--lab-1-1 _grid-col--phone-1-2 _grid-row--lab-2-2 _grid-row--phone-3-3">
               <article class="card-mini  card-mini--cource card"><img class="card-mini__image" src="./images/photos/mini-post_7.jpg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
                 <div class="card-mini__container">
                   <h3 class="card-mini__title">Швидкий Старт: Курс «Легко та eфективно» для тих, хто бажає втратити вагу самостійно, правильно їсти та не рахувати калорії</h3>
@@ -925,7 +937,7 @@
               </div>
             </template>
             <template x-cloak="x-cloak" x-if="isPhone">
-              <div class="_grid" style="grid-template-columns: repeat(2,50%); width: 100%;">
+              <div class="_grid" style="grid-template-columns: repeat(2,50%); row-gap: 24px;">
                 <article class="card-icon  card-icon--mini card"><img class="card-icon__image" src="./images/icons/dark__done.svg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
                   <div class="card-icon__container">
                     <p class="card-icon__text"><b>Оптимальне <br>здоров'я</b></p>
@@ -1041,18 +1053,20 @@
       </main>
       <div class="page__menu">
         <template x-if="!isShowPopUpContact &amp;&amp; !isShowBurgerMenu &amp;&amp; !isShowPopUpContent">
-          <div class="contacts-menu" x-data="{ hidden: true }" @click.outside="hidden = true">
-            <div class="contacts-menu__container" x-cloak="x-cloak" :class="{'contacts-menu__container--hidden': hidden}">
-              <div class="contacts-menu__item"> <a class="button-icon" target="_blank" href="https://www.instagram.com/svitlana.olijnyk/"><img src="./images/icons/social-instagram.svg" alt="instagram-logo"/></a></div>
-              <div class="contacts-menu__item"> <a class="button-icon" href="mailto:svitlanaoliinyk.nutritionist@ukr.net"><img src="./images/icons/social-sms.svg" alt="sms-logo"/></a></div>
-              <div class="contacts-menu__item"> <a class="button-icon" target="_blank" href="#"><img src="./images/icons/social-messager.svg" alt="messager-logo"/></a></div>
-              <div class="contacts-menu__item"> <a class="button-icon" target="_blank" href="https://wa.me/380676076007"><img src="./images/icons/social-whatsApp.svg" alt="whatsApp-logo"/></a></div>
-              <div class="contacts-menu__item"> <a class="button-icon" target="_blank" href="viber://contact?number=380676076007"><img src="./images/icons/social-viber.svg" alt="viber-logo"/></a></div>
-              <div class="contacts-menu__item"> <a class="button-icon" target="_blank" href="https://t.me/svitlanaolijnyk"><img src="./images/icons/social-telegram.svg" alt="telegram-logo"/></a></div>
-            </div>
-            <button class="contacts-menu__button" type="button" @click="hidden = !hidden" :class="{'contacts-menu__button--close': !hidden}">
-              <div class="contacts-menu__button__image"></div>
-            </button>
+          <div class="page__menu__container" x-data="{ isVisibleToUp: false }" x-init="window.addEventListener('scroll', () =&gt; { isVisibleToUp = window.scrollY &gt;= 1000 })">
+            <div class="contacts-menu" x-data="{ hidden: true }" @click.outside="hidden = true">
+              <div class="contacts-menu__container" x-cloak="x-cloak" :class="{'contacts-menu__container--hidden': hidden}">
+                <div class="contacts-menu__item"> <a class="button-icon" target="_blank" href="https://www.instagram.com/svitlana.olijnyk/"><img src="./images/icons/social-instagram.svg" alt="instagram-logo"/></a></div>
+                <div class="contacts-menu__item"> <a class="button-icon" href="mailto:svitlanaoliinyk.nutritionist@ukr.net"><img src="./images/icons/social-sms.svg" alt="sms-logo"/></a></div>
+                <div class="contacts-menu__item"> <a class="button-icon" target="_blank" href="#"><img src="./images/icons/social-messager.svg" alt="messager-logo"/></a></div>
+                <div class="contacts-menu__item"> <a class="button-icon" target="_blank" href="https://wa.me/380676076007"><img src="./images/icons/social-whatsApp.svg" alt="whatsApp-logo"/></a></div>
+                <div class="contacts-menu__item"> <a class="button-icon" target="_blank" href="viber://contact?number=380676076007"><img src="./images/icons/social-viber.svg" alt="viber-logo"/></a></div>
+                <div class="contacts-menu__item"> <a class="button-icon" target="_blank" href="https://t.me/svitlanaolijnyk"><img src="./images/icons/social-telegram.svg" alt="telegram-logo"/></a></div>
+              </div>
+              <button class="contacts-menu__button" type="button" @click="hidden = !hidden" :class="{'contacts-menu__button--close': !hidden}">
+                <div class="contacts-menu__button__image"></div>
+              </button>
+            </div><a class="to-up" href="#"><img class="to-up__image" src="./images/icons/arrow-to-up.svg" alt="to up" x-show="isVisibleToUp"></a>
           </div>
         </template>
       </div>
@@ -1066,8 +1080,8 @@
           <hr class="_anim-items _transition-clip-form-left" style="margin-bottom: 50px;"/>
           <div class="footer__texts">
             <p class="footer__texts__1 _grid-col--desk-1-1 _grid-col--phone-1-2 _place-desk-↖ ">Усі права захищені ©, 2024, Світлана Олійний, Нутриціолог</p>
-            <p class="footer__texts__2 _grid-col--desk-2-2 _grid-col--phone-1-1 _place-desk-↑ _place-phone-↖"><a class="tolink" href="policy.html">Політика конфіденційності</a></p>
-            <p class="footer__texts__3 _grid-col--desk-3-3 _grid-col--phone-2-3 _place-desk-↗ _place-phone-↖">Розробка сайту:<br><b>Борис Круглов</b></p>
+            <p class="footer__texts__2 _grid-col--desk-2-2 _grid-col--phone-1-1 _place-desk-↑ _place-phone-↖"><a class="to-link" href="policy.html">Політика конфіденційності</a></p>
+            <p class="footer__texts__3 _grid-col--desk-3-3 _grid-col--lab-2-3 _place-desk-↗ _place-phone-↘">Розробка сайту:<br/><a href="https://www.instagram.com/boris__kruglov/"> <b>Борис Круглов</b></a></p>
           </div>
         </div>
       </footer>

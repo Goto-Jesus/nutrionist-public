@@ -38,7 +38,7 @@
             <ul style="display: grid; grid-template-columns: repeat(2,1fr); margin-bottom: 15px; gap: 10px;">
               <li class="navigation__item" :class="{'navigation__item--active': currentAnchor === '#about_me'}" style="width: max-content;"><a class="navigation__link" style="line-height: 100%; padding-bottom: 15px;" href="#about_me" @click="() =&gt; {currentAnchor = '#about_me'; isClosedBurgerMenu=true;}" x-on:click="setTimeout(() =&gt; {isShowBurgerMenu = false}, 500)">Про мене</a></li>
               <li class="navigation__item" :class="{'navigation__item--active': currentAnchor === '#services'}" style="width: max-content;"><a class="navigation__link" style="line-height: 100%; padding-bottom: 15px;" href="#services" @click="() =&gt; {currentAnchor = '#services'; isClosedBurgerMenu=true;}" x-on:click="setTimeout(() =&gt; {isShowBurgerMenu = false}, 500)">Послуги</a></li>
-              <li class="navigation__item" :class="{'navigation__item--active': currentAnchor === 'all_news.html'}" style="width: max-content;"><a class="navigation__link" style="line-height: 100%; padding-bottom: 15px;" href="all_news.html" @click="() =&gt; {currentAnchor = 'all_news.html'; isClosedBurgerMenu=true;}" x-on:click="setTimeout(() =&gt; {isShowBurgerMenu = false}, 500)">Журнал</a></li>
+              <li class="navigation__item" :class="{'navigation__item--active': currentAnchor === 'all_news.html#magazine'}" style="width: max-content;"><a class="navigation__link" style="line-height: 100%; padding-bottom: 15px;" href="all_news.html#magazine" @click="() =&gt; {currentAnchor = 'all_news.html#magazine'; isClosedBurgerMenu=true;}" x-on:click="setTimeout(() =&gt; {isShowBurgerMenu = false}, 500)">Журнал</a></li>
               <li class="navigation__item" :class="{'navigation__item--active': currentAnchor === '#contants'}" style="width: max-content;"><a class="navigation__link" style="line-height: 100%; padding-bottom: 15px;" href="#contants" @click="() =&gt; {currentAnchor = '#contants'; isClosedBurgerMenu=true;}" x-on:click="setTimeout(() =&gt; {isShowBurgerMenu = false}, 500)">Контакти</a></li>
             </ul>
             <p style="margin-bottom: 25px;">Поглиблені персональнi консультації з нутриціології, якi допоможуть вам досягти витриманого здоров'я та життєвої енергії</p>
@@ -49,7 +49,7 @@
             <div class="social-list" style="margin-bottom: 20px;"><a class="social-link" href="#" target="_blank" rel="noopener noreferrer"><img src="./images/icons/light__social-facebook.svg" alt="facebook"/></a><a class="social-link" href="https://www.instagram.com/svitlana.olijnyk/" target="_blank" rel="noopener noreferrer"><img src="./images/icons/light__social-instagram.svg" alt="instagram"/></a><a class="social-link" href="#" target="_blank" rel="noopener noreferrer"><img src="./images/icons/light__social-youtube.svg" alt="youtube"/></a><a class="social-link" href="https://t.me/svitlanaolijnyk" target="_blank" rel="noopener noreferrer"><img src="./images/icons/light__social-telegram.svg" alt="telegram"/></a>
             </div>
             <hr class="_anim-items _transition-clip-form-left" style="margin-bottom: 25px;"/>
-            <div>Розробка сайту: <a href="#" style="text-decoration: underline; font-weight: 500;">kruglov.design</a></div>
+            <div>Розробка сайту: <a href="https://www.instagram.com/boris__kruglov/" style="text-decoration: underline; font-weight: 500;">kruglov.design</a></div>
           </div>
         </div>
       </template>
@@ -113,8 +113,8 @@
               <hr class="_anim-items _transition-clip-form-left" style="margin-bottom: 50px;"/>
               <div class="footer__texts">
                 <p class="footer__texts__1 _grid-col--desk-1-1 _grid-col--phone-1-2 _place-desk-↖ ">Усі права захищені ©, 2024, Світлана Олійний, Нутриціолог</p>
-                <p class="footer__texts__2 _grid-col--desk-2-2 _grid-col--phone-1-1 _place-desk-↑ _place-phone-↖"><a class="tolink" href="policy.html">Політика конфіденційності</a></p>
-                <p class="footer__texts__3 _grid-col--desk-3-3 _grid-col--phone-2-3 _place-desk-↗ _place-phone-↖">Розробка сайту:<br><b>Борис Круглов</b></p>
+                <p class="footer__texts__2 _grid-col--desk-2-2 _grid-col--phone-1-1 _place-desk-↑ _place-phone-↖"><a class="to-link" href="policy.html">Політика конфіденційності</a></p>
+                <p class="footer__texts__3 _grid-col--desk-3-3 _grid-col--lab-2-3 _place-desk-↗ _place-phone-↘">Розробка сайту:<br/><a href="https://www.instagram.com/boris__kruglov/"> <b>Борис Круглов</b></a></p>
               </div>
             </div>
           </div>
@@ -131,8 +131,8 @@
             <section class="section-modal">
               <div class="section-modal__container">
                 <div class="section-modal__bg"></div>
-                <div class="section-modal__screen"><img x-show="contentType==='image'" :src="contentSrc" alt="image">
-                  <video x-show="contentType==='video'" :src="contentSrc" autoplay controls></video>
+                <div class="section-modal__screen"><img class="section-modal__content" x-show="contentType==='image'" :src="contentSrc" alt="image">
+                  <video class="section-modal__content" x-show="contentType==='video'" :src="contentSrc" autoplay controls></video>
                 </div>
               </div>
             </section>
@@ -140,22 +140,22 @@
         </div>
       </template>
       <header class="page__header">
-        <div class="header">
+        <div class="header" x-data="{ currentHook: '' }" :init="currentHook = window.location.hash" @scroll.debounce.window="currentHook = window.location.hash">
           <div class="header__logo">
             <div class="logo"><a href="main.html"><img src="./images/icons/logo.svg" alt="logo"/></a></div>
           </div>
           <div class="header__container">
             <div class="header__navigation">
-              <nav class="navigation" x-data="{ currentAnchor: '' }" @scroll.debounce.window="currentAnchor = window.location.hash">
+              <nav class="navigation">
                 <ul class="navigation__list">
-                  <li class="navigation__item" :class="{'navigation__item--active': currentAnchor === '#about_me'}"><a class="navigation__link" href="#about_me" @click="currentAnchor = '#about_me'">Про мене</a></li>
-                  <li class="navigation__item" :class="{'navigation__item--active': currentAnchor === '#services'}"><a class="navigation__link" href="#services" @click="currentAnchor = '#services'">Послуги</a></li>
-                  <li class="navigation__item" :class="{'navigation__item--active': currentAnchor === 'all_news.html'}"><a class="navigation__link" href="all_news.html" @click="currentAnchor = 'all_news.html'">Журнал</a></li>
-                  <li class="navigation__item" :class="{'navigation__item--active': currentAnchor === '#contants'}"><a class="navigation__link" href="#contants" @click="currentAnchor = '#contants'">Контакти</a></li>
+                  <li class="navigation__item" :class="{'navigation__item--active': currentHook === '#about_me'}"><a class="navigation__link" href="#about_me" @click="currentHook = '#about_me'">Про мене</a></li>
+                  <li class="navigation__item" :class="{'navigation__item--active': currentHook === '#services'}"><a class="navigation__link" href="#services" @click="currentHook = '#services'">Послуги</a></li>
+                  <li class="navigation__item" :class="{'navigation__item--active': currentHook === '#magazine'}"><a class="navigation__link" href="all_news.html#magazine" @click="currentHook = '#magazine'">Журнал</a></li>
+                  <li class="navigation__item" :class="{'navigation__item--active': currentHook === '#contants'}"><a class="navigation__link" href="#contants" @click="currentHook = '#contants'">Контакти</a></li>
                 </ul>
               </nav>
             </div>
-            <div class="header__link"><a class="link" href="all_courses.html">
+            <div class="header__link" :class="{'header__link--active': currentHook === '#learn'}"><a class="link" href="all_courses.html#learn">
                 <div class="link__text">Навчання</div>
                 <div class="link__image">
                   <div class="icon"><svg width="35" height="34" viewBox="0 0 35 34" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -182,13 +182,13 @@
             <div class="screen">
               <div class="screen__container">
                 <div class="screen-desk-↖">
-                  <div style="transform: scale(1.45)translate(-80px, 10px) rotate(30deg)"><img class="no-event at-ramdom-rotate-0" src="./images/decor/ingir.png" alt="decor"/></div>
+                  <div style="transform: scale(1.45)translate(-80px, 10px) rotate(30deg)"><img class="_no-event at-ramdom-rotate-0" src="./images/decor/ingir.png" alt="decor"/></div>
                 </div>
                 <div class="screen-desk-↙">
-                  <div style="transform: scale(1.35) translate(-200px, 100px) rotate(10deg)"><img class="no-event at-ramdom-rotate-2" src="./images/decor/least_1.png" alt="least"/></div>
+                  <div style="transform: scale(1.35) translate(-200px, 100px) rotate(10deg)"><img class="_no-event at-ramdom-rotate-2" src="./images/decor/least_1.png" alt="least"/></div>
                 </div>
                 <div class="screen-desk-↗">
-                  <div style="transform: translate(85px, 30px) scale(1.2)"><img class="no-event at-ramdom-rotate-2" src="./images/decor/least_3.png" alt="least"/></div>
+                  <div style="transform: translate(85px, 30px) scale(1.2)"><img class="_no-event at-ramdom-rotate-2" src="./images/decor/least_3.png" alt="least"/></div>
                 </div>
               </div>
             </div>
@@ -241,6 +241,18 @@
             </div>
           </div>
         </section>
+        <div class="_grid">
+          <div class="_grid-col--desk-2-5 _grid-col--lab-1-3 _grid-col--tab-1-2 _place-desk-←">
+            <div class="breadcrumbs">
+              <ul class="breadcrumbs__list">
+                <li class="breadcrumbs__item"><a class="breadcrumbs__link" href="main.html">Головна</a>
+                </li>
+                <li class="breadcrumbs__item"><span class="breadcrumbs__link" href="#">Політика конфіденційності</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
         <section class="section-policy _grid">
           <div class="_grid-col--desk-2-4 _grid-col--lab-1-3 _grid-col--tab-1-2 _grid-row--desk-1-1" style="display: flex; flex-direction: column; gap: 35px;">
             <div class="section-policy__header">
@@ -254,167 +266,167 @@
             <div class="section-policy__content" style="display: flex; flex-direction: column; gap: 35px;">
               <div style="display: flex; flex-direction: column; gap: 25px; font-size: 20px; line-height: 24px;">
                 <h3 style="font-size: 32px; line-height: 38.4px">1. ТЕРМІНИ ТА ВИЗНАЧЕННЯ</h3>
-                <p class="_anim-items _anim-once _transition-clip-form-left _transition-opacity _anim-duration-0_5"><b>1.1. Акцептування договору — </b><span>надання Замовником повноı̈ та безумовноı̈ згоди Виконавцю на пропозицію укласти цей Договір шляхом здійснення оплати обраної Замовником Послуги.</span>
+                <p><b>1.1. Акцептування договору — </b><span>надання Замовником повноı̈ та безумовноı̈ згоди Виконавцю на пропозицію укласти цей Договір шляхом здійснення оплати обраної Замовником Послуги.</span>
                 </p>
-                <p class="_anim-items _anim-once _transition-clip-form-left _transition-opacity _anim-duration-0_5"><b>1.2. Анкета — </b><span>персоналізоване опитування, яке надсилає Виконавець Замовнику для надання Послуг.</span>
+                <p><b>1.2. Анкета — </b><span>персоналізоване опитування, яке надсилає Виконавець Замовнику для надання Послуг.</span>
                 </p>
-                <p class="_anim-items _anim-once _transition-clip-form-left _transition-opacity _anim-duration-0_5"><b>1.3. Консультація — </b><span>інформаційні рекомендації та поради у сфері нутриціології, які надаються в форматі онлайн або офлайн. Тривалість 1 консультації складає до 90 хвилин та передбачає собою надання додаткових матеріалів, перелік та зміст яких Виконавець визначає у кожному індивідуальному випадку.</span>
+                <p><b>1.3. Консультація — </b><span>інформаційні рекомендації та поради у сфері нутриціології, які надаються в форматі онлайн або офлайн. Тривалість 1 консультації складає до 90 хвилин та передбачає собою надання додаткових матеріалів, перелік та зміст яких Виконавець визначає у кожному індивідуальному випадку.</span>
                 </p>
-                <p class="_anim-items _anim-once _transition-clip-form-left _transition-opacity _anim-duration-0_5"><b>1.4. Консультаційний супровід — </b><span>узгоджений Сторонами термін часу протягом якого Виконавець проводить для Замовника Консультацію та здійснює подальшу інформаційно-консультаційну підтримку Замовника, яка полягає у: відповідях на питання Замовника щодо надання Послуг - 1 раз на добу (за потреби); приймання щоденних звітів Замовника по харчуванню; щотижнева корекція харчування (за потреби); комунікація у форматі відеоконференції через застосунок «Zoom» - 1 раз на тиждень тривалістю від 30 до 60 хвилин.</span>
+                <p><b>1.4. Консультаційний супровід — </b><span>узгоджений Сторонами термін часу протягом якого Виконавець проводить для Замовника Консультацію та здійснює подальшу інформаційно-консультаційну підтримку Замовника, яка полягає у: відповідях на питання Замовника щодо надання Послуг - 1 раз на добу (за потреби); приймання щоденних звітів Замовника по харчуванню; щотижнева корекція харчування (за потреби); комунікація у форматі відеоконференції через застосунок «Zoom» - 1 раз на тиждень тривалістю від 30 до 60 хвилин.</span>
                 </p>
-                <p class="_anim-items _anim-once _transition-clip-form-left _transition-opacity _anim-duration-0_5"><b>1.5. Замовник — </b><span>будь яка фізична особа, яка: має повну цивільну дієздатність; ознайомлена з умовами цього Договору; зробила акцепт умов Договору у відповідності до розділу 4 Договору.</span>
+                <p><b>1.5. Замовник — </b><span>будь яка фізична особа, яка: має повну цивільну дієздатність; ознайомлена з умовами цього Договору; зробила акцепт умов Договору у відповідності до розділу 4 Договору.</span>
                 </p>
-                <p class="_anim-items _anim-once _transition-clip-form-left _transition-opacity _anim-duration-0_5"><b>1.6. Запит  — </b><span>повідомлення, створене та надіслане Замовником в месенджерах на ім’я Виконавця та/або на сторінці в будь-якій соціальній мережі, яка належить Виконавцю та ним адмініструється.</span>
+                <p><b>1.6. Запит  — </b><span>повідомлення, створене та надіслане Замовником в месенджерах на ім’я Виконавця та/або на сторінці в будь-якій соціальній мережі, яка належить Виконавцю та ним адмініструється.</span>
                 </p>
-                <p class="_anim-items _anim-once _transition-clip-form-left _transition-opacity _anim-duration-0_5"><b>1.7. Матеріали — </b><span>презентації, зображення, відео, чек листи, гайди, схеми, щоденники харчування, раціони, меню, анкети, які надаються Замовнику в процесі або за результатами надання Послуг.</span>
+                <p><b>1.7. Матеріали — </b><span>презентації, зображення, відео, чек листи, гайди, схеми, щоденники харчування, раціони, меню, анкети, які надаються Замовнику в процесі або за результатами надання Послуг.</span>
                 </p>
-                <p class="_anim-items _anim-once _transition-clip-form-left _transition-opacity _anim-duration-0_5"><b>1.8. Месенджер — </b><span>мобільний додаток, який використовується для обміну миттєвими повідомленнями, обміну фотографіями, відео, аудіозаписами та для групових чатів. Зокрема, але не виключно: Telegram, Viber, WhatsApp.</span>
+                <p><b>1.8. Месенджер — </b><span>мобільний додаток, який використовується для обміну миттєвими повідомленнями, обміну фотографіями, відео, аудіозаписами та для групових чатів. Зокрема, але не виключно: Telegram, Viber, WhatsApp.</span>
                 </p>
-                <p class="_anim-items _anim-once _transition-clip-form-left _transition-opacity _anim-duration-0_5"><b>1.9. Персональні дані — </b><span>інформація, яка дозволяє ідентифікувати Замовника та необхідна для надання послуг за Договором.</span>
+                <p><b>1.9. Персональні дані — </b><span>інформація, яка дозволяє ідентифікувати Замовника та необхідна для надання послуг за Договором.</span>
                 </p>
-                <p class="_anim-items _anim-once _transition-clip-form-left _transition-opacity _anim-duration-0_5"><b>1.10. Підтримка — </b><span>відповіді на питання Замовника протягом 2 тижнів після проведення Консультації та/або протягом здійснення Консультаційного супроводу, яка полягає у комунікації Виконавця з Замовником 1 раз на добу через Месенджер «Telegram».</span>
+                <p><b>1.10. Підтримка — </b><span>відповіді на питання Замовника протягом 2 тижнів після проведення Консультації та/або протягом здійснення Консультаційного супроводу, яка полягає у комунікації Виконавця з Замовником 1 раз на добу через Месенджер «Telegram».</span>
                 </p>
-                <p class="_anim-items _anim-once _transition-clip-form-left _transition-opacity _anim-duration-0_5"><b>1.12. Сторінка соціальної мережі — </b><span>сторінка в соціальній мережі Instagram за ім’ям користувача “mom.univers” та інші сторінки, пов’язані із Виконавцем, ним адмініструються та на яких розміщена інформація про послуги Виконавця.</span>
+                <p><b>1.12. Сторінка соціальної мережі — </b><span>сторінка в соціальній мережі Instagram за ім’ям користувача “mom.univers” та інші сторінки, пов’язані із Виконавцем, ним адмініструються та на яких розміщена інформація про послуги Виконавця.</span>
                 </p>
               </div>
               <div style="display: flex; flex-direction: column; gap: 25px; font-size: 20px; line-height: 24px;">
                 <h3 style="font-size: 32px; line-height: 38.4px">2. ПРЕДМЕТ ДОГОВОРУ</h3>
-                <p class="_anim-items _anim-once _transition-clip-form-left _transition-opacity _anim-duration-0_5"><b>2.1. </b><span>Виконавець зобов’язується надати Замовнику інформаційно консультаційні послуги, які сприяють налагодженню здорового способу життя Замовника (далі - Послуги). </span>
+                <p><b>2.1. </b><span>Виконавець зобов’язується надати Замовнику інформаційно консультаційні послуги, які сприяють налагодженню здорового способу життя Замовника (далі - Послуги). </span>
                 </p>
-                <p class="_anim-items _anim-once _transition-clip-form-left _transition-opacity _anim-duration-0_5"><b>2.2. </b><span>Послуги надаються у формі Консультацій та/або Консультаційного супроводу.</span>
+                <p><b>2.2. </b><span>Послуги надаються у формі Консультацій та/або Консультаційного супроводу.</span>
                 </p>
-                <p class="_anim-items _anim-once _transition-clip-form-left _transition-opacity _anim-duration-0_5"><b>2.3. </b><span>Детальні описи, вартість та особливості Послуг можуть бути вказані на Сторінках соціальних мереж Виконавця та/або наданням доступу за посиланням, надсиланням повідомлення в соціальних мережах чи Месенджерах в груповому чаті (каналі, спільноті), приватному діалозі між Замовником та Виконавцем.</span>
+                <p><b>2.3. </b><span>Детальні описи, вартість та особливості Послуг можуть бути вказані на Сторінках соціальних мереж Виконавця та/або наданням доступу за посиланням, надсиланням повідомлення в соціальних мережах чи Месенджерах в груповому чаті (каналі, спільноті), приватному діалозі між Замовником та Виконавцем.</span>
                 </p>
               </div>
               <div style="display: flex; flex-direction: column; gap: 25px; font-size: 20px; line-height: 24px;">
                 <h3 style="font-size: 32px; line-height: 38.4px">3. СТРОК ДІЇ ДОГОВОРУ</h3>
-                <p class="_anim-items _anim-once _transition-clip-form-left _transition-opacity _anim-duration-0_5"><b>3.1. </b><span>Договір діє протягом строку надання Консультації/Консультаційного супроводу або на інший строк, про який Сторони домовились окремо.</span>
+                <p><b>3.1. </b><span>Договір діє протягом строку надання Консультації/Консультаційного супроводу або на інший строк, про який Сторони домовились окремо.</span>
                 </p>
-                <p class="_anim-items _anim-once _transition-clip-form-left _transition-opacity _anim-duration-0_5"><b>3.2. Виконавець має право достроково розірвати цей Договір та негайно припинити надання Послуг у випадку:</b>
+                <p><b>3.2. Виконавець має право достроково розірвати цей Договір та негайно припинити надання Послуг у випадку:</b>
                 </p>
-                <p class="_anim-items _anim-once _transition-clip-form-left _transition-opacity _anim-duration-0_5"><b>3.2.1. </b><span>токсичної, провокуючої, конфліктної поведінки Замовника.</span>
+                <p><b>3.2.1. </b><span>токсичної, провокуючої, конфліктної поведінки Замовника.</span>
                 </p>
-                <p class="_anim-items _anim-once _transition-clip-form-left _transition-opacity _anim-duration-0_5"><b>3.2.2. </b><span>порушення та/або невиконання Замовником будь якої умови Договору.</span>
+                <p><b>3.2.2. </b><span>порушення та/або невиконання Замовником будь якої умови Договору.</span>
                 </p>
-                <p class="_anim-items _anim-once _transition-clip-form-left _transition-opacity _anim-duration-0_5"><b>3.2.3. </b><span>відсутності взаємодії та комунікації Замовника з Виконавцем.</span>
+                <p><b>3.2.3. </b><span>відсутності взаємодії та комунікації Замовника з Виконавцем.</span>
                 </p>
-                <p class="_anim-items _anim-once _transition-clip-form-left _transition-opacity _anim-duration-0_5"><b>3.2.4. </b><span>невиконання Замовником рекомендацій Виконавця.</span>
+                <p><b>3.2.4. </b><span>невиконання Замовником рекомендацій Виконавця.</span>
                 </p>
-                <p class="_anim-items _anim-once _transition-clip-form-left _transition-opacity _anim-duration-0_5"><b>3.3. </b><span>У разі дострокового розірвання Договору на підставі п. 3.2 Договору вартість Послуг сплачених Замовником не повертається.</span>
+                <p><b>3.3. </b><span>У разі дострокового розірвання Договору на підставі п. 3.2 Договору вартість Послуг сплачених Замовником не повертається.</span>
                 </p>
               </div>
               <div style="display: flex; flex-direction: column; gap: 25px; font-size: 20px; line-height: 24px;">
                 <h3 style="font-size: 32px; line-height: 38.4px">4. ПОРЯДОК ПРИЙНЯТТЯ ОФЕРТИ</h3>
-                <p class="_anim-items _anim-once _transition-clip-form-left _transition-opacity _anim-duration-0_5"><b>4.1. </b><span>Умови Договору вважаються прийнятими Замовником в повному обсязі та без будь яких обмежень, зауважень, винятків з моменту акцептування Договору.</span>
+                <p><b>4.1. </b><span>Умови Договору вважаються прийнятими Замовником в повному обсязі та без будь яких обмежень, зауважень, винятків з моменту акцептування Договору.</span>
                 </p>
-                <p class="_anim-items _anim-once _transition-clip-form-left _transition-opacity _anim-duration-0_5"><b>4.2. Для Акцептування Договору та отримання Послуг Замовник здійснює:</b>
+                <p><b>4.2. Для Акцептування Договору та отримання Послуг Замовник здійснює:</b>
                 </p>
-                <p class="_anim-items _anim-once _transition-clip-form-left _transition-opacity _anim-duration-0_5"><b>4.2.1. </b><span>Ознайомлення з описом, вартістю, особливостями Послуг на Сторінках соціальних мереж Виконавця та/або за наданим доступом на посилання, повідомленням в соціальних мережах чи Месенджерах в груповому чаті (каналі, спільноті), приватному діалозі між Замовником та Виконавцем</span>
+                <p><b>4.2.1. </b><span>Ознайомлення з описом, вартістю, особливостями Послуг на Сторінках соціальних мереж Виконавця та/або за наданим доступом на посилання, повідомленням в соціальних мережах чи Месенджерах в груповому чаті (каналі, спільноті), приватному діалозі між Замовником та Виконавцем</span>
                 </p>
-                <p class="_anim-items _anim-once _transition-clip-form-left _transition-opacity _anim-duration-0_5"><b>4.2.2. </b><span>Обрання Послуги.</span>
+                <p><b>4.2.2. </b><span>Обрання Послуги.</span>
                 </p>
-                <p class="_anim-items _anim-once _transition-clip-form-left _transition-opacity _anim-duration-0_5"><b>4.2.3. </b><span>Оплату Послуги на умовах передбачених розділом 5 Договору та/або повідомленнями від Виконавця в Месенджері.</span>
+                <p><b>4.2.3. </b><span>Оплату Послуги на умовах передбачених розділом 5 Договору та/або повідомленнями від Виконавця в Месенджері.</span>
                 </p>
-                <p class="_anim-items _anim-once _transition-clip-form-left _transition-opacity _anim-duration-0_5"><b>4.3. </b><span>Наслідком виконання п. 4.2 Договору є Акцептування Договору Замовником та прийняття його умов в повному обсязі.</span>
+                <p><b>4.3. </b><span>Наслідком виконання п. 4.2 Договору є Акцептування Договору Замовником та прийняття його умов в повному обсязі.</span>
                 </p>
               </div>
               <div style="display: flex; flex-direction: column; gap: 25px; font-size: 20px; line-height: 24px;">
                 <h3 style="font-size: 32px; line-height: 38.4px">5. ВАРТІСТЬ ПОСЛУГ, ПОРЯДОК РОЗРАХУНКІВ</h3>
-                <p class="_anim-items _anim-once _transition-clip-form-left _transition-opacity _anim-duration-0_5"><b>5.1. </b><span>Вартість Послуг визначається залежно від обраної замовником Послуги.</span>
+                <p><b>5.1. </b><span>Вартість Послуг визначається залежно від обраної замовником Послуги.</span>
                 </p>
-                <p class="_anim-items _anim-once _transition-clip-form-left _transition-opacity _anim-duration-0_5"><b>5.2. </b><span>Вартість Послуг може міститись на Сторінках соціальних мереж Виконавця та/або наданням доступу за посиланням, надсиланням повідомлення в соціальних мережах чи Месенджерах в груповому чаті (каналі, спільноті), приватному діалозі між Замовником та Виконавцем.</span>
+                <p><b>5.2. </b><span>Вартість Послуг може міститись на Сторінках соціальних мереж Виконавця та/або наданням доступу за посиланням, надсиланням повідомлення в соціальних мережах чи Месенджерах в груповому чаті (каналі, спільноті), приватному діалозі між Замовником та Виконавцем.</span>
                 </p>
-                <p class="_anim-items _anim-once _transition-clip-form-left _transition-opacity _anim-duration-0_5"><b>5.3. </b><span>Послуги надаються після внесення Замовником 100 відсоткової передоплати вартості Послуг.</span>
+                <p><b>5.3. </b><span>Послуги надаються після внесення Замовником 100 відсоткової передоплати вартості Послуг.</span>
                 </p>
-                <p class="_anim-items _anim-once _transition-clip-form-left _transition-opacity _anim-duration-0_5"><b>5.4. </b><span>Послуги сплачуються готівкою або безготівковим перерахуванням грошових коштів на рахунок Виконавця. Спосіб сплати обирає Замовник.</span>
+                <p><b>5.4. </b><span>Послуги сплачуються готівкою або безготівковим перерахуванням грошових коштів на рахунок Виконавця. Спосіб сплати обирає Замовник.</span>
                 </p>
-                <p class="_anim-items _anim-once _transition-clip-form-left _transition-opacity _anim-duration-0_5"><b>5.5. </b><span>Замовник здійснює оплату Послуг не пізніше 24 годин з моменту надсилання Виконавцем рахунку. Форма рахунку та спосіб його надсилання визначається Виконавцем на власний розсуд.</span>
+                <p><b>5.5. </b><span>Замовник здійснює оплату Послуг не пізніше 24 годин з моменту надсилання Виконавцем рахунку. Форма рахунку та спосіб його надсилання визначається Виконавцем на власний розсуд.</span>
                 </p>
-                <p class="_anim-items _anim-once _transition-clip-form-left _transition-opacity _anim-duration-0_5"><b>5.6. </b><span>Факт оплати Замовником Послуг є безумовним прийняттям Замовником умов, визначених Договором та/або повідомленнями від Виконавця в Месенджері.</span>
+                <p><b>5.6. </b><span>Факт оплати Замовником Послуг є безумовним прийняттям Замовником умов, визначених Договором та/або повідомленнями від Виконавця в Месенджері.</span>
                 </p>
               </div>
               <div style="display: flex; flex-direction: column; gap: 25px; font-size: 20px; line-height: 24px;">
                 <h3 style="font-size: 32px; line-height: 38.4px">6. ПОРЯДОК НАДАННЯ ПОСЛУГ</h3>
-                <p class="_anim-items _anim-once _transition-clip-form-left _transition-opacity _anim-duration-0_5"><b>6.1. </b><span>Послуги надаються Виконавцем з урахуванням особливостей, обраної Замовником Послуги та індивідуального запиту Замовника.</span>
+                <p><b>6.1. </b><span>Послуги надаються Виконавцем з урахуванням особливостей, обраної Замовником Послуги та індивідуального запиту Замовника.</span>
                 </p>
-                <p class="_anim-items _anim-once _transition-clip-form-left _transition-opacity _anim-duration-0_5"><b>6.2. </b><span>Перелік, обсяг, зміст Матеріалів Виконавець визначає та надає на власний розсуд в кожному індивідуальному випадку.</span>
+                <p><b>6.2. </b><span>Перелік, обсяг, зміст Матеріалів Виконавець визначає та надає на власний розсуд в кожному індивідуальному випадку.</span>
                 </p>
-                <p class="_anim-items _anim-once _transition-clip-form-left _transition-opacity _anim-duration-0_5"><b>6.3. Для надання Послуги:</b>
+                <p><b>6.3. Для надання Послуги:</b>
                 </p>
-                <p class="_anim-items _anim-once _transition-clip-form-left _transition-opacity _anim-duration-0_5"><b>6.3.1. </b><span>протягом 24 годин з моменту оплати Послуги Сторони узгоджують дату та час для отримання Послуги.</span>
+                <p><b>6.3.1. </b><span>протягом 24 годин з моменту оплати Послуги Сторони узгоджують дату та час для отримання Послуги.</span>
                 </p>
-                <p class="_anim-items _anim-once _transition-clip-form-left _transition-opacity _anim-duration-0_5"><b>6.3.2. </b><span>протягом <b>2 днів</b> з дня оплати Послуги Виконавець надсилає Замовнику Анкету, Опитувальник та Харчовий щоденник, які необхідні для отримання Послуги. Замовник зобов’язується вказувати, надавати виключно достовірні дані на запитання Виконавця.</span>
+                <p><b>6.3.2. </b><span>протягом <b>2 днів</b> з дня оплати Послуги Виконавець надсилає Замовнику Анкету, Опитувальник та Харчовий щоденник, які необхідні для отримання Послуги. Замовник зобов’язується вказувати, надавати виключно достовірні дані на запитання Виконавця.</span>
                 </p>
-                <p class="_anim-items _anim-once _transition-clip-form-left _transition-opacity _anim-duration-0_5"><b>6.3.3. </b><span>за 3 дні до узгоджених дати та часу Консультації Замовник надсилає Виконавцю заповнену Анкету, Опитувальник та Харчовий Щоденник, який попередньо отримав від Виконавця.</span>
+                <p><b>6.3.3. </b><span>за 3 дні до узгоджених дати та часу Консультації Замовник надсилає Виконавцю заповнену Анкету, Опитувальник та Харчовий Щоденник, який попередньо отримав від Виконавця.</span>
                 </p>
-                <p class="_anim-items _anim-once _transition-clip-form-left _transition-opacity _anim-duration-0_5"><b>6.4. </b><span>Протягом 3 днів після Консультації Виконавець надсилає Замовнику Матеріали.</span>
+                <p><b>6.4. </b><span>Протягом 3 днів після Консультації Виконавець надсилає Замовнику Матеріали.</span>
                 </p>
-                <p class="_anim-items _anim-once _transition-clip-form-left _transition-opacity _anim-duration-0_5"><b>6.5. </b><span>Протягом 2 тижнів після Консультації Виконавець за потреби здійснює Підтримку Замовника.</span>
+                <p><b>6.5. </b><span>Протягом 2 тижнів після Консультації Виконавець за потреби здійснює Підтримку Замовника.</span>
                 </p>
-                <p class="_anim-items _anim-once _transition-clip-form-left _transition-opacity _anim-duration-0_5"><b>6.6. </b><span>У разі пропуску Замовником заброньованої дати, часу Консультації Послуга вважається наданою, а сплачені кошти поверненню не підлягають.</span>
+                <p><b>6.6. </b><span>У разі пропуску Замовником заброньованої дати, часу Консультації Послуга вважається наданою, а сплачені кошти поверненню не підлягають.</span>
                 </p>
-                <p class="_anim-items _anim-once _transition-clip-form-left _transition-opacity _anim-duration-0_5"><b>6.7. </b><span>Сторони мають право перенести попередньо заброньовану дату та час Консультації за умови надсилання письмового повідомлення не менше ніж за 48 годин до початку Консультації.</span>
+                <p><b>6.7. </b><span>Сторони мають право перенести попередньо заброньовану дату та час Консультації за умови надсилання письмового повідомлення не менше ніж за 48 годин до початку Консультації.</span>
                 </p>
-                <p class="_anim-items _anim-once _transition-clip-form-left _transition-opacity _anim-duration-0_5"><b>6.8. </b><span>У разі порушення строку передбаченого пп. 6.3.3 п. 6.3 Договору погоджені строки надання Послуг та/або заброньовані дата, час Консультації зміщуються на кількість прострочених днів.</span>
+                <p><b>6.8. </b><span>У разі порушення строку передбаченого пп. 6.3.3 п. 6.3 Договору погоджені строки надання Послуг та/або заброньовані дата, час Консультації зміщуються на кількість прострочених днів.</span>
                 </p>
               </div>
               <div style="display: flex; flex-direction: column; gap: 25px; font-size: 20px; line-height: 24px;">
                 <h3 style="font-size: 32px; line-height: 38.4px">7. ПРАВА ІНТЕЛЕКТУАЛЬНОЇ ВЛАСНОСТІ</h3>
-                <p class="_anim-items _anim-once _transition-clip-form-left _transition-opacity _anim-duration-0_5"><b>7.1. </b><span>Усі права на Матеріали, які були отримані Замовником в процесі або в результаті надання Послуг належать Виконавцю і не передаються Замовнику внаслідок оплати та отримання ним Послуг.</span>
+                <p><b>7.1. </b><span>Усі права на Матеріали, які були отримані Замовником в процесі або в результаті надання Послуг належать Виконавцю і не передаються Замовнику внаслідок оплати та отримання ним Послуг.</span>
                 </p>
-                <p class="_anim-items _anim-once _transition-clip-form-left _transition-opacity _anim-duration-0_5"><b>7.2. </b><span>Інформація та Матеріали надані Виконавцем в процесі, за результатами надання Послуг є інтелектуальною діяльністю та власністю Виконавця. Виконавець надає Замовнику право використовувати цю інформацію та Матеріали в особистих цілях без публічного відтворення, поширення та передачі іншим особам. Надаючи Замовнику таке право Виконавець не передає будь-яких прав інтелектуальної власності на інформацію, Матеріали та не дає дозволу на їх використання в інших цілях, ніж ті, що визначені Договором.</span>
+                <p><b>7.2. </b><span>Інформація та Матеріали надані Виконавцем в процесі, за результатами надання Послуг є інтелектуальною діяльністю та власністю Виконавця. Виконавець надає Замовнику право використовувати цю інформацію та Матеріали в особистих цілях без публічного відтворення, поширення та передачі іншим особам. Надаючи Замовнику таке право Виконавець не передає будь-яких прав інтелектуальної власності на інформацію, Матеріали та не дає дозволу на їх використання в інших цілях, ніж ті, що визначені Договором.</span>
                 </p>
-                <p class="_anim-items _anim-once _transition-clip-form-left _transition-opacity _anim-duration-0_5"><b>7.3. </b><span>У разі здійснення запису Консультації Виконавець забороняє використовувати, поширювати цей запис публічно та/або передавати іншим особам.</span>
+                <p><b>7.3. </b><span>У разі здійснення запису Консультації Виконавець забороняє використовувати, поширювати цей запис публічно та/або передавати іншим особам.</span>
                 </p>
               </div>
               <div style="display: flex; flex-direction: column; gap: 25px; font-size: 20px; line-height: 24px;">
                 <h3 style="font-size: 32px; line-height: 38.4px">8. ВiдПОВІДАЛЬНІСТЬ СТОРІН</h3>
-                <p class="_anim-items _anim-once _transition-clip-form-left _transition-opacity _anim-duration-0_5"><b>8.1. </b><span>Замовник усвідомлює та підтверджує, що у випадку настання пп. 3.2.1 - 3.2.4 п. 3.2 Договору Виконавець має право достроково розірвати Договір без повернення вартості сплаченої Замовником Послуги.</span>
+                <p><b>8.1. </b><span>Замовник усвідомлює та підтверджує, що у випадку настання пп. 3.2.1 - 3.2.4 п. 3.2 Договору Виконавець має право достроково розірвати Договір без повернення вартості сплаченої Замовником Послуги.</span>
                 </p>
-                <p class="_anim-items _anim-once _transition-clip-form-left _transition-opacity _anim-duration-0_5"><b>8.2. </b><span>Виконавець не несе відповідальності за невідповідність наданих Послуг очікуванням Замовника. При цьому суб'єктивна негативна оцінка Замовником наданих Виконавцем Послуг не є підставою вважати Послуги не наданими або наданими неналежним чином.</span>
+                <p><b>8.2. </b><span>Виконавець не несе відповідальності за невідповідність наданих Послуг очікуванням Замовника. При цьому суб'єктивна негативна оцінка Замовником наданих Виконавцем Послуг не є підставою вважати Послуги не наданими або наданими неналежним чином.</span>
                 </p>
-                <p class="_anim-items _anim-once _transition-clip-form-left _transition-opacity _anim-duration-0_5"><b>8.3. </b><span>Відповідальність за надання достовірних даних в Анкеті та результатів аналізів, необхідних для надання Послуг несе Замовник.</span>
+                <p><b>8.3. </b><span>Відповідальність за надання достовірних даних в Анкеті та результатів аналізів, необхідних для надання Послуг несе Замовник.</span>
                 </p>
-                <p class="_anim-items _anim-once _transition-clip-form-left _transition-opacity _anim-duration-0_5"><b>8.4. </b><span>Відповідальність за досягнення результатів, пов'язаних з практичним застосуванням інформації та Матеріалів отриманих в процесі та в результаті надання Виконавцем Послуги покладається на Замовника.</span>
+                <p><b>8.4. </b><span>Відповідальність за досягнення результатів, пов'язаних з практичним застосуванням інформації та Матеріалів отриманих в процесі та в результаті надання Виконавцем Послуги покладається на Замовника.</span>
                 </p>
-                <p class="_anim-items _anim-once _transition-clip-form-left _transition-opacity _anim-duration-0_5"><b>8.5. </b><span>Інформація та Матеріали отримані Замовником за Договором не є будь-якими гарантіями. Відповідальність за результати, ризики, пов’язані з використанням чи прийняттям рішень на основі отриманих Послуг покладається на Замовника.</span>
+                <p><b>8.5. </b><span>Інформація та Матеріали отримані Замовником за Договором не є будь-якими гарантіями. Відповідальність за результати, ризики, пов’язані з використанням чи прийняттям рішень на основі отриманих Послуг покладається на Замовника.</span>
                 </p>
-                <p class="_anim-items _anim-once _transition-clip-form-left _transition-opacity _anim-duration-0_5"><b>8.6. </b><span>У разі порушення Замовником положень розділу 7 Договору, що стосуються прав інтелектуальної власності Виконавця, останній має право вимагати від Замовника виплати компенсації в розмірі 100% від вартості Послуг, сплачених Замовником за Договором, за кожний випадок порушення, а також компенсації всіх заподіяних збитків, включаючи втрачену вигоду.</span>
+                <p><b>8.6. </b><span>У разі порушення Замовником положень розділу 7 Договору, що стосуються прав інтелектуальної власності Виконавця, останній має право вимагати від Замовника виплати компенсації в розмірі 100% від вартості Послуг, сплачених Замовником за Договором, за кожний випадок порушення, а також компенсації всіх заподіяних збитків, включаючи втрачену вигоду.</span>
                 </p>
-                <p class="_anim-items _anim-once _transition-clip-form-left _transition-opacity _anim-duration-0_5"><b>8.7. </b><span>Відповідальність щодо вчасного ознайомлення зі змінами до Договору, а також зі змінами до опису, особливостей та вартості Послуг покладається на Замовника.</span>
+                <p><b>8.7. </b><span>Відповідальність щодо вчасного ознайомлення зі змінами до Договору, а також зі змінами до опису, особливостей та вартості Послуг покладається на Замовника.</span>
                 </p>
               </div>
               <div style="display: flex; flex-direction: column; gap: 25px; font-size: 20px; line-height: 24px;">
                 <h3 style="font-size: 32px; line-height: 38.4px">9. фОРС МАЖОРНІ ОБСТАВИНИ</h3>
-                <p class="_anim-items _anim-once _transition-clip-form-left _transition-opacity _anim-duration-0_5"><b>9.1. </b><span>Сторони звільняються від відповідальності за часткове або повне невиконання умов Договору, якщо це невиконання стало наслідком обставин непереборної сили (форс-мажорних обставин), в результаті подій надзвичайного характеру, які Сторони не могли передбачити, та яким не могли запобігти розумними діями.</span>
+                <p><b>9.1. </b><span>Сторони звільняються від відповідальності за часткове або повне невиконання умов Договору, якщо це невиконання стало наслідком обставин непереборної сили (форс-мажорних обставин), в результаті подій надзвичайного характеру, які Сторони не могли передбачити, та яким не могли запобігти розумними діями.</span>
                 </p>
-                <p class="_anim-items _anim-once _transition-clip-form-left _transition-opacity _anim-duration-0_5"><b>9.2. </b><span>Військова агресія та обставини зумовлені її дією, зокрема, але не виключно, повітряні тривоги, загрози ракетних ударів, обстрілів, тощо є форс мажором та звільняють Виконавця від відповідальності за невиконання зобов’язань за цим Договором.</span>
+                <p><b>9.2. </b><span>Військова агресія та обставини зумовлені її дією, зокрема, але не виключно, повітряні тривоги, загрози ракетних ударів, обстрілів, тощо є форс мажором та звільняють Виконавця від відповідальності за невиконання зобов’язань за цим Договором.</span>
                 </p>
               </div>
               <div style="display: flex; flex-direction: column; gap: 25px; font-size: 20px; line-height: 24px;">
                 <h3 style="font-size: 32px; line-height: 38.4px">10. ПОРЯДОК ВИРІШЕННЯ СПОРІВ</h3>
-                <p class="_anim-items _anim-once _transition-clip-form-left _transition-opacity _anim-duration-0_5"><b>10.1. </b><span>Для вирішення спорів за даним Договором Сторони застосовують досудові заходи врегулювання спорів у формі письмових перемовин. У разі неможливості досудово врегулювати спір, кожна із Сторін має право звернутися до суду з метою вирішення спору.</span>
+                <p><b>10.1. </b><span>Для вирішення спорів за даним Договором Сторони застосовують досудові заходи врегулювання спорів у формі письмових перемовин. У разі неможливості досудово врегулювати спір, кожна із Сторін має право звернутися до суду з метою вирішення спору.</span>
                 </p>
-                <p class="_anim-items _anim-once _transition-clip-form-left _transition-opacity _anim-duration-0_5"><b>10.2. </b><span>Правовідносини між Сторонами регулюються матеріальним правом України.</span>
+                <p><b>10.2. </b><span>Правовідносини між Сторонами регулюються матеріальним правом України.</span>
                 </p>
               </div>
               <div style="display: flex; flex-direction: column; gap: 25px; font-size: 20px; line-height: 24px;">
                 <h3 style="font-size: 32px; line-height: 38.4px">11. IНШІ УМОВИ ДОГОВОРУ</h3>
-                <p class="_anim-items _anim-once _transition-clip-form-left _transition-opacity _anim-duration-0_5"><b>11.1. Акцептуванням цього Договору Замовник:</b>
+                <p><b>11.1. Акцептуванням цього Договору Замовник:</b>
                 </p>
-                <p class="_anim-items _anim-once _transition-clip-form-left _transition-opacity _anim-duration-0_5"><b>11.1.1 </b><span>Підтверджує та гарантує, що умови Договору ним прочитані, зрозумілі та прийняті в повному обсязі.</span>
+                <p><b>11.1.1 </b><span>Підтверджує та гарантує, що умови Договору ним прочитані, зрозумілі та прийняті в повному обсязі.</span>
                 </p>
-                <p class="_anim-items _anim-once _transition-clip-form-left _transition-opacity _anim-duration-0_5"><b>11.1.2. </b><span>Надає Виконавцеві право на збирання, обробку та зберігання своїх персональних даних.</span>
+                <p><b>11.1.2. </b><span>Надає Виконавцеві право на збирання, обробку та зберігання своїх персональних даних.</span>
                 </p>
-                <p class="_anim-items _anim-once _transition-clip-form-left _transition-opacity _anim-duration-0_5"><b>11.1.3. </b><span>Підтверджує, що він повідомлений про права, встановлені Законом України “Про захист персональних даних”, про цілі збору даних. Обсяг прав Замовника, як суб’єкта персональних даних відповідно до Закону України “Про захист персональних даних”, йому відомий і зрозумілий.</span>
+                <p><b>11.1.3. </b><span>Підтверджує, що він повідомлений про права, встановлені Законом України “Про захист персональних даних”, про цілі збору даних. Обсяг прав Замовника, як суб’єкта персональних даних відповідно до Закону України “Про захист персональних даних”, йому відомий і зрозумілий.</span>
                 </p>
-                <p class="_anim-items _anim-once _transition-clip-form-left _transition-opacity _anim-duration-0_5"><b>11.3. </b><span>Замовник дає згоду на використання Виконавцем фото, відео Замовника, листувань з Замовником, відгуків про надані Послуги, результатів наданих Послуг. У разі незгоди з цим пунктом Замовник зобов’язується повідомити про це Виконавця при оплаті Послуг.</span>
+                <p><b>11.3. </b><span>Замовник дає згоду на використання Виконавцем фото, відео Замовника, листувань з Замовником, відгуків про надані Послуги, результатів наданих Послуг. У разі незгоди з цим пунктом Замовник зобов’язується повідомити про це Виконавця при оплаті Послуг.</span>
                 </p>
-                <p class="_anim-items _anim-once _transition-clip-form-left _transition-opacity _anim-duration-0_5"><b>11.4. </b><span>Виконавець має право вносити зміни до Договору у період його дії. Такі зміни набирають чинності протягом 1 дня з моменту публікації нової редакції Договору на Сторінках соціальних мереж Виконавця, наданням доступу за посиланням, надсиланням повідомлення в соціальних мережах чи Месенджерах в груповому чаті (каналі, спільноті), приватному діалозі між Замовником та Виконавцем. Замовник вважається таким, що погодився зі змінами, якщо протягом 5 днів з моменту публікації не надіслав своє письмове заперечення на електронну пошту Виконавця.</span>
+                <p><b>11.4. </b><span>Виконавець має право вносити зміни до Договору у період його дії. Такі зміни набирають чинності протягом 1 дня з моменту публікації нової редакції Договору на Сторінках соціальних мереж Виконавця, наданням доступу за посиланням, надсиланням повідомлення в соціальних мережах чи Месенджерах в груповому чаті (каналі, спільноті), приватному діалозі між Замовником та Виконавцем. Замовник вважається таким, що погодився зі змінами, якщо протягом 5 днів з моменту публікації не надіслав своє письмове заперечення на електронну пошту Виконавця.</span>
                 </p>
-                <p class="_anim-items _anim-once _transition-clip-form-left _transition-opacity _anim-duration-0_5"><b>11.5. </b><span>Послуги, що надаються за цим Договором не є медичними та лікарськими, а носять виключно інформаційно-консультаційний характер.</span>
+                <p><b>11.5. </b><span>Послуги, що надаються за цим Договором не є медичними та лікарськими, а носять виключно інформаційно-консультаційний характер.</span>
                 </p>
-                <p class="_anim-items _anim-once _transition-clip-form-left _transition-opacity _anim-duration-0_5"><b>11.6. </b><span>До надання Послуг можуть залучатись треті особи, визначені Виконавцем на власний розсуд.</span>
+                <p><b>11.6. </b><span>До надання Послуг можуть залучатись треті особи, визначені Виконавцем на власний розсуд.</span>
                 </p>
               </div>
             </div>
@@ -431,6 +443,15 @@
           <div class="_grid-col--desk-1-1 _grid-col--lab-3-3 _grid-col--tab-2-2 _grid-row--desk-1-1 _place-desk-↑ _place-lab-↗"><img src="./images/decor/decore_5.jpg" alt="decor" style="border-radius: 100%; height: 154px; width: 154px; float: right" data-da=".section-policy__header,1200,first"/></div>
         </section>
         <section class="section-proposition">
+          <template x-if="!isTablet">
+            <div class="screen">
+              <div class="screen__container">
+                <div class="screen-desk-↖">
+                  <div style="transform: scaleX(-1.3) scaleY(1.3) translate(35px, 200px) rotate(225deg)"><img class="_no-event at-ramdom-rotate-0" src="./images/decor/least_2.png" alt="decor"/></div>
+                </div>
+              </div>
+            </div>
+          </template>
           <div class="_flex section-proposition__info">
             <div class="circle-info"><img class="circle-info__bg" src="./images/decor/bg-info.png" alt="bg" style="transform: translate(-40.5%, 4.5%);"/><img class="circle-info__image" src="./images/photos/self_4.jpg" alt="" srcset=""/>
               <p class="circle-info__text">Виглядаємо ідеально разом!</p>
@@ -499,7 +520,7 @@
                 </div>
               </article>
             </div>
-            <div class="_grid-col--desk-1-2 _grid-row--lab-2-2 _grid-row--phone-3-3">
+            <div class="_grid-col--desk-1-2 _grid-col--lab-1-1 _grid-col--phone-1-2 _grid-row--lab-2-2 _grid-row--phone-3-3">
               <article class="card-mini  card-mini--cource card"><img class="card-mini__image" src="./images/photos/mini-post_7.jpg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
                 <div class="card-mini__container">
                   <h3 class="card-mini__title">Швидкий Старт: Курс «Легко та eфективно» для тих, хто бажає втратити вагу самостійно, правильно їсти та не рахувати калорії</h3>
@@ -836,7 +857,7 @@
           <div class="section-special-offer__last _grid-col--tab-1-2 _place-tab-c"></div>
         </section>
         <section class="section-magazine _grid _fix-hook" id="magazine">
-          <div class="_grid-col--desk-2-4 _grid-col--lab-1-2 _grid-row--desk-1-1">
+          <div class="section-magazine__title _grid-col--desk-2-4 _grid-col--lab-1-2 _grid-row--desk-1-1">
             <div class="title  title--second title--font-family _anim-items _anim-once _transition-clip-form-left _transition-opacity">
               <p class="title__text">Журнал</p>
               <div class="title__container">
@@ -844,7 +865,7 @@
               </div>
             </div>
           </div>
-          <div class="_grid-col--desk-6-6 _grid-col--lab-3-3 _grid-col--tab-2-2 _grid-row--desk-1-1 _place-desk-↘ _place-phone-↗"><a class="link" href="all_news.html">
+          <div class="section-magazine__link _grid-col--desk-6-6 _grid-col--lab-3-3 _grid-col--tab-2-2 _grid-row--desk-1-1 _place-desk-↘ _place-phone-↗"><a class="link" href="all_news.html">
               <div class="link__text">Усі новини</div>
               <div class="link__image">
                 <div class="icon"><svg width="35" height="34" viewBox="0 0 35 34" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -859,42 +880,42 @@
               <div class="splide splide--fix" id="my-slider-2">
                 <div class="splide__track">
                   <ul class="splide__list">
-                    <li class="splide__slide"><a class="link-wrapper" href="one_news.html" target="" rel="noopener noreferrer">
+                    <li class="splide__slide"><a class="link-wrapper link-wrapper--effect-1" href="one_news.html" target="" rel="noopener noreferrer">
                         <article class="card-half-circle  card-half-circle--top card-half-circle--white card"><img class="card-half-circle__image" src="./images/photos/post_8.jpg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
                           <div class="card-half-circle__container">
                             <h3 class="card-half-circle__title">Як здорова дієта впливає на психічне благополуччя</h3>
                           </div>
                         </article></a>
                     </li>
-                    <li class="splide__slide"><a class="link-wrapper" href="one_news.html" target="" rel="noopener noreferrer">
+                    <li class="splide__slide"><a class="link-wrapper link-wrapper--effect-1" href="one_news.html" target="" rel="noopener noreferrer">
                         <article class="card-half-circle  card-half-circle--top card-half-circle--white card"><img class="card-half-circle__image" src="./images/photos/post_9.jpg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
                           <div class="card-half-circle__container">
                             <h3 class="card-half-circle__title">Секрети здоров'я у Вашому холодильнику та як обрати справжні продукти для життєвого тонусу</h3>
                           </div>
                         </article></a>
                     </li>
-                    <li class="splide__slide"><a class="link-wrapper" href="one_news.html" target="" rel="noopener noreferrer">
+                    <li class="splide__slide"><a class="link-wrapper link-wrapper--effect-1" href="one_news.html" target="" rel="noopener noreferrer">
                         <article class="card-half-circle  card-half-circle--top card-half-circle--white card"><img class="card-half-circle__image" src="./images/photos/post_10.jpg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
                           <div class="card-half-circle__container">
                             <h3 class="card-half-circle__title">Інноваційні тренди у світі харчування: що нового в сфері здорового харчування?</h3>
                           </div>
                         </article></a>
                     </li>
-                    <li class="splide__slide"><a class="link-wrapper" href="one_news.html" target="" rel="noopener noreferrer">
+                    <li class="splide__slide"><a class="link-wrapper link-wrapper--effect-1" href="one_news.html" target="" rel="noopener noreferrer">
                         <article class="card-half-circle  card-half-circle--top card-half-circle--white card"><img class="card-half-circle__image" src="./images/photos/post_11.jpg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
                           <div class="card-half-circle__container">
                             <h3 class="card-half-circle__title">Глобальні зміни у харчовій промисловості: вплив технологій та зростання свідомості споживачів</h3>
                           </div>
                         </article></a>
                     </li>
-                    <li class="splide__slide"><a class="link-wrapper" href="one_news.html" target="" rel="noopener noreferrer">
+                    <li class="splide__slide"><a class="link-wrapper link-wrapper--effect-1" href="one_news.html" target="" rel="noopener noreferrer">
                         <article class="card-half-circle  card-half-circle--top card-half-circle--white card"><img class="card-half-circle__image" src="./images/photos/post_12.jpg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
                           <div class="card-half-circle__container">
                             <h3 class="card-half-circle__title">Наукові відкриття у сфері харчування: як дослідження полегшують шлях до здоров'я</h3>
                           </div>
                         </article></a>
                     </li>
-                    <li class="splide__slide"><a class="link-wrapper" href="one_news.html" target="" rel="noopener noreferrer">
+                    <li class="splide__slide"><a class="link-wrapper link-wrapper--effect-1" href="one_news.html" target="" rel="noopener noreferrer">
                         <article class="card-half-circle  card-half-circle--top card-half-circle--white card"><img class="card-half-circle__image" src="./images/photos/post_13.jpg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
                           <div class="card-half-circle__container">
                             <h3 class="card-half-circle__title">Топові тренди у харчовій культурі: як смак і світогляд змінюються у 2024 році</h3>
@@ -905,13 +926,13 @@
                 </div>
               </div>
             </div>
-            <div class="section-magazine__main-card _place-desk-↑ section-magazine__main-card--fixed" style="position: relative">
-              <article class="card-big  card-big--x2 card"><img class="card-big__image" src="./images/photos/self_11.jpg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
-                <div class="card-big__container">
-                  <h3 class="card-big__title">Світлана Олійник стала обличчям найвідомішого журналу зі здоров'я</h3>
-                  <p class="card-big__text">Ця фіноменальна подія стала не лише надбанням для мене та моєї родини, а й загалом є посібником для всієї нутриціології</p>
-                </div>
-              </article>
+            <div class="section-magazine__main-card _place-desk-↑ section-magazine__main-card--fixed" style="position: relative"><a class="link-wrapper" href="one_news.html" target="" rel="noopener noreferrer">
+                <article class="card-big  card-big--x2 card"><img class="card-big__image" src="./images/photos/self_11.jpg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
+                  <div class="card-big__container">
+                    <h3 class="card-big__title">Світлана Олійник стала обличчям найвідомішого журналу зі здоров'я</h3>
+                    <p class="card-big__text">Ця фіноменальна подія стала не лише надбанням для мене та моєї родини, а й загалом є посібником для всієї нутриціології</p>
+                  </div>
+                </article></a>
             </div>
           </div>
         </section>
@@ -964,7 +985,7 @@
               </div>
             </template>
             <template x-cloak="x-cloak" x-if="isPhone">
-              <div class="_grid" style="grid-template-columns: repeat(2,50%); width: 100%;">
+              <div class="_grid" style="grid-template-columns: repeat(2,50%); row-gap: 24px;">
                 <article class="card-icon  card-icon--mini card"><img class="card-icon__image" src="./images/icons/dark__done.svg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
                   <div class="card-icon__container">
                     <p class="card-icon__text"><b>Оптимальне <br>здоров'я</b></p>
@@ -1080,18 +1101,20 @@
       </main>
       <div class="page__menu">
         <template x-if="!isShowPopUpContact &amp;&amp; !isShowBurgerMenu &amp;&amp; !isShowPopUpContent">
-          <div class="contacts-menu" x-data="{ hidden: true }" @click.outside="hidden = true">
-            <div class="contacts-menu__container" x-cloak="x-cloak" :class="{'contacts-menu__container--hidden': hidden}">
-              <div class="contacts-menu__item"> <a class="button-icon" target="_blank" href="https://www.instagram.com/svitlana.olijnyk/"><img src="./images/icons/social-instagram.svg" alt="instagram-logo"/></a></div>
-              <div class="contacts-menu__item"> <a class="button-icon" href="mailto:svitlanaoliinyk.nutritionist@ukr.net"><img src="./images/icons/social-sms.svg" alt="sms-logo"/></a></div>
-              <div class="contacts-menu__item"> <a class="button-icon" target="_blank" href="#"><img src="./images/icons/social-messager.svg" alt="messager-logo"/></a></div>
-              <div class="contacts-menu__item"> <a class="button-icon" target="_blank" href="https://wa.me/380676076007"><img src="./images/icons/social-whatsApp.svg" alt="whatsApp-logo"/></a></div>
-              <div class="contacts-menu__item"> <a class="button-icon" target="_blank" href="viber://contact?number=380676076007"><img src="./images/icons/social-viber.svg" alt="viber-logo"/></a></div>
-              <div class="contacts-menu__item"> <a class="button-icon" target="_blank" href="https://t.me/svitlanaolijnyk"><img src="./images/icons/social-telegram.svg" alt="telegram-logo"/></a></div>
-            </div>
-            <button class="contacts-menu__button" type="button" @click="hidden = !hidden" :class="{'contacts-menu__button--close': !hidden}">
-              <div class="contacts-menu__button__image"></div>
-            </button>
+          <div class="page__menu__container" x-data="{ isVisibleToUp: false }" x-init="window.addEventListener('scroll', () =&gt; { isVisibleToUp = window.scrollY &gt;= 1000 })">
+            <div class="contacts-menu" x-data="{ hidden: true }" @click.outside="hidden = true">
+              <div class="contacts-menu__container" x-cloak="x-cloak" :class="{'contacts-menu__container--hidden': hidden}">
+                <div class="contacts-menu__item"> <a class="button-icon" target="_blank" href="https://www.instagram.com/svitlana.olijnyk/"><img src="./images/icons/social-instagram.svg" alt="instagram-logo"/></a></div>
+                <div class="contacts-menu__item"> <a class="button-icon" href="mailto:svitlanaoliinyk.nutritionist@ukr.net"><img src="./images/icons/social-sms.svg" alt="sms-logo"/></a></div>
+                <div class="contacts-menu__item"> <a class="button-icon" target="_blank" href="#"><img src="./images/icons/social-messager.svg" alt="messager-logo"/></a></div>
+                <div class="contacts-menu__item"> <a class="button-icon" target="_blank" href="https://wa.me/380676076007"><img src="./images/icons/social-whatsApp.svg" alt="whatsApp-logo"/></a></div>
+                <div class="contacts-menu__item"> <a class="button-icon" target="_blank" href="viber://contact?number=380676076007"><img src="./images/icons/social-viber.svg" alt="viber-logo"/></a></div>
+                <div class="contacts-menu__item"> <a class="button-icon" target="_blank" href="https://t.me/svitlanaolijnyk"><img src="./images/icons/social-telegram.svg" alt="telegram-logo"/></a></div>
+              </div>
+              <button class="contacts-menu__button" type="button" @click="hidden = !hidden" :class="{'contacts-menu__button--close': !hidden}">
+                <div class="contacts-menu__button__image"></div>
+              </button>
+            </div><a class="to-up" href="#"><img class="to-up__image" src="./images/icons/arrow-to-up.svg" alt="to up" x-show="isVisibleToUp"></a>
           </div>
         </template>
       </div>
@@ -1105,8 +1128,8 @@
           <hr class="_anim-items _transition-clip-form-left" style="margin-bottom: 50px;"/>
           <div class="footer__texts">
             <p class="footer__texts__1 _grid-col--desk-1-1 _grid-col--phone-1-2 _place-desk-↖ ">Усі права захищені ©, 2024, Світлана Олійний, Нутриціолог</p>
-            <p class="footer__texts__2 _grid-col--desk-2-2 _grid-col--phone-1-1 _place-desk-↑ _place-phone-↖"><a class="tolink" href="policy.html">Політика конфіденційності</a></p>
-            <p class="footer__texts__3 _grid-col--desk-3-3 _grid-col--phone-2-3 _place-desk-↗ _place-phone-↖">Розробка сайту:<br><b>Борис Круглов</b></p>
+            <p class="footer__texts__2 _grid-col--desk-2-2 _grid-col--phone-1-1 _place-desk-↑ _place-phone-↖"><a class="to-link" href="policy.html">Політика конфіденційності</a></p>
+            <p class="footer__texts__3 _grid-col--desk-3-3 _grid-col--lab-2-3 _place-desk-↗ _place-phone-↘">Розробка сайту:<br/><a href="https://www.instagram.com/boris__kruglov/"> <b>Борис Круглов</b></a></p>
           </div>
         </div>
       </footer>
