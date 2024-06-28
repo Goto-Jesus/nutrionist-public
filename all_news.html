@@ -15,7 +15,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js" defer></script>
     <script type="module" src="app.js" defer></script>
   </head>
-  <body class="page__body" x-data="{mouseX: 0,mouseY: 0,isShowBurgerMenu: false,isShowPopUpContact: false,isShowPopUpContent: false,contentType: '',contentSrc: '',isTablet: false,isPhone: false,}" @mousemove="mouseX = $event.clientX; mouseY = $event.clientY;" x-init="setTimeout(() =&gt; {isTablet = (window.innerWidth &lt; 992);isPhone = (window.innerWidth &lt; 576);}, 0)" @resize.debounce.window="setTimeout(() =&gt; {isTablet = (window.innerWidth &lt; 992);isPhone = (window.innerWidth &lt; 576);}, 0)" x-cloak :class="{'page__body--stop-scroll': isShowPopUpContact || isShowBurgerMenu || isShowPopUpContent }">
+  <body class="page__body" x-data="{mouseX: 0,mouseY: 0,isShowToUp: false,isShowBurgerMenu: false,isShowPopUpContact: false,isShowPopUpContent: false,currentHook: '',contentType: '',contentSrc: '',isTablet: false,isPhone: false,}" x-init="setTimeout(() =&gt; {isTablet = (window.innerWidth &lt; 992);isPhone = (window.innerWidth &lt; 576);}, 0)" @mousemove="mouseX = $event.clientX; mouseY = $event.clientY;" @scroll.debounce.window="isShowToUp = window.scrollY &gt;= 700;currentHook = window.location.hash" @resize.debounce.window="setTimeout(() =&gt; {isTablet = (window.innerWidth &lt; 992);isPhone = (window.innerWidth &lt; 576);}, 0)" x-cloak :class="{'page__body--stop-scroll': isShowPopUpContact || isShowBurgerMenu || isShowPopUpContent }">
     <div class="page__wrapper">
       <template x-if="isShowBurgerMenu">
         <div class="burger-menu" x-data="{ currentAnchor: '', isClosedBurgerMenu: true }" x-init="setTimeout(() =&gt; {isClosedBurgerMenu=false}, 1)" @scroll.debounce.window="currentAnchor = window.location.hash" :class="{'burger-menu--closed': isClosedBurgerMenu}">
@@ -140,7 +140,7 @@
         </div>
       </template>
       <header class="page__header">
-        <div class="header" x-data="{ currentHook: '' }" :init="currentHook = window.location.hash" @scroll.debounce.window="currentHook = window.location.hash">
+        <div class="header">
           <div class="header__logo">
             <div class="logo"><a href="main.html"><img src="./images/icons/logo.svg" alt="logo"/></a></div>
           </div>
@@ -923,7 +923,7 @@
       </main>
       <div class="page__menu">
         <template x-if="!isShowPopUpContact &amp;&amp; !isShowBurgerMenu &amp;&amp; !isShowPopUpContent">
-          <div class="page__menu__container" x-data="{ isVisibleToUp: false }" x-init="window.addEventListener('scroll', () =&gt; { isVisibleToUp = window.scrollY &gt;= 1000 })">
+          <div class="page__menu__container">
             <div class="contacts-menu" x-data="{ hidden: true }" @click.outside="hidden = true">
               <div class="contacts-menu__container" x-cloak="x-cloak" :class="{'contacts-menu__container--hidden': hidden}">
                 <div class="contacts-menu__item"> <a class="button-icon" target="_blank" href="https://www.instagram.com/svitlana.olijnyk/"><img src="./images/icons/social-instagram.svg" alt="instagram-logo"/></a></div>
@@ -936,7 +936,7 @@
               <button class="contacts-menu__button" type="button" @click="hidden = !hidden" :class="{'contacts-menu__button--close': !hidden}">
                 <div class="contacts-menu__button__image"></div>
               </button>
-            </div><a class="to-up" href="#"><img class="to-up__image" src="./images/icons/arrow-to-up.svg" alt="to up" x-show="isVisibleToUp"></a>
+            </div><a class="to-up" href="#" :class="{'to-up--close': !isShowToUp}"><img class="to-up__image" src="./images/icons/arrow-to-up.svg" alt="to up"></a>
           </div>
         </template>
       </div>
