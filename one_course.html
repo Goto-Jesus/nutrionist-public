@@ -61,16 +61,25 @@
             </button>
           </div>
           <div class="pop-up__content">
-            <section class="section-contact-me _grid shadow-gradient _fix-hook" id="contants" style="margin-bottom: 40px">
+            <section class="section-contact-me _grid decor-shadow-gradient _fix-hook" id="contants" style="margin-bottom: 40px">
+              <template x-if="!isTablet">
+                <div class="screen">
+                  <div class="screen__container">
+                    <div class="screen-desk-↓">
+                      <div style="transform: scale(1.25) translate(-170px, 50px) rotate(27deg)"><img class="_no-event at-ramdom-rotate-2" src="./images/decor/ingir.png" alt="least"/></div>
+                    </div>
+                  </div>
+                </div>
+              </template>
               <div class="section-contact-me__decor _fix-for-decor _grid-col--desk-2-2 _grid-col--lab-1-1 _grid-col--phone-1-2 _place-lab-↗ _place-phone-c">
                 <div class="decor decor--big _anim-items _anim-once __transition-left">
                   <div class="decor__image"><img class="decor__image__photo" src="./images/photos/self_12.jpg" alt="photo"/><img class="decor__image__decor" src="./images/decor/decore_3.jpg" alt="photo"/></div>
                 </div>
-                <div class="contacts">
-                  <h2 class="contacts__name">Світлана Олійник</h2>
-                  <div class="contacts__links">
-                    <div class="contacts__link"><img src="./images/icons/email.svg"/><a href="mailto:svitlanaoliinyk.nutritionist@ukr.net">svitlanaoliinyk.nutritionist@ukr.net</a></div>
-                    <div class="contacts__link"><img src="./images/icons/phone.svg"/><a href="tel:+380 67 607 60 07">+380 67 607 60 07</a></div>
+                <div class="short-contacts">
+                  <h2 class="short-contacts__name">Світлана Олійник</h2>
+                  <div class="short-contacts__links">
+                    <div class="short-contacts__link"><img src="./images/icons/email.svg"/><a href="mailto:svitlanaoliinyk.nutritionist@ukr.net">svitlanaoliinyk.nutritionist@ukr.net</a></div>
+                    <div class="short-contacts__link"><img src="./images/icons/phone.svg"/><a href="tel:+380 67 607 60 07">+380 67 607 60 07</a></div>
                   </div>
                 </div>
               </div>
@@ -84,16 +93,16 @@
                   </div>
                   <div class="_flex _flex-col" style="gap: 45px;">
                     <div class="input">
-                      <label class="input__title" for="name">Як вас звати? *</label>
-                      <input class="input__d" id="name" type="text" name="name" required="required"/>
+                      <label class="input__lable" for="name">Як вас звати? *</label>
+                      <input class="input__input" id="name" type="text" name="name" required="required"/>
                     </div>
                     <div class="input">
-                      <label class="input__title" for="phone" title="напишіть ваш номер в такому форматі: 380501234567">Який ваш номер телфону? *</label>
-                      <input class="input__d" id="phone" type="tel" name="phone" pattern="[0-9]{12}" required="required"/>
+                      <label class="input__lable" for="phone" title="напишіть ваш номер в такому форматі: 380501234567">Який ваш номер телфону? *</label>
+                      <input class="input__input" id="phone" type="tel" name="phone" pattern="[0-9]{12}" required="required"/>
                     </div>
                     <div class="input">
-                      <label class="input__title" for="email">Яка ваша пошта?</label>
-                      <input class="input__d" id="email" type="email" name="email"/>
+                      <label class="input__lable" for="email">Яка ваша пошта?</label>
+                      <input class="input__input" id="email" type="email" name="email"/>
                     </div>
                     <button class="button-circle _anim-items _animation-bounce" type="submit" style="align-self: center;">
                       <div class="button-circle__container">
@@ -220,13 +229,13 @@
           <div class="section-about-me__comments _grid-col--desk-5-6 _grid-col--lab-3-3 _grid-col--tab-2-2 _grid-col--phone-1-2 _grid-row--desk-1-1 _grid-row--phone-a _place-desk-↘ _place-phone-c">
             <h1 class="section-about-me__comments__title">Світлана Олійник</h1>
             <div class="flex flex-col" style="gap: 15px">
-              <div class="comment at-ramdom-moving-0"><img class="comment__icon" src="./images/icons/dark__done.svg" alt="done"/>
+              <div class="comment at-ramdom-moving-0"><img class="comment__icon" src="./images/icons/dark__done.svg" alt="done icon"/>
                 <div>
                   <h2 class="comment__title">Нутриціолог №1</h2>
                   <p class="comment__body">В Дніпропетровської області, входжу у <b>топ 5</b> нутріціологів України</p>
                 </div>
               </div>
-              <div class="comment at-ramdom-moving-2"><img class="comment__icon" src="./images/icons/dark__done.svg" alt="done"/>
+              <div class="comment at-ramdom-moving-2"><img class="comment__icon" src="./images/icons/dark__done.svg" alt="done icon"/>
                 <div>
                   <p class="comment__body">Діючий нутрицiолог із практичним досвідом понад <b>10 років</b></p>
                 </div>
@@ -278,7 +287,7 @@
             <div class="section-page-title__content">
               <div class="grid" style="grid-template-columns: repeat(2,1fr); margin-bottom: 20px;">
                 <div class="section-service__decor _grid-col--phone-1-1 _place-phone-c"></div>
-                <div class="_flex _flex-col _grid-col--desk-1-2 _grid-col--phone-2-2 _place-phone-↓ _anim-items _anim-once _transition-opacity"><img class="koma" src="./images/icons/double-koma.svg" alt="koma"/></div>
+                <div class="_flex _flex-col _grid-col--desk-1-2 _grid-col--phone-2-2 _place-phone-↓ _anim-items _anim-once _transition-opacity"><img class="img-quotes" src="./images/icons/quotes.svg" alt="quotes"/></div>
               </div>
               <div class="title _anim-items _anim-once _transition-clip-form-left _transition-opacity">
                 <p class="title__text">Найкращi курси для твого злоров’я</p>
@@ -296,7 +305,7 @@
           </div>
         </section>
         <section class="section-special-program _grid">
-          <div class="bigger"></div>
+          <div class="decor-circle-bigger"></div>
           <div class="_grid-col--desk-1-3 _grid-col--tab-1-2 _grid-row--desk-1-1" style="margin-bottom: 120px">
             <div class="title title--font-family">
               <p class="title__text">Ексклюзивна програма «Особистісний Вибір»</p>
@@ -344,10 +353,14 @@
           </div>
           <div class="section-special-program__decor _grid-col--desk-3-6 _grid-col--lab-2-3 _grid-col--tab-1-2 _grid-row--desk-1-2 _grid-row--lab-3-3 _grid-row--tab-2-2 _place-desk-c _place-lab-↖ _place-tab-c">
             <div class="decor-comments _anim-items _anim-once _transition-clip-circle">
-              <div :style="(() =&gt; {if (!isTablet &amp;&amp; !isPhone) {const maxAngle=10,maxDistance = 400,rect = $el.getBoundingClientRect(),elementX = rect.left + rect.width / 2,elementY = rect.top + rect.height / 2,deltaX = mouseX - elementX,deltaY = mouseY - elementY,distanceX = Math.min(maxDistance, Math.abs(deltaX)),distanceY = Math.min(maxDistance, Math.abs(deltaY)),angleX = (distanceY / maxDistance) * maxAngle * Math.sign(deltaY),angleY = (distanceX / maxDistance) * maxAngle * -Math.sign(deltaX);return `transform: rotate3d(-1, 0, 0, ${angleX}deg) rotate3d(0, -1, 0, ${angleY}deg);`; }})()"><img class="decor-comments__image" src="./images/photos/main-photo-x2.png" alt="photo" style="position: relative; z-index: 1"/></div>
+              <div :style="(() =&gt; {if (!isTablet &amp;&amp; !isPhone) {const maxAngle=10,maxDistance = 400,rect = $el.getBoundingClientRect(),elementX = rect.left + rect.width / 2,elementY = rect.top + rect.height / 2,deltaX = mouseX - elementX,deltaY = mouseY - elementY,distanceX = Math.min(maxDistance, Math.abs(deltaX)),distanceY = Math.min(maxDistance, Math.abs(deltaY)),angleX = (distanceY / maxDistance) * maxAngle * Math.sign(deltaY),angleY = (distanceX / maxDistance) * maxAngle * -Math.sign(deltaX);return `transform: rotate3d(-1, 0, 0, ${angleX}deg) rotate3d(0, -1, 0, ${angleY}deg);`; }})()">
+                <picture>
+                  <source media="(min-width: 1200px)" srcset="./images/photos/main-photo-x2.png"/><img class="decor-comments__image" src="./images/photos/main-photo-x1.png" alt="photo" style="position: relative; z-index: 1"/>
+                </picture>
+              </div>
               <div class="decor-comments__comment-position-1">
                 <div :style="(() =&gt; {if (!isTablet &amp;&amp; !isPhone) {return 'transform: translate3d(' + (mouseX * 1 / 80) + 'px,' + (mouseY * 1 / 80) + 'px, 0)'}})()">
-                  <div class="comment at-ramdom-moving-1 decor-comments__comment-color-1"><img class="comment__icon" src="./images/icons/dark__done.svg" alt="done"/>
+                  <div class="comment at-ramdom-moving-1 decor-comments__comment-color-1"><img class="comment__icon" src="./images/icons/dark__done.svg" alt="done icon"/>
                     <div>
                       <p class="comment__body">Заснований на принципах індивідуальності покращення здоров’я, та успіху</p>
                     </div>
@@ -356,7 +369,7 @@
               </div>
               <div class="decor-comments__comment-position-2">
                 <div :style="(() =&gt; {if (!isTablet &amp;&amp; !isPhone) {return 'transform: translate3d(' + (mouseX * -1 / 60) + 'px,' + (mouseY * -1 / 60) + 'px, 0)'}})()">
-                  <div class="comment at-ramdom-moving-0 decor-comments__comment-color-2"><img class="comment__icon" src="./images/icons/dark__done.svg" alt="done"/>
+                  <div class="comment at-ramdom-moving-0 decor-comments__comment-color-2"><img class="comment__icon" src="./images/icons/dark__done.svg" alt="done icon"/>
                     <div>
                       <p class="comment__body">Цей курс розроблений для тих, хто прагне досягти нових висот у різних сферах життя</p>
                     </div>
@@ -365,7 +378,7 @@
               </div>
               <div class="decor-comments__comment-position-3">
                 <div :style="(() =&gt; {if (!isTablet &amp;&amp; !isPhone) {return 'transform: translate3d(' + (mouseX * -1 / 40) + 'px,' + (mouseY * -1 / 40) + 'px, 0)'}})()">
-                  <div class="comment at-ramdom-moving-3 decor-comments__comment-color-3"><img class="comment__icon" src="./images/icons/dark__done.svg" alt="done"/>
+                  <div class="comment at-ramdom-moving-3 decor-comments__comment-color-3"><img class="comment__icon" src="./images/icons/dark__done.svg" alt="done icon"/>
                     <div>
                       <p class="comment__body">вiд стрункого тiла, до щасливого життя</p>
                     </div>
@@ -374,7 +387,7 @@
               </div>
               <div class="decor-comments__comment-position-4">
                 <div :style="(() =&gt; {if (!isTablet &amp;&amp; !isPhone) {return 'transform: translate3d(' + (mouseX * 1 / 20) + 'px,' + (mouseY * 1 / 20) + 'px, 0)'}})()">
-                  <div class="comment at-ramdom-moving-2 decor-comments__comment-color-4"><img class="comment__icon" src="./images/icons/dark__done.svg" alt="done"/>
+                  <div class="comment at-ramdom-moving-2 decor-comments__comment-color-4"><img class="comment__icon" src="./images/icons/dark__done.svg" alt="done icon"/>
                     <div>
                       <p class="comment__body">Здорового сну, та правильному харчуванню</p>
                     </div>
@@ -384,7 +397,7 @@
             </div>
           </div>
           <div class="_grid-col--desk-1-6 _grid-col--lab-1-3 _grid-col--tab-1-2 _place-desk-c">
-            <div class="circle-info"><img class="circle-info__bg" src="./images/decor/bg-info-2.png" alt="bg" style="transform: translate(-50%, -4%);"/><img class="circle-info__image" src="./images/photos/self_4.jpg" alt="" srcset=""/>
+            <div class="circle-info"><img class="circle-info__bg" src="./images/decor/bg-info-2.png" alt="bg" style="transform: translate(-50%, -4%);"/><img class="circle-info__image" src="./images/photos/self_4.jpg" alt="background"/>
               <p class="circle-info__text">План навчання</p>
               <h2 class="circle-info__title">Цей курс допоможе вам стати архітектором свого власного здоров'я та насолоджуватися балансом і радістю у кожному прийомі їжі</h2>
             </div>
@@ -482,13 +495,13 @@
                   <div class="module-tree__point _anim-items _transition-module-tree--scale"></div>
                   <div class="module-tree__side module-tree__side--bottom">
                     <div class="module-tree__title">
-                      <div class="title--module _anim-items _transition-left" style="transition: all 2s;">
+                      <div class="title--module _anim-items _anim-once _transition-left" style="transition: all 2s;">
                         <p class="title--module__text">Основи нутриціології: Знайомство з основами та важливістю правильного харчування</p>
                         <div class="title--module__container">
                           <h2 class="title--module__main-text">Модуль</h2>
                         </div>
                       </div>
-                      <div class="module-tree__number _anim-items _transition-right">01</div>
+                      <div class="module-tree__number">01</div>
                     </div>
                   </div>
                 </div>
@@ -502,13 +515,13 @@
                   <div class="module-tree__point _anim-items _transition-module-tree--scale"></div>
                   <div class="module-tree__side module-tree__side--bottom">
                     <div class="module-tree__title">
-                      <div class="title--module _anim-items _transition-left" style="transition: all 2s;">
+                      <div class="title--module _anim-items _anim-once _transition-left" style="transition: all 2s;">
                         <p class="title--module__text">Вивчення Поживних <br>Речовин: Детальний аналіз макро- та мікроелементів у харчах</p>
                         <div class="title--module__container">
                           <h2 class="title--module__main-text">Модуль</h2>
                         </div>
                       </div>
-                      <div class="module-tree__number _anim-items _transition-right">02</div>
+                      <div class="module-tree__number">02</div>
                     </div>
                   </div>
                 </div>
@@ -522,13 +535,13 @@
                   <div class="module-tree__point _anim-items _transition-module-tree--scale"></div>
                   <div class="module-tree__side module-tree__side--bottom">
                     <div class="module-tree__title">
-                      <div class="title--module _anim-items _transition-left" style="transition: all 2s;">
+                      <div class="title--module _anim-items _anim-once _transition-left" style="transition: all 2s;">
                         <p class="title--module__text">Готування та Планування Страв: Навчання готувати здорові та смачні страви, враховуючи індивідуальні потреби</p>
                         <div class="title--module__container">
                           <h2 class="title--module__main-text">Модуль</h2>
                         </div>
                       </div>
-                      <div class="module-tree__number _anim-items _transition-right">03</div>
+                      <div class="module-tree__number">03</div>
                     </div>
                   </div>
                 </div>
@@ -542,13 +555,13 @@
                   <div class="module-tree__point _anim-items _transition-module-tree--scale"></div>
                   <div class="module-tree__side module-tree__side--bottom">
                     <div class="module-tree__title">
-                      <div class="title--module _anim-items _transition-left" style="transition: all 2s;">
+                      <div class="title--module _anim-items _anim-once _transition-left" style="transition: all 2s;">
                         <p class="title--module__text">Персональний Харчовий План: Розробка персонального плану харчування для досягнення конкретних цілей</p>
                         <div class="title--module__container">
                           <h2 class="title--module__main-text">Модуль</h2>
                         </div>
                       </div>
-                      <div class="module-tree__number _anim-items _transition-right">04</div>
+                      <div class="module-tree__number">04</div>
                     </div>
                   </div>
                 </div>
@@ -704,7 +717,7 @@
                 <p class="card-mini__text">Амбітні особистості, готові до викликів, з метою покращити своє життя через індивідуальний підхід до харчування</p>
               </div>
             </article>
-            <div class="img-decore section-recommendations__img-decore _grid-col--desk-2-2 _grid-col--lab-1-1 _grid-col--phone-1-2 _grid-row--lab-4-4 _place-desk-c _place-lab-↘ _place-phone-↖"></div>
+            <div class="img-decor section-recommendations__img-decor _grid-col--desk-2-2 _grid-col--lab-1-1 _grid-col--phone-1-2 _grid-row--lab-4-4 _place-desk-c _place-lab-↘ _place-phone-↖"></div>
             <article class="card-image card _grid-col--desk-4-4 _grid-col--phone-1-2 _anim-items _anim-once _transition-clip-circle" data-da=".section-recommendations__rec,1400,2"><img class="card-image__image" src="./images/photos/full-post_1.jpg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
               <div class="card-image__container">
                 <h3 class="card-image__title">Цінителі Власного Благополуччя</h3>
@@ -1030,8 +1043,8 @@
             </template>
           </div>
         </section>
-        <section class="_grid section-certificates">
-          <div class="_grid-col--desk-1-2" style="margin-bottom: 40px;">
+        <section class="section-certificates _grid">
+          <div class="section-certificates__title _grid-col--desk-1-2">
             <div class="title  title--second title--font-family _anim-items _anim-once _transition-clip-form-left _transition-opacity">
               <p class="title__text">Сертифiкати</p>
               <div class="title__container">
@@ -1043,16 +1056,16 @@
             <div class="splide" id="my-slider">
               <div class="splide__track">
                 <ul class="splide__list">
-                  <li class="splide__slide" @click="isShowPopUpContent = true;contentType = 'image';contentSrc = './images/photos/certificate_1.jpg'"><img class="splide__item" src="./images/photos/certificate_1.jpg"/></li>
-                  <li class="splide__slide" @click="isShowPopUpContent = true;contentType = 'image';contentSrc = './images/photos/certificate_2.jpg'"><img class="splide__item" src="./images/photos/certificate_2.jpg"/></li>
-                  <li class="splide__slide" @click="isShowPopUpContent = true;contentType = 'image';contentSrc = './images/photos/certificate_1.jpg'"><img class="splide__item" src="./images/photos/certificate_1.jpg"/></li>
-                  <li class="splide__slide" @click="isShowPopUpContent = true;contentType = 'image';contentSrc = './images/photos/certificate_2.jpg'"><img class="splide__item" src="./images/photos/certificate_2.jpg"/></li>
+                  <li class="splide__slide" @click="isShowPopUpContent = true;contentType = 'image';contentSrc = './images/photos/certificate_1.jpg'"><img class="splide__item" src="./images/photos/certificate_1.jpg" alt="certificate"/></li>
+                  <li class="splide__slide" @click="isShowPopUpContent = true;contentType = 'image';contentSrc = './images/photos/certificate_2.jpg'"><img class="splide__item" src="./images/photos/certificate_2.jpg" alt="certificate"/></li>
+                  <li class="splide__slide" @click="isShowPopUpContent = true;contentType = 'image';contentSrc = './images/photos/certificate_1.jpg'"><img class="splide__item" src="./images/photos/certificate_1.jpg" alt="certificate"/></li>
+                  <li class="splide__slide" @click="isShowPopUpContent = true;contentType = 'image';contentSrc = './images/photos/certificate_2.jpg'"><img class="splide__item" src="./images/photos/certificate_2.jpg" alt="certificate"/></li>
                 </ul>
               </div>
             </div>
           </div>
         </section>
-        <div class="section-timer">
+        <section class="section-timer">
           <h3 class="section-timer__title">До пiдвищення <br>вартостiзалишилось</h3>
           <div class="date-timer _anim-items _animation-jelly _transition-clip-circle _anim-duration-1_5" x-data="{'targetDate':null,'days':1,'hours':12,'minutes':0,'seconds':0,'init': function() {  const savedDate = localStorage.getItem('targetDate');  if (savedDate) {this.targetDate = parseInt(savedDate)} else {this.resetTargetDate()}  this.startTimer();  } ,'startTimer': function() {  this.updateTimer();  setInterval(() =&gt; {this.updateTimer()}, 1000);  } ,'resetTargetDate': function() {  this.targetDate = new Date().getTime() +   this.days * 24 * 60 * 60 * 1000 +   this.hours * 60 * 60 * 1000 +   this.minutes * 60 * 1000;  localStorage.setItem('targetDate', this.targetDate);  } ,'updateTimer': function() {  const now = new Date().getTime();  const distance = this.targetDate - now;  if (distance &lt; 0) {this.resetTargetDate(); return; }  this.days = Math.floor(distance / (1000 * 60 * 60 * 24));  this.hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));  this.minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));  this.seconds = Math.floor((distance % (1000 * 60)) / 1000);  } }" x-init="init">
             <div class="date-timer__item">
@@ -1075,7 +1088,7 @@
               <div class="date-timer__date-type">секунд</div>
             </div>
           </div>
-        </div>
+        </section>
         <div class="section-bonus _grid">
           <div class="section-bonus__title _grid-col--desk-1-6 _place-desk-c">
             <div class="title title--font-family" style="text-align: center;">
@@ -1086,21 +1099,21 @@
             </div>
           </div>
           <ul class="section-bonus__list _grid-col--desk-1-6 grid ._place-desk-⭤">
-            <li>
+            <li class="section-bonus__item">
               <article class="card-half-circle  card-half-circle--top card-half-circle--white card" style="min-width: 100%;"><img class="card-half-circle__image" src="./images/photos/post_20.jpg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
                 <div class="card-half-circle__container">
                   <h3 class="card-half-circle__title">Ексклюзивні рецепти та меню по рiзним типам дієтам</h3>
                 </div>
               </article>
             </li>
-            <li>
+            <li class="section-bonus__item">
               <article class="card-half-circle  card-half-circle--top card-half-circle--white card" style="min-width: 100%;"><img class="card-half-circle__image" src="./images/photos/post_21.jpg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
                 <div class="card-half-circle__container">
                   <h3 class="card-half-circle__title">Надзвичайна 2 годинна лекцiя - як покращи стан здоров’я та настрою за 3 днi</h3>
                 </div>
               </article>
             </li>
-            <li>
+            <li class="section-bonus__item">
               <article class="card-half-circle  card-half-circle--top card-half-circle--white card" style="min-width: 100%;"><img class="card-half-circle__image" src="./images/photos/post_22.jpg" data-src="./images/photos/mini-post_1.jpg" loading="lazy"/>
                 <div class="card-half-circle__container">
                   <h3 class="card-half-circle__title">Онлайн-Консультації на Період курсу особисто зi Cвiтланою</h3>
@@ -1109,7 +1122,7 @@
             </li>
           </ul>
         </div>
-        <div class="section-tariffs _grid"> 
+        <section class="section-tariffs _grid"> 
           <div class="section-tariffs__title _grid-col--desk-1-6 _grid-col--lab-1-3 _grid-col--tab-1-2 _place-desk-c">
             <div class="title title--font-family" style="text-align: center;">
               <p class="title__text">Тарифи</p>
@@ -1231,10 +1244,25 @@
               </li>
             </ul>
           </div>
-        </div>
-        <section class="section-special-offer _grid shadow-gradient">
-          <div class="_fix-for-decor section-special-offer__decor _grid-col--desk-2-2 _grid-col--lab-1-1 _grid-col--phone-1-2 _place-lab-↗ _place-phone-c">
-            <div class="decor decor--big _anim-items _anim-once _transition-left">
+        </section>
+        <section class="section-special-offer _grid decor-shadow-gradient">
+          <template x-if="!isTablet">
+            <div class="screen">
+              <div class="screen__container">
+                <div class="screen-desk-↖">
+                  <div style="transform: scale(1.4) translate(-65px, 65px) rotate(260deg)"><img class="_no-event at-ramdom-rotate-0" src="./images/decor/least_3.png" alt="decor"/></div>
+                </div>
+                <div class="screen-desk-↗">
+                  <div style="transform: scale(1.25) translate(95px, -35px) rotate(1deg)"><img class="_no-event at-ramdom-rotate-2" src="./images/decor/least_3.png" alt="least"/></div>
+                </div>
+              </div>
+            </div>
+          </template>
+          <div class="_relative _fix-for-decor section-special-offer__decor _grid-col--desk-2-2 _grid-col--lab-1-1 _grid-col--phone-1-2 _place-lab-↗ _place-phone-c _anim-items _anim-once _transition-left">
+            <div class="screen-desk-↖">
+              <div style="transform: scale(1.2) translate(-100px, -100px) rotate(0deg)"><img class="_no-event at-ramdom-rotate-0" src="./images/decor/least_0.png" alt="decor"/></div>
+            </div>
+            <div class="decor decor--big">
               <div class="decor__image"><img class="decor__image__photo" src="./images/photos/self_10.jpg" alt="photo"/><img class="decor__image__decor" src="./images/decor/decore_1.jpg" alt="photo"/></div>
             </div>
           </div>
@@ -1280,6 +1308,15 @@
           <div class="section-special-offer__last _grid-col--tab-1-2 _place-tab-c"></div>
         </section>
         <section class="section-magazine _grid _fix-hook" id="magazine">
+          <template x-if="!isTablet">
+            <div class="screen">
+              <div class="screen__container">
+                <div class="screen-desk-↖">
+                  <div style="transform: scale(1.25) translate(0px, 325px) rotate(27deg)"><img class="_no-event at-ramdom-rotate-2" src="./images/decor/ingir.png" alt="least"/></div>
+                </div>
+              </div>
+            </div>
+          </template>
           <div class="section-magazine__title _grid-col--desk-2-4 _grid-col--lab-1-2 _grid-row--desk-1-1">
             <div class="title  title--second title--font-family _anim-items _anim-once _transition-clip-form-left _transition-opacity">
               <p class="title__text">Журнал</p>
@@ -1453,7 +1490,7 @@
                 <h2 class="title__main-text">Декілька відгуків від людей, кому моя програма допомогла і вони покращили якість життя</h2>
               </div>
             </div>
-          </div><img src="./images/icons/double-koma.svg" style="width: 42px; transform: rotate(180deg)"/>
+          </div><img src="./images/icons/quotes.svg" style="width: 42px; transform: rotate(180deg)"/>
           <div class="carusel" x-data="{'array':[{'id':0},{'id':1},{'id':2},{'id':3},{'id':4}],'people':[{'id':0,'name':'Марія Коваленко','text':'Неймовірний досвід з нутриціологом! Дуже вдячний за консультацію.Дізнався, як правильно годувати свій організм, і результати вражають: більше енергії, покращений настрій та зменшення втоми. Рекомендую кожному, хто цінує своє здоров❜я!','image':'./images/photos/clients/client_1.jpg','url':''},{'id':1,'name':'Олексій Шевчук','text':'Нутриціологія принесла революцію в моє життя! Завдяки порадам експерта, я навчився правильно дбати про свій організм. Більше енергії, поліпшений настрій та помітне зменшення втоми. Дуже задоволений результатами!','image':'./images/photos/clients/client_2.jpg','url':''},{'id':2,'name':'Олена Кушнiр','text':'Нутрициологія змінила моє життя. Після консультації з експертом в цій галузі, я вивчив, як правильно годувати свій організм. Результати вразили - більше енергії, покращений настрій та зменшення втоми. Рекомендую кожному, хто прагне здоров❜я і гармонії у житті','image':'./images/photos/clients/client_3.jpg','url':''},{'id':3,'name':'Анна Ковтун','text':'Консультація з нутриціологом - справжній поворот у моєму розумінні здоров❜я! Дізнався багато нового про правильне харчування, і тепер я відчуваю себе справжнім енергетиком. Рекомендую всім, хто шукає гармонію та благополуччя в житті!','image':'./images/photos/clients/client_4.jpg','url':''},{'id':4,'name':'Вікторія Якименко','text':'Нутриціологія змінила моє життя на краще! Після консультації з експертом у цій галузі, я навчилась правильно годувати себе. Результати просто дивовижні: більше енергії, покращений настрій та зменшення втоми. Рекомендую кожній людині, яка прагне до здоров❜я та гармонії в житті.','image':'./images/photos/clients/client_5.jpg','url':''}],'prevPerson': function() {  this.array.unshift(this.array.pop());  } ,'nextPerson': function() {  this.array.push(this.array.shift());  } ,'changePeson': function(i) {  let index = i[i.length - 1];  if (!isNaN(Number(index))) {  let temp = this.array[2];  this.array[2] = this.array[index];  this.array[index] = temp;  }  } }">
             <textarea class="carusel__text" disabled="disabled" rows="4" x-text="people[array[2].id].text"></textarea>
             <ul class="carusel__list">
@@ -1478,16 +1515,25 @@
             </div>
           </div>
         </div>
-        <section class="section-contact-me _grid shadow-gradient _fix-hook" id="contants" style="margin-bottom: 40px">
+        <section class="section-contact-me _grid decor-shadow-gradient _fix-hook" id="contants" style="margin-bottom: 40px">
+          <template x-if="!isTablet">
+            <div class="screen">
+              <div class="screen__container">
+                <div class="screen-desk-↓">
+                  <div style="transform: scale(1.25) translate(-170px, 50px) rotate(27deg)"><img class="_no-event at-ramdom-rotate-2" src="./images/decor/ingir.png" alt="least"/></div>
+                </div>
+              </div>
+            </div>
+          </template>
           <div class="section-contact-me__decor _fix-for-decor _grid-col--desk-2-2 _grid-col--lab-1-1 _grid-col--phone-1-2 _place-lab-↗ _place-phone-c">
             <div class="decor decor--big _anim-items _anim-once __transition-left">
               <div class="decor__image"><img class="decor__image__photo" src="./images/photos/self_12.jpg" alt="photo"/><img class="decor__image__decor" src="./images/decor/decore_3.jpg" alt="photo"/></div>
             </div>
-            <div class="contacts">
-              <h2 class="contacts__name">Світлана Олійник</h2>
-              <div class="contacts__links">
-                <div class="contacts__link"><img src="./images/icons/email.svg"/><a href="mailto:svitlanaoliinyk.nutritionist@ukr.net">svitlanaoliinyk.nutritionist@ukr.net</a></div>
-                <div class="contacts__link"><img src="./images/icons/phone.svg"/><a href="tel:+380 67 607 60 07">+380 67 607 60 07</a></div>
+            <div class="short-contacts">
+              <h2 class="short-contacts__name">Світлана Олійник</h2>
+              <div class="short-contacts__links">
+                <div class="short-contacts__link"><img src="./images/icons/email.svg"/><a href="mailto:svitlanaoliinyk.nutritionist@ukr.net">svitlanaoliinyk.nutritionist@ukr.net</a></div>
+                <div class="short-contacts__link"><img src="./images/icons/phone.svg"/><a href="tel:+380 67 607 60 07">+380 67 607 60 07</a></div>
               </div>
             </div>
           </div>
@@ -1501,16 +1547,16 @@
               </div>
               <div class="_flex _flex-col" style="gap: 45px;">
                 <div class="input">
-                  <label class="input__title" for="name">Як вас звати? *</label>
-                  <input class="input__d" id="name" type="text" name="name" required="required"/>
+                  <label class="input__lable" for="name">Як вас звати? *</label>
+                  <input class="input__input" id="name" type="text" name="name" required="required"/>
                 </div>
                 <div class="input">
-                  <label class="input__title" for="phone" title="напишіть ваш номер в такому форматі: 380501234567">Який ваш номер телфону? *</label>
-                  <input class="input__d" id="phone" type="tel" name="phone" pattern="[0-9]{12}" required="required"/>
+                  <label class="input__lable" for="phone" title="напишіть ваш номер в такому форматі: 380501234567">Який ваш номер телфону? *</label>
+                  <input class="input__input" id="phone" type="tel" name="phone" pattern="[0-9]{12}" required="required"/>
                 </div>
                 <div class="input">
-                  <label class="input__title" for="email">Яка ваша пошта?</label>
-                  <input class="input__d" id="email" type="email" name="email"/>
+                  <label class="input__lable" for="email">Яка ваша пошта?</label>
+                  <input class="input__input" id="email" type="email" name="email"/>
                 </div>
                 <button class="button-circle _anim-items _animation-bounce" type="submit" style="align-self: center;">
                   <div class="button-circle__container">
@@ -1537,7 +1583,7 @@
               <button class="contacts-menu__button" type="button" @click="hidden = !hidden" :class="{'contacts-menu__button--close': !hidden}">
                 <div class="contacts-menu__button__image"></div>
               </button>
-            </div><a class="to-up" href="#" :class="{'to-up--close': !isShowToUp}"><img class="to-up__image" src="./images/icons/arrow-to-up.svg" alt="to up"></a>
+            </div><a class="to-up" href="#" :class="{'to-up--close': !isShowToUp}"><img class="to-up__image" src="./images/icons/arrow-to-up.svg" alt="to-up icon"></a>
           </div>
         </template>
       </div>
